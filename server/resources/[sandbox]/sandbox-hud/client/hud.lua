@@ -234,7 +234,7 @@ exports("Show", function()
 end)
 
 exports("Hide", function()
-	if not _toggled then
+		if not _toggled then
 		return
 	end
 
@@ -277,6 +277,18 @@ exports("ShiftLocation", function(status)
 	})
 end)
 
+
+exports("ShowLocation", function(setShowing)
+	if type(setShowing) == "boolean" then
+		SendNUIMessage({
+			type = "SHOW_LOCATION",
+			data = { state = setShowing },
+		})
+	else
+		print("HUD", "ShowLocation", "CANNOT SET with non boolean variable")
+	end
+end)
+
 exports("OverlayShow", function(data)
 	if _overlayToggled then
 		return
@@ -311,6 +323,8 @@ exports("VehicleShow", function()
 			position = GetMinimapAnchor()
 		}
 	})
+
+	exports['sandbox-hud']:ShowLocation(true)
 	_vehToggled = true
 	StartVehicleThreads()
 end)
@@ -323,6 +337,8 @@ exports("VehicleHide", function()
 	SendNUIMessage({
 		type = "HIDE_VEHICLE",
 	})
+
+	exports['sandbox-hud']:ShowLocation(false)
 	_vehToggled = false
 end)
 
@@ -502,7 +518,10 @@ AddEventHandler("Characters:Client:Updated", function(key)
 				LocalPlayer.state.phoneOpen or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS")
 			)
 			exports['sandbox-hud']:ShiftLocation(
-				LocalPlayer.state.phoneOpen or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS")
+				LocalPlayer.state.phoneOpen or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS") or hasValue(LocalPlayer.state.Character:GetData("States"), "PD_WATCH")
+			)
+			exports['sandbox-hud']:ShowLocation(
+				LocalPlayer.state.phoneOpen or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS") or hasValue(LocalPlayer.state.Character:GetData("States"), "PD_WATCH")
 			)
 		end
 	end

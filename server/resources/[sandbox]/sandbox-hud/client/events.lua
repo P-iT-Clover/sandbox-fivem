@@ -19,8 +19,8 @@ AddEventHandler("Characters:Client:Spawn", function()
 
 	exports['sandbox-hud']:Show()
 
-	DisplayRadar(hasValue(LocalPlayer.state.Character:GetData("States"), "GPS"))
-	exports['sandbox-hud']:ShiftLocation(hasValue(LocalPlayer.state.Character:GetData("States"), "GPS"))
+    DisplayRadar(hasValue(LocalPlayer.state.Character:GetData("States"), "GPS"))
+    exports['sandbox-hud']:ShiftLocation(hasValue(LocalPlayer.state.Character:GetData("States"), "GPS") or hasValue(LocalPlayer.state.Character:GetData("States"), "PD_WATCH"))
 end)
 
 RegisterNetEvent("UI:Client:Reset", function(manual)
@@ -55,7 +55,7 @@ RegisterNetEvent("UI:Client:Reset", function(manual)
 	if manual then
 		Wait(2500)
 		exports['sandbox-hud']:Show()
-		if exports['sandbox-phone']:IsOpen() or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS") then
+        if exports['sandbox-phone']:IsOpen() or hasValue(LocalPlayer.state.Character:GetData("States"), "GPS") then
 			DisplayRadar(true)
 		end
 	end

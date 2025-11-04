@@ -1,17 +1,17 @@
 export const initialState = {
-    showing: true,
+    showing: false,
     location: {
-        main: 'Alta St',
+        main: 'El Rancho Blvd',
         cross: 'Forum Dr',
-        area: 'Rancho',
-        direction: 'W',
+        area: 'Cypress Flats',
+        direction: 'West',
     },
-    shifted: false,
+    shifted: true,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'TOGGLE_LOC':
+        case 'SHOW_LOCATION':
             return {
                 ...state,
                 showing: action.payload.state,
