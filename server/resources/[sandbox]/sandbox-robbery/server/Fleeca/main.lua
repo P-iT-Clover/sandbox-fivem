@@ -758,9 +758,7 @@ AddEventHandler("Robbery:Server:Setup", function()
 	exports.ox_inventory:RegisterUse("moneybag", "FleecaRobbery", function(source, itemData)
 		local char = exports['sandbox-characters']:FetchCharacterSource(source)
 		if os.time() >= itemData.MetaData.Finished then
-			local amt = itemData.MetaData?.CustomAmt and
-				(math.random(itemData.MetaData?.CustomAmt.Random) + itemData.MetaData?.CustomAmt.Min) or
-				(math.random(5000) + 10000)
+			local amt = itemData.MetaData?.CustomAmt or (math.random(5000) + 10000)
 			exports['sandbox-base']:LoggerInfo("Robbery",
 				string.format("%s %s (%s) Used A Money Bag, Received $%s", char:GetData("First"), char:GetData("Last"),
 					char:GetData("SID"), amt))

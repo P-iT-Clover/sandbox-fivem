@@ -2,11 +2,6 @@ _publicChoplist = {}
 _vipChopList = {}
 
 CreateThread(function()
-	while not Laptop do
-		Wait(10)
-	end
-
-
 	_publicChoplist = {
 		list = exports['sandbox-laptop']:LSUndergroundChoppingGenerateList(10, 2),
 		public = true,

@@ -555,8 +555,7 @@ local furniture = {
     { model = "v_med_pillow", cat = "cushions", hidden = false, },
     { model = "v_med_pillow", cat = "cushions", hidden = false, },
 
-    { name = "Modern Kitchen", model = "mythic_kitchen_modern", cat = "kitchen", hidden = false },
-    { name = "Modern Wood Kitchen", model = "mythic_kitchen_wood", cat = "kitchen", hidden = false },
+    
     { name = "Small Modern Kitchen #1", model = "bzzz_prop_kitchen_a", cat = "kitchen", hidden = false },
     { name = "Small Modern Kitchen #2", model = "bzzz_prop_kitchen_b", cat = "kitchen", hidden = false },
     { name = "Small Modern Kitchen #3", model = "bzzz_prop_kitchen_c", cat = "kitchen", hidden = false },

@@ -307,11 +307,11 @@ exports('HandleConnection', function(source, identifier, deferrals)
 		CURRENT_CONNECTORS_COUNT += 1
 
 		ply.Deferrals.update(Config.Strings.Joining)
-		-- ply.Deferrals.handover({
-		-- 	name = ply.Name,
-		-- 	priority = ply.Priority,
-		-- 	priorityMessage = ply.Message,
-		-- })
+		ply.Deferrals.handover({ -- This is where window.nuiHandoverData is set for loading screen, should also be able to send character data through this
+			name = ply.Name,
+			priority = ply.Priority,
+			priorityMessage = ply.Message,
+		})
 		Wait(500)
 		ply.Deferrals.done()
 

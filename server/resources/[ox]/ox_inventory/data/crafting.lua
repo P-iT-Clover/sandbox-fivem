@@ -465,7 +465,7 @@ return {
         zones = {
             {
                 label = 'Open Crafting Bench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(1056.47, -2450.58, 29.29),
                 size = vec3(2.8, 1.0, 2.0),
                 distance = 1.5,
@@ -556,7 +556,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-584.07, -939.57, 23.89),
                 size = vec3(3.8, 1.0, 1.6),
                 distance = 1.5,
@@ -643,7 +643,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-589.19, -926.07, 28.14),
                 size = vec3(2.0, 1.0, 1.6),
                 distance = 1.5,
@@ -730,7 +730,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(133.37, -3051.24, 7.04),
                 size = vec3(11.8, 1.8, 2.2),
                 distance = 1.5,
@@ -817,7 +817,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-57.5, -1325.07, 29.27),
                 size = vec3(4.2, 1.0, 2.8),
                 distance = 1.5,
@@ -904,7 +904,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-1421.67, -456.38, 35.91),
                 size = vec3(3.8, 1.0, 2.4),
                 distance = 1.5,
@@ -991,7 +991,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(476.67, -1876.93, 26.09),
                 size = vec3(4.0, 1.2, 3.0),
                 distance = 1.5,
@@ -1078,7 +1078,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(1176.15, 2635.21, 37.75),
                 size = vec3(3.8, 1.4, 2.8),
                 distance = 1.5,
@@ -1165,7 +1165,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(558.99, -171.67, 54.51),
                 size = vec3(3.6, 1.2, 2.6),
                 distance = 1.5,
@@ -1252,7 +1252,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(950.91, -979.09, 39.5),
                 size = vec3(3.8, 1.2, 2.2),
                 distance = 1.5,
@@ -1339,7 +1339,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-205.3346, -1335.6605, 31.300),
                 size = vec3(5.0, 1.0, 3.0),
                 distance = 1.5,
@@ -1426,7 +1426,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(163.12, 6364.78, 31.27),
                 size = vec3(4.4, 2.0, 2.4),
                 distance = 1.5,
@@ -1513,7 +1513,7 @@ return {
         zones = {
             {
                 label = 'Mechanic Workbench',
-                icon = 'fa-solid fa-wrench',
+                icon = 'fas fa-wrench',
                 coords = vec3(-726.39, -1505.64, 5.06),
                 size = vec3(5.0, 1.0, 2.6),
                 distance = 1.5,
@@ -1603,7 +1603,7 @@ return {
         zones = {
             {
                 label = 'Taco Farmer Prep Table',
-                icon = 'fa-solid fa-utensils',
+                icon = 'fas fa-utensils',
                 coords = vec3(9.81, -1600.51, 29.38),
                 size = vec3(1.8, 0.8, 4.0),
                 distance = 1.5,
@@ -1636,7 +1636,7 @@ return {
         zones = {
             {
                 label = 'Taco Farmer Fountain Drinks',
-                icon = 'fa-solid fa-glass-water',
+                icon = 'fas fa-glass-water',
                 coords = vec3(7.5, -1606.48, 29.38),
                 size = vec3(0.8, 1.8, 1.4),
                 distance = 1.5,
@@ -1669,7 +1669,7 @@ return {
         peds = {
             {
                 label = 'Wanna Talk?',
-                icon = 'fa-solid fa-toolbox',
+                icon = 'fas fa-toolbox',
                 coords = vec4(1625.526, 2578.829, 44.565, 51.167),
                 model = 's_m_y_prisoner_01',
                 animation = 'WORLD_HUMAN_SMOKING',
@@ -1721,7 +1721,7 @@ return {
         peds = {
             {
                 label = 'Lets Chat',
-                icon = 'fa-solid fa-toolbox',
+                icon = 'fas fa-toolbox',
                 coords = vec4(1699.579, 2472.416, 44.565, 87.913),
                 model = 's_m_y_prisoner_01',
                 animation = 'WORLD_HUMAN_SMOKING',
@@ -1764,7 +1764,7 @@ return {
         zones = {
             {
                 label = 'Make Electronics',
-                icon = 'fa-solid fa-microchip',
+                icon = 'fas fa-microchip',
                 coords = vec3(377.86, -820.56, 29.3),
                 size = vec3(2.8, 1.4, 1.2),
                 distance = 1.5,
@@ -2917,7 +2917,7 @@ return {
         zones = {
             {
                 label = 'Jewelry Crafting',
-                icon = 'fa-solid fa-gem',
+                icon = 'fas fa-gem',
                 coords = vec3(-383.27, 6045.62, 31.51),
                 size = vec3(1.2, 0.65, 1.8),
                 distance = 1.5,
@@ -4070,7 +4070,7 @@ return {
         zones = {
             {
                 label = 'Jewelry Crafting',
-                icon = 'fa-solid fa-gem',
+                icon = 'fas fa-gem',
                 coords = vec3(-712.705, -895.634, 23.795),
                 size = vec3(1.0, 2.0, 2.0),
                 distance = 1.5,
@@ -4177,7 +4177,7 @@ return {
         zones = {
             {
                 label = 'Jewelry Crafting',
-                icon = 'fa-solid fa-gem',
+                icon = 'fas fa-gem',
                 coords = vec3(-421.99, 30.28, 46.23),
                 size = vec3(1.0, 2.0, 2.6),
                 distance = 1.5,
@@ -5330,7 +5330,7 @@ return {
         zones = {
             {
                 label = 'Jewelry Crafting',
-                icon = 'fa-solid fa-gem',
+                icon = 'fas fa-gem',
                 coords = vec3(1652.22, 4880.69, 42.16),
                 size = vec3(0.6, 1.2, 6.0),
                 distance = 1.5,
@@ -5370,7 +5370,7 @@ return {
     --     zones = {
     --         {
     --             label = 'Make Electronics',
-    --             icon = 'fa-solid fa-microchip',
+    --             icon = 'fas fa-microchip',
     --             coords = vec3(377.86, -820.56, 29.3),
     --             size = vec3(2.8, 1.4, 1.2),
     --             distance = 1.5,
@@ -5410,7 +5410,7 @@ return {
     --     zones = {
     --         {
     --             label = 'Make Electronics',
-    --             icon = 'fa-solid fa-microchip',
+    --             icon = 'fas fa-microchip',
     --             coords = vec3(377.86, -820.56, 29.3),
     --             size = vec3(2.8, 1.4, 1.2),
     --             distance = 1.5,
@@ -5450,7 +5450,7 @@ return {
     --     zones = {
     --         {
     --             label = 'Make Electronics',
-    --             icon = 'fa-solid fa-microchip',
+    --             icon = 'fas fa-microchip',
     --             coords = vec3(377.86, -820.56, 29.3),
     --             size = vec3(2.8, 1.4, 1.2),
     --             distance = 1.5,
@@ -5512,7 +5512,7 @@ return {
         zones = {
             {
                 label = 'Drinks & Ice Cream',
-                icon = 'fa-solid fa-cup-straw-swoosh',
+                icon = 'fas fa-cup-straw-swoosh',
                 coords = vec3(-1191.52, -897.64, 13.8),
                 size = vec3(2.6, 0.6, 1.2),
                 distance = 1.5,
@@ -5570,7 +5570,7 @@ return {
         zones = {
             {
                 label = 'Drinks & Ice Cream',
-                icon = 'fa-solid fa-cup-straw-swoosh',
+                icon = 'fas fa-cup-straw-swoosh',
                 coords = vec3(-1191.12, -905.38, 13.8),
                 size = vec3(1.4, 1.0, 1.2),
                 distance = 1.5,
@@ -5710,7 +5710,7 @@ return {
         zones = {
             {
                 label = 'Food',
-                icon = 'fa-solid fa-burger-fries',
+                icon = 'fas fa-burger-fries',
                 coords = vec3(-1187.16, -900.2, 13.8),
                 size = vec3(1.8, 3.4, 1.2),
                 distance = 1.5,
@@ -5770,7 +5770,7 @@ return {
         zones = {
             {
                 label = 'Food',
-                icon = 'fa-solid fa-sandwich',
+                icon = 'fas fa-sandwich',
                 coords = vec3(121.6, -1038.57, 29.28),
                 size = vec3(1.8, 0.8, 1.2),
                 distance = 1.5,
@@ -5807,7 +5807,7 @@ return {
         zones = {
             {
                 label = 'Coffee Machine',
-                icon = 'fa-solid fa-coffee-pot',
+                icon = 'fas fa-coffee-pot',
                 coords = vec3(124.04, -1039.23, 29.28),
                 size = vec3(6.2, 1.0, 1.2),
                 distance = 1.5,
@@ -5848,7 +5848,7 @@ return {
         zones = {
             {
                 label = 'Drinks Machine',
-                icon = 'fa-solid fa-cup-straw-swoosh',
+                icon = 'fas fa-cup-straw-swoosh',
                 coords = vec3(123.46, -1042.84, 29.28),
                 size = vec3(0.8, 1.8, 1.2),
                 distance = 1.5,
@@ -5884,7 +5884,7 @@ return {
         zones = {
             {
                 label = 'Drinks',
-                icon = 'fa-solid fa-cup-straw-swoosh',
+                icon = 'fas fa-cup-straw-swoosh',
                 coords = vec3(810.74, -764.46, 26.78),
                 size = vec3(1.0, 2.0, 1.2),
                 distance = 1.5,
@@ -5938,7 +5938,7 @@ return {
         zones = {
             {
                 label = 'Drinks',
-                icon = 'fa-solid fa-cup-straw-swoosh',
+                icon = 'fas fa-cup-straw-swoosh',
                 coords = vec3(814.05, -749.35, 26.78),
                 size = vec3(1.0, 2.2, 1.2),
                 distance = 1.5,
@@ -5989,7 +5989,7 @@ return {
         zones = {
             {
                 label = 'Pizza Oven',
-                icon = 'fa-solid fa-pizza',
+                icon = 'fas fa-pizza',
                 coords = vec3(813.97, -752.85, 26.78),
                 size = vec3(2.0, 2.0, 1.2),
                 distance = 1.5,
@@ -6048,7 +6048,7 @@ return {
         zones = {
             {
                 label = 'Food',
-                icon = 'fa-solid fa-pizza',
+                icon = 'fas fa-pizza',
                 coords = vec3(808.69, -761.17, 26.78),
                 size = vec3(3.0, 2.2, 1.2),
                 distance = 1.5,
@@ -6149,7 +6149,7 @@ return {
         zones = {
             {
                 label = 'Bar',
-                icon = 'fa-solid fa-martini-glass-citrus',
+                icon = 'fas fa-martini-glass-citrus',
                 coords = vec3(131.03, -1282.28, 29.27),
                 size = vec3(2.2, 1.2, 1.2),
                 distance = 1.5,
@@ -6226,7 +6226,7 @@ return {
         zones = {
             {
                 label = 'Hot Drinks',
-                icon = 'fa-solid fa-mug-hot',
+                icon = 'fas fa-mug-hot',
                 coords = vec3(-586.98, -1061.91, 22.34),
                 size = vec3(0.8, 0.8, 1.2),
                 distance = 1.5,
@@ -6293,7 +6293,7 @@ return {
         zones = {
             {
                 label = 'Oven',
-                icon = 'fa-solid fa-cupcake',
+                icon = 'fas fa-cupcake',
                 coords = vec3(-590.9, -1059.56, 22.34),
                 size = vec3(1.6, 1.0, 1.2),
                 distance = 1.5,
@@ -6342,7 +6342,7 @@ return {
         zones = {
             {
                 label = 'Food',
-                icon = 'fa-solid fa-sandwich',
+                icon = 'fas fa-sandwich',
                 coords = vec3(-591.13, -1063.23, 22.36),
                 size = vec3(2.6, 0.8, 1.2),
                 distance = 1.5,
@@ -6370,7 +6370,7 @@ return {
         zones = {
             {
                 label = 'Arts & Crafts',
-                icon = 'fa-solid fa-paintbrush-pencil',
+                icon = 'fas fa-paintbrush-pencil',
                 coords = vec3(-596.06, -1052.47, 22.34),
                 size = vec3(1.0, 2.0, 1.2),
                 distance = 1.5,

@@ -177,7 +177,7 @@ function CreateDumbAssPed(model, coords, heading, menu, icon, scenario, anim, co
 		for i, option in ipairs(menu) do
 			local oxOption = {
 				label = option.label or option.text,
-				icon = option.icon or "fa-solid fa-shop",
+				icon = option.icon or "fas fa-shop",
 				distance = option.distance or option.minDist or 2.0,
 				groups = option.groups or nil,
 				permissionKey = option.permissionKey or nil,

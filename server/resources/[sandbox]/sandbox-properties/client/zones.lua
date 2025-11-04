@@ -15,7 +15,7 @@ function CreatePropertyZones(propertyId, int)
             maxZ = interior.locations.front.polyzone.options.maxZ,
             options = {
                 {
-                    icon = "fa-solid fa-door-open",
+                    icon = "fas fa-door-open",
                     label = "Exit",
                     onSelect = function()
                         TriggerEvent("Properties:Client:Exit", {
@@ -38,7 +38,7 @@ function CreatePropertyZones(propertyId, int)
                 maxZ = interior.locations.back.polyzone.options.maxZ,
                 options = {
                     {
-                        icon = "fa-solid fa-door-open",
+                        icon = "fas fa-door-open",
                         label = "Exit",
                         onSelect = function()
                             TriggerEvent("Properties:Client:Exit", {
@@ -62,7 +62,7 @@ function CreatePropertyZones(propertyId, int)
                 maxZ = interior.locations.office.polyzone.options.maxZ,
                 options = {
                     {
-                        icon = "fa-solid fa-box-open-full",
+                        icon = "fas fa-box-open-full",
                         label = "Access Storage",
                         onSelect = function()
                             TriggerEvent("Properties:Client:Stash", propertyId)
@@ -77,7 +77,7 @@ function CreatePropertyZones(propertyId, int)
                         end,
                     },
                     {
-                        icon = "fa-solid fa-clipboard",
+                        icon = "fas fa-clipboard",
                         label = "Go On/Off Duty",
                         onSelect = function()
                             TriggerEvent("Properties:Client:Duty", propertyId)
@@ -108,7 +108,7 @@ function CreatePropertyZones(propertyId, int)
                 maxZ = interior.locations.warehouse.polyzone.options.maxZ,
                 options = {
                     {
-                        icon = "fa-solid fa-box-open-full",
+                        icon = "fas fa-box-open-full",
                         label = "Access Storage",
                         onSelect = function()
                             TriggerEvent("Properties:Client:Stash", propertyId)
@@ -129,7 +129,7 @@ function CreatePropertyZones(propertyId, int)
         if interior.locations.crafting and GlobalState[string.format("Property:Crafting:%s", propertyId)] then
             local menu = {
                 {
-                    icon = "fa-solid fa-box-open-full",
+                    icon = "fas fa-box-open-full",
                     label = "Access Storage",
                     onSelect = function()
                         TriggerEvent("Properties:Client:Stash", propertyId)
@@ -144,7 +144,7 @@ function CreatePropertyZones(propertyId, int)
                     end,
                 },
                 {
-                    icon = "fa-solid fa-screwdriver-wrench",
+                    icon = "fas fa-screwdriver-wrench",
                     label = "Use Bench",
                     onSelect = function()
                         TriggerEvent("Properties:Client:Crafting", propertyId)
@@ -161,7 +161,7 @@ function CreatePropertyZones(propertyId, int)
 
             if GlobalState[string.format("Property:Crafting:%s", propertyId)].schematics then
                 table.insert(menu, {
-                    icon = "fa-solid fa-memo-circle-check",
+                    icon = "fas fa-memo-circle-check",
                     label = "Add Schematic To Bench",
                     event = "Crafting:Client:AddSchematic",
                     onSelect = function()

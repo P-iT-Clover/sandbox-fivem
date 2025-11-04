@@ -47,7 +47,7 @@ function RequestControlWithTimeout(veh, timeout)
     if not NetworkHasControlOfEntity(veh) then
         NetworkRequestControlOfEntity(veh)
 
-        Citizen.SetTimeout(timeout, function()
+        SetTimeout(timeout, function()
             requestTimeout = true
         end)
 

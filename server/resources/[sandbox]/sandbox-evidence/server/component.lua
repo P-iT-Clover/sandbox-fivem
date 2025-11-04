@@ -62,7 +62,7 @@ AddEventHandler("Sync:Server:WeatherChange", function(weather)
 	if IsWeatherTypeRain(weather) then
 		-- Wash away evidence after a bit
 		if #EVIDENCE_CACHE > 0 then
-			Citizen.SetTimeout(45000, function()
+			SetTimeout(45000, function()
 				local removed = 0
 				for k, v in ipairs(EVIDENCE_CACHE) do
 					if v.type == "blood" then

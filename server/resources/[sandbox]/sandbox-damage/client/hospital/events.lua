@@ -1,27 +1,27 @@
 local hospitalCheckin = {
 	{
-		icon = "fa-solid fa-clipboard-check",
+		icon = "fas fa-clipboard-check",
 		label = "Go On Duty",
 		event = "EMS:Client:OnDuty",
 		groups = { "ems" },
 		reqOffDuty = true,
 	},
 	{
-		icon = "fa-solid fa-clipboard",
+		icon = "fas fa-clipboard",
 		label = "Go Off Duty",
 		event = "EMS:Client:OffDuty",
 		groups = { "ems" },
 		reqDuty = true,
 	},
 	{
-		icon = "fa-solid fa-clipboard",
+		icon = "fas fa-clipboard",
 		label = "Check ICU Patients",
 		event = "EMS:Client:CheckICUPatients",
 		groups = { "ems" },
 		reqDuty = true,
 	},
 	{
-		icon = "fa-solid fa-clipboard-check",
+		icon = "fas fa-clipboard-check",
 		label = "Check In - $1500",
 		event = "Hospital:Client:CheckIn",
 		canInteract = function()
@@ -33,7 +33,7 @@ local hospitalCheckin = {
 		end,
 	},
 	{
-		icon = "fa-solid fa-clipboard-check",
+		icon = "fas fa-clipboard-check",
 		label = "Check In - $1500",
 		event = "Hospital:Client:CheckIn",
 		canInteract = function()
@@ -45,7 +45,7 @@ local hospitalCheckin = {
 		end,
 	},
 	{
-		icon = "fa-solid fa-hands-holding",
+		icon = "fas fa-hands-holding",
 		label = "Retrieve Items",
 		event = "Hospital:Client:RetreiveItems",
 		canInteract = function()

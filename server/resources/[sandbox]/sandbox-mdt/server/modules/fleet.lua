@@ -14,7 +14,20 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
         for k, v in ipairs(results) do
           if v.Properties then
             local properties = json.decode(v.Properties)
-            v.GovAssigned = properties and properties.GovAssigned or nil
+            if properties and properties.GovAssigned then
+              if type(properties.GovAssigned) == "string" then
+                local success, decoded = pcall(json.decode, properties.GovAssigned)
+                if success and decoded and type(decoded) == "table" then
+                  v.GovAssigned = decoded
+                else
+                  v.GovAssigned = nil
+                end
+              else
+                v.GovAssigned = properties.GovAssigned
+              end
+            else
+              v.GovAssigned = nil
+            end
           end
 
           v.Owner = {
@@ -76,9 +89,8 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
           Callsign = v.Callsign
         })
       end
-
       local success = MySQL.update.await(
-        "UPDATE vehicles SET Properties = JSON_SET(COALESCE(Properties, '{}'), '$.GovAssigned', ?) WHERE VIN = ?",
+        "UPDATE vehicles SET Properties = JSON_SET(CASE WHEN JSON_TYPE(Properties) = 'OBJECT' THEN Properties ELSE '{}' END, '$.GovAssigned', ?) WHERE VIN = ?",
         { json.encode(ass), data.vehicle }
       )
 

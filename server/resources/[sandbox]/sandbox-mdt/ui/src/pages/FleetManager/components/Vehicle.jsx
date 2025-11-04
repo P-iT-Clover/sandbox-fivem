@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
 export default ({ vehicle }) => {
 	const classes = useStyles();
 	const history = useNavigate();
-	const myJob = useSelector((state) => state.app.govJob);
-	const jobData = useSelector((state) => state.data.data.governmentJobsData)?.[myJob.Id];
+	const myJob = useSelector(state => state.app.govJob);
+	const jobData = useSelector(state => state.data.data.governmentJobsData)?.[myJob.Id];
 
 	const onClick = () => {
 		history(`/vehicles?vehicle=${vehicle.VIN}&fleet-manage=1`);

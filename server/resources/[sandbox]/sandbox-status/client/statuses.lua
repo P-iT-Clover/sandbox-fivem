@@ -327,6 +327,15 @@ function RegisterStatuses()
 		noReset = true,
 		order = 7,
 	})
+
+	exports['sandbox-status']:Register("PLAYER_DEV", 0, "fas fa-terminal", "#000000", false, function(change)
+		-- We don't need to do anything here
+	end, {
+		id = 7,
+		hideZero = true,
+		order = 8,
+		noReset = true,
+	})
 end
 
 -- RegisterCommand('testdrunk', function(src, args)

@@ -5,6 +5,7 @@ local Items = require 'modules.items.server'
 AddEventHandler("onResourceStart", function(resource)
     if resource ~= GetCurrentResourceName() then return end
     RegisterRandomItems()
+    RegisterOXINVMiddleware()
 
     TriggerEvent('ox_inventory:ready')
 
@@ -1014,6 +1015,12 @@ end)
 exports('Rob', function(src, tSrc, id)
     exports.ox_inventory:forceOpenInventory(src, 'player', tSrc)
 end)
+
+function RegisterOXINVMiddleware()
+    exports['sandbox-base']:MiddlewareAdd('Characters:Logout', function(source)
+        Inventory.SaveInventories(false, true)
+    end, 1)
+end
 
 function RegisterRandomItems()
     exports.ox_inventory:RegisterUse("vanityitem", "VanityItems", function(source, item, itemData)

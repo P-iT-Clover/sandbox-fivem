@@ -45,7 +45,7 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 		end
 	end)
 
-	exports["sandbox-keybinds"]:Add("vehicle_lock", "l", "keyboard", "Vehicle - Toggle Door Locks", function()
+	exports["sandbox-kbs"]:Add("vehicle_lock", "l", "keyboard", "Vehicle - Toggle Door Locks", function()
 		if not _lockdelay then
 			local veh = VEHICLE_INSIDE and VEHICLE_INSIDE
 				or GetClosestVehicleWithinRadius(GetEntityCoords(GLOBAL_PED), 10.0)

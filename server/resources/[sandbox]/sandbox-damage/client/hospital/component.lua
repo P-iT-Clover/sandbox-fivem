@@ -135,7 +135,7 @@ exports("HospitalSendToBed", function(bed, isRp, bedId)
 		else
 			_healEnd = GetCloudTimeAsInt() + (60 * 1)
 			exports['sandbox-hud']:DeathTextsShow("hospital", GetCloudTimeAsInt(), _healEnd, "primary_action")
-			Citizen.SetTimeout(((_healEnd - GetCloudTimeAsInt()) - 10) * 1000, function()
+			SetTimeout(((_healEnd - GetCloudTimeAsInt()) - 10) * 1000, function()
 				if LocalPlayer.state.loggedIn and LocalPlayer.state.isHospitalized then
 					LocalPlayer.state.deadData = {}
 					exports['sandbox-damage']:ReductionsReset()

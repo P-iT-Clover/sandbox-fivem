@@ -238,7 +238,7 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
                     end
                 end
 
-                local plate = (invType == 'glovebox' or invType == 'trunk') and GetVehicleNumberPlateText(entity)
+                local plate = (invType == 'glovebox' or invType == 'trunk') and Entity(entity).state.VIN
 
                 if plate then
                     if server.trimplate then plate = string.strtrim(plate) end
@@ -254,7 +254,7 @@ local function openInventory(source, invType, data, ignoreSecurityChecks)
                 if right and data.netid ~= right.netid then
                     local invEntity = NetworkGetEntityFromNetworkId(right.netid)
 
-                    if not (invEntity > 0 and DoesEntityExist(invEntity)) or (plate and not string.match(GetVehicleNumberPlateText(invEntity) or '', plate)) then
+                    if not (invEntity > 0 and DoesEntityExist(invEntity)) or (plate and not string.match(Entity(invEntity).state.VIN or '', plate)) then
                         Inventory.Remove(right)
                         right = Inventory(data)
                     end

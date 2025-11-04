@@ -13,7 +13,7 @@ local MIN_FLY_BELT = math.floor(49.2 * 2.237) -- 110mph
 local MIN_FLY_HARN = math.floor(89.5 * 2.237) -- 200mph
 
 AddEventHandler('Vehicles:Client:StartUp', function()
-    exports["sandbox-keybinds"]:Add('vehicle_seatbelt', 'b', 'keyboard', 'Vehicle - Toggle Seatbelt / Harness',
+    exports["sandbox-kbs"]:Add('vehicle_seatbelt', 'b', 'keyboard', 'Vehicle - Toggle Seatbelt / Harness',
         function()
             if VEHICLE_INSIDE and not seatbeltExemptVehicles[VEHICLE_CLASS] then
                 local vState = Entity(VEHICLE_INSIDE)

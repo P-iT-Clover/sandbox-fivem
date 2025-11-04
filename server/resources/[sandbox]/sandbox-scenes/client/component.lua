@@ -6,7 +6,7 @@ _hiddenScenes = {}
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("scene_create", "", "keyboard", "Scenes - Create Scene", function()
+		exports["sandbox-kbs"]:Add("scene_create", "", "keyboard", "Scenes - Create Scene", function()
 			exports['sandbox-scenes']:BeginCreation()
 		end)
 	end

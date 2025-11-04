@@ -40,7 +40,7 @@ AddEventHandler("Casino:Client:Startup", function()
             maxZ = v.polyzone.options.maxZ,
             options = {
                 {
-                    icon = "fa-solid fa-diamond",
+                    icon = "fas fa-diamond",
                     label = _rouletteTablesConfig[k].isVIP and string.format("Join VIP Game ($%s Max Bet)", maxBet) or
                         string.format("Join Game ($%s Max Bet)", maxBet),
                     onSelect = function()
@@ -51,14 +51,14 @@ AddEventHandler("Casino:Client:Startup", function()
                     end,
                 },
                 {
-                    icon = "fa-solid fa-diamond",
+                    icon = "fas fa-diamond",
                     label = "Game Full",
                     canInteract = function()
                         return not CanJoinRouletteTable(k) and not _rouletteAtTable
                     end,
                 },
                 {
-                    icon = "fa-solid fa-diamond",
+                    icon = "fas fa-diamond",
                     label = "Leave Game",
                     onSelect = function()
                         TriggerEvent("Casino:Client:LeaveRoulette", { table = k })
@@ -72,7 +72,7 @@ AddEventHandler("Casino:Client:Startup", function()
         })
     end
 
-    exports["sandbox-keybinds"]:Add("casino_camera", "C", "keyboard", "Casino - Change Roulette Camera", function()
+    exports["sandbox-kbs"]:Add("casino_camera", "C", "keyboard", "Casino - Change Roulette Camera", function()
         if _rouletteAtTable then
             RouletteChangeCameraMode(_rouletteAtTable)
         end

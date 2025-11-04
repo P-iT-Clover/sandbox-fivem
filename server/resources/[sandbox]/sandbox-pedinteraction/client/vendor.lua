@@ -10,14 +10,14 @@ RegisterNetEvent("Vendor:Client:Set", function(vendors)
 		if v.type == "ped" then
 			exports['sandbox-pedinteraction']:Add(v.id, v.model, v.position.coords, v.position.heading, 50.0, {
 					{
-						icon = v.iconOverride or "fa-solid fa-question",
+						icon = v.iconOverride or "fas fa-question",
 						text = v.labelOverride or "Buy Items",
 						minDist = 2.0,
 						onSelect = function()
 							TriggerEvent("Vendor:Client:GetItems", v.id)
 						end,
 					},
-				}, v.iconOverride or "fa-solid fa-question", v.position.scenario or false, v.position.anim or nil,
+				}, v.iconOverride or "fas fa-question", v.position.scenario or false, v.position.anim or nil,
 				v.position.component or nil)
 		elseif v.type == "poly" then
 			exports.ox_target:addBoxZone({
@@ -30,7 +30,7 @@ RegisterNetEvent("Vendor:Client:Set", function(vendors)
 				maxZ = v.position.options.maxZ,
 				options = {
 					{
-						icon = v.iconOverride or "fa-solid fa-question",
+						icon = v.iconOverride or "fas fa-question",
 						label = v.labelOverride or "Buy Items",
 						distance = 2.0,
 						onSelect = function()
@@ -57,7 +57,7 @@ RegisterNetEvent(
 			if type == "ped" then
 				exports['sandbox-pedinteraction']:Add(id, model, position.coords, position.heading, 50.0, {
 					{
-						icon = iconOverride or "fa-solid fa-question",
+						icon = iconOverride or "fas fa-question",
 						text = labelOverride or "Buy Items",
 						minDist = 2.0,
 						jobs = false,
@@ -65,7 +65,7 @@ RegisterNetEvent(
 							TriggerEvent("Vendor:Client:GetItems", id)
 						end,
 					},
-				}, iconOverride or "fa-solid fa-question", position.scenario or false, position.anim or false)
+				}, iconOverride or "fas fa-question", position.scenario or false, position.anim or false)
 			elseif type == "poly" then
 				exports.ox_target:addBoxZone({
 					id = id,
@@ -77,7 +77,7 @@ RegisterNetEvent(
 					maxZ = position.options.maxZ,
 					options = {
 						{
-							icon = iconOverride or "fa-solid fa-question",
+							icon = iconOverride or "fas fa-question",
 							label = labelOverride or "Buy Items",
 							distance = 2.0,
 							onSelect = function()

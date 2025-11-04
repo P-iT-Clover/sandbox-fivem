@@ -1,5 +1,5 @@
-local STORE_SERVER_START_WAIT = 1000 * 60 * math.random(60, 70)
-local STORE_REQUIRED_POLICE = 2
+local STORE_SERVER_START_WAIT = 10 * 60 * math.random(60, 70)
+local STORE_REQUIRED_POLICE = 0
 
 local _storeLocs = {
 	store1 = {

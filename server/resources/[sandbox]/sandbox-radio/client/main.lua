@@ -28,44 +28,44 @@ local radioChannelCycle = false
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("voip_radio_power", "", "keyboard", "Voice - Radio - Toggle Power On/Off",
+		exports["sandbox-kbs"]:Add("voip_radio_power", "", "keyboard", "Voice - Radio - Toggle Power On/Off",
 			function()
-				if LocalPlayer.state.loggedIn and HAS_RADIO and not radioChannelCycle then
+			if LocalPlayer.state.loggedIn and HAS_RADIO and not radioChannelCycle and not LocalPlayer.state.isCuffed and not LocalPlayer.state.isHardCuffed and not LocalPlayer.state.isDead then
 					radioChannelCycle = true
 					ToggleRadioPower(false)
-					Citizen.SetTimeout(1000, function()
+					SetTimeout(1000, function()
 						radioChannelCycle = false
 					end)
 				end
 			end)
 
-		exports["sandbox-keybinds"]:Add("voip_radio_open", "", "keyboard", "Voice - Radio - Open Radio", function()
-			if LocalPlayer.state.loggedIn and HAS_RADIO and not LocalPlayer.state.doingAction then
+		exports["sandbox-kbs"]:Add("voip_radio_open", "", "keyboard", "Voice - Radio - Open Radio", function()
+			if LocalPlayer.state.loggedIn and HAS_RADIO and not LocalPlayer.state.doingAction and not LocalPlayer.state.isCuffed and not LocalPlayer.state.isHardCuffed and not LocalPlayer.state.isDead then
 				if CanUseRadio(HAS_RADIO) then
 					OpenRadio()
 				end
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("voip_radio_vol_down", "", "keyboard", "Voice - Radio - Volume Down", function()
+		exports["sandbox-kbs"]:Add("voip_radio_vol_down", "", "keyboard", "Voice - Radio - Volume Down", function()
 			if LocalPlayer.state.loggedIn and HAS_RADIO and RADIO_POWER then
 				RadioVolumeDown(true)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("voip_radio_vol_up", "", "keyboard", "Voice - Radio - Volume Up", function()
+		exports["sandbox-kbs"]:Add("voip_radio_vol_up", "", "keyboard", "Voice - Radio - Volume Up", function()
 			if LocalPlayer.state.loggedIn and HAS_RADIO and RADIO_POWER then
 				RadioVolumeUp(true)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("voip_radio_next", "", "keyboard", "Voice - Radio - Channel Next", function()
+		exports["sandbox-kbs"]:Add("voip_radio_next", "", "keyboard", "Voice - Radio - Channel Next", function()
 			if LocalPlayer.state.loggedIn and HAS_RADIO and RADIO_POWER then
 				CycleRadioChannel(true)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("voip_radio_prev", "", "keyboard", "Voice - Radio - Channel Prev.", function()
+		exports["sandbox-kbs"]:Add("voip_radio_prev", "", "keyboard", "Voice - Radio - Channel Prev.", function()
 			if LocalPlayer.state.loggedIn and HAS_RADIO and RADIO_POWER then
 				CycleRadioChannel(false)
 			end
@@ -341,7 +341,7 @@ function CycleRadioChannel(up)
 		SetCharacterRadioFrequency(switchingRadioChannel, true)
 	end
 
-	Citizen.SetTimeout(1000, function()
+	SetTimeout(1000, function()
 		radioChannelCycle = false
 	end)
 end

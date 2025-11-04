@@ -16,7 +16,7 @@ AddEventHandler("Casino:Client:Startup", function()
     for k, v in ipairs(_slotMachineObjects) do
         exports.ox_target:addModel(v, {
             {
-                icon = "fa-solid fa-crown",
+                icon = "fas fa-crown",
                 label = "Use Machine",
                 event = "Casino:Client:UseSlotMachine",
                 distance = 2.0,
@@ -25,7 +25,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-crown",
+                icon = "fas fa-crown",
                 label = "Leave Machine",
                 event = "Casino:Client:LeaveSlotMachine",
                 distance = 2.0,
@@ -34,7 +34,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-play",
+                icon = "fas fa-play",
                 label = "Place $100 Bet",
                 onSelect = function()
                     TriggerEvent("Casino:Client:PlaySlotMachine", { bet = 100 })
@@ -45,7 +45,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-play",
+                icon = "fas fa-play",
                 label = "Place $250 Bet",
                 onSelect = function()
                     TriggerEvent("Casino:Client:PlaySlotMachine", { bet = 250 })
@@ -56,7 +56,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-play",
+                icon = "fas fa-play",
                 label = "Place $500 Bet",
                 onSelect = function()
                     TriggerEvent("Casino:Client:PlaySlotMachine", { bet = 500 })
@@ -67,7 +67,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-play",
+                icon = "fas fa-play",
                 label = "Place $1,000 Bet",
                 onSelect = function()
                     TriggerEvent("Casino:Client:PlaySlotMachine", { bet = 1000 })
@@ -78,7 +78,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-play",
+                icon = "fas fa-play",
                 label = "Place $2,500 Bet",
                 onSelect = function()
                     TriggerEvent("Casino:Client:PlaySlotMachine", { bet = 2500 })

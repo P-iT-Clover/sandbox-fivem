@@ -96,7 +96,7 @@ AddEventHandler("Pwnzor:Client:EnterAFKCode", function(vals, data)
 			inputShowing = false
 
 			afkCd = true
-			Citizen.SetTimeout(1000 * GlobalState["AFKTimer"], function()
+			SetTimeout(1000 * GlobalState["AFKTimer"], function()
 				afkCd = false
 			end)
 		else
@@ -133,7 +133,6 @@ RegisterNetEvent("Characters:Client:Spawn", function()
 
 		while LocalPlayer.state.loggedIn do
 			Wait(1000)
-			--TriggerServerEvent('mythic_pwnzor:server:PingCheck', securityToken, isLoggedIn)
 			local playerPed = PlayerPedId()
 			if playerPed and not afkCd and not isAfk and not (GlobalState["DisableAFK"] or false) then
 				currentPos = GetEntityCoords(playerPed)
@@ -151,7 +150,7 @@ RegisterNetEvent("Characters:Client:Spawn", function()
 					else
 						time = 0
 						afkCd = true
-						Citizen.SetTimeout(1000 * 60, function()
+						SetTimeout(1000 * 60, function()
 							afkCd = false
 						end)
 					end

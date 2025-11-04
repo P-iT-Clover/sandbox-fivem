@@ -20,7 +20,7 @@ RegisterNetEvent('Vehicles:Server:TestDriveTime', function(vNet)
                 exports['sandbox-hud']:Notification("info", _src, "Test Drive Time Remaining", timeRemaining * 1000,
                     "car")
 
-                Citizen.SetTimeout(timeRemaining * 1000, function()
+                SetTimeout(timeRemaining * 1000, function()
                     EndTestDrive(vehicle, dealership, _src)
                 end)
             else
@@ -287,8 +287,8 @@ function RegisterVehicleSaleCallbacks()
                                                                 saleVehicleData.data.make, saleVehicleData.data.model),
                                                             function(wasPayed, withAccount)
                                                                 if wasPayed then
-                                                                    local preGenerateVIN = Vehicles.Identification.VIN
-                                                                        :GenerateOwned()
+                                                                    local preGenerateVIN = exports['sandbox-vehicles']
+                                                                        :VINGenerateOwned()
 
                                                                     local loanSuccess = exports['sandbox-finance']
                                                                         :LoansCreateVehicleLoan(
@@ -586,7 +586,7 @@ function SendPendingLoanEmail(charData, dealerData, vehicleInfoData, downPayment
             (os.time() + (60 * 5))
         )
 
-        Citizen.SetTimeout(60000 * 5, function()
+        SetTimeout(60000 * 5, function()
             _pendingLoanAccept[charData.SID] = nil
         end)
     else

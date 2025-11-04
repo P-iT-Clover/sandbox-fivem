@@ -54,21 +54,22 @@ local function encodeData(door)
 end
 
 local function getDoor(door)
-	door = type(door) == 'table' and door or doors[door]
-	if not door then return false end
-	return {
-		id = door.id,
-		name = door.name,
-		state = door.state,
-		coords = door.coords,
-		characters = door.characters,
-		groups = door.groups,
-		items = door.items,
-		maxDistance = door.maxDistance,
-		workplace = door.workplace,
-		permissions = door.permissions,
-		onduty = door.onduty,
-	}
+    door = type(door) == 'table' and door or doors[door]
+    if not door then return false end
+    return {
+        id = door.id,
+        name = door.name,
+        state = door.state,
+        coords = door.coords,
+        characters = door.characters,
+        groups = door.groups,
+        items = door.items,
+        maxDistance = door.maxDistance,
+        workplace = door.workplace,
+        permissions = door.permissions,
+        onduty = door.onduty,
+        auto = door.auto,
+    }
 end
 
 exports('getDoor', getDoor)
@@ -443,19 +444,29 @@ RegisterNetEvent('ox_doorlock:teleportToDoor', function(id)
 	SetEntityCoords(ped, door.coords.x, door.coords.y, door.coords.z, false, false, false, false)
 end)
 
+-- Reload Door (sandbox-admin)
+RegisterNetEvent('ox_doorlock:reloadDoor', function(id)
+	MySQL.query('SELECT id, name, data FROM ox_doorlock WHERE id = ?', { id }, function(result)
+		if result and result[1] then
+			local doorData = json.decode(result[1].data)
+			local door = createDoor(result[1].id, doorData, result[1].name)
+			TriggerClientEvent('ox_doorlock:setState', -1, door.id, door.state, false, door)
+		end
+	end)
+end)
+
+-- Remove Door (sandbox-admin)
+RegisterNetEvent('ox_doorlock:removeDoor', function(id)
+	doors[id] = nil
+	TriggerClientEvent('ox_doorlock:editDoorlock', -1, id, nil)
+end)
+
 if utils.isFrameworkActive('sandbox-base') then
 	exports["sandbox-chat"]:RegisterAdminCommand("doorlock", function(source, args, rawCommand)
-		TriggerClientEvent("ox_doorlock:triggeredCommand", source, args.closest)
+		TriggerClientEvent("sandbox-admin:openDoorlockMenu", source)
 	end, {
-		help = locale("create_modify_lock"),
-		params = {
-			{
-				name = "closest",
-				help = locale("command_closest"),
-				optional = true,
-			},
-		},
-	}, -1)
+		help = "Open doorlock management menu",
+	}, 0)
 else
 	lib.addCommand('doorlock', {
 		help = locale('create_modify_lock'),

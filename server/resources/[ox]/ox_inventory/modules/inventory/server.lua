@@ -138,7 +138,7 @@ local function loadInventoryData(data, player, ignoreSecurityChecks)
 
                 for i = 1, #vehicles do
                     local vehicle = vehicles[i]
-                    local _plate = GetVehicleNumberPlateText(vehicle)
+                    local _plate = Entity(vehicle).state.VIN
 
                     if _plate:find(plate) then
                         entity = vehicle

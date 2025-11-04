@@ -1,6 +1,10 @@
 PER_PAGE = 10
 
 function RegisterCallbacks()
+    if RegisterDoorlockCallbacks then
+        RegisterDoorlockCallbacks()
+    end
+    
     exports["sandbox-base"]:RegisterServerCallback('Admin:GetPlayerList', function(source, data, cb)
         CreateThread(function()
             local player = exports['sandbox-base']:FetchSource(source)

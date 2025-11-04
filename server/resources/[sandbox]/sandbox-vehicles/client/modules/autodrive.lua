@@ -13,7 +13,7 @@ local keysToDisable = {
 }
 
 AddEventHandler('Vehicles:Client:StartUp', function()
-	exports["sandbox-keybinds"]:Add('veh_toggle_autodrive', 'Y', 'keyboard', 'Vehicle - Toggle Autopilot', function()
+	exports["sandbox-kbs"]:Add('veh_toggle_autodrive', 'Y', 'keyboard', 'Vehicle - Toggle Autopilot', function()
 		if VEHICLE_INSIDE and DoesEntityExist(VEHICLE_INSIDE) and VEHICLE_SEAT == -1 then
 			if exports['sandbox-vehicles']:EngineCheckKeys() then -- check if have keys
 				StartAutoPilot()
@@ -48,7 +48,7 @@ function StartAutoPilot(crazyMode)
 		if destination == vector3(0, 0, 0) then
 			TaskVehicleDriveWander(LocalPlayer.state.ped, vehicle, crazyMode and 200.0 or speed, flags)
 			exports["sandbox-hud"]:Notification("info",
-				string.format("Autodrive Wander On", exports["sandbox-keybinds"]:GetKey("veh_toggle_autodrive")),
+				string.format("Autodrive Wander On", exports["sandbox-kbs"]:GetKey("veh_toggle_autodrive")),
 				8000,
 				"fas fa-car"
 			)
@@ -64,7 +64,7 @@ function StartAutoPilot(crazyMode)
 				20.0
 			)
 			exports["sandbox-hud"]:Notification("info",
-				string.format("Autodrive To Destination On", exports["sandbox-keybinds"]:GetKey("veh_toggle_autodrive")),
+				string.format("Autodrive To Destination On", exports["sandbox-kbs"]:GetKey("veh_toggle_autodrive")),
 				8000,
 				"fas fa-car"
 			)
@@ -88,7 +88,7 @@ function StartAutoPilot(crazyMode)
 
 			ClearPedTasks(LocalPlayer.state.ped)
 			exports["sandbox-hud"]:Notification("info",
-				string.format("Autodrive Off", exports["sandbox-keybinds"]:GetKey("veh_toggle_autodrive")),
+				string.format("Autodrive Off", exports["sandbox-kbs"]:GetKey("veh_toggle_autodrive")),
 				8000,
 				"fas fa-car"
 			)

@@ -78,7 +78,7 @@ Config = {
 api.addGlobalVehicle({
     {
         name = 'ox_target:driverF',
-        icon = 'fa-solid fa-car-side',
+        icon = 'fas fa-car-side',
         label = locale('toggle_front_driver_door'),
         bones = { 'door_dside_f', 'seat_dside_f' },
         distance = 2,
@@ -91,7 +91,7 @@ api.addGlobalVehicle({
     },
     {
         name = 'ox_target:passengerF',
-        icon = 'fa-solid fa-car-side',
+        icon = 'fas fa-car-side',
         label = locale('toggle_front_passenger_door'),
         bones = { 'door_pside_f', 'seat_pside_f' },
         distance = 2,
@@ -104,7 +104,7 @@ api.addGlobalVehicle({
     },
     {
         name = 'ox_target:driverR',
-        icon = 'fa-solid fa-car-side',
+        icon = 'fas fa-car-side',
         label = locale('toggle_rear_driver_door'),
         bones = { 'door_dside_r', 'seat_dside_r' },
         distance = 2,
@@ -117,7 +117,7 @@ api.addGlobalVehicle({
     },
     {
         name = 'ox_target:passengerR',
-        icon = 'fa-solid fa-car-side',
+        icon = 'fas fa-car-side',
         label = locale('toggle_rear_passenger_door'),
         bones = { 'door_pside_r', 'seat_pside_r' },
         distance = 2,
@@ -130,7 +130,7 @@ api.addGlobalVehicle({
     },
     {
         name = 'ox_target:bonnet',
-        icon = 'fa-solid fa-car',
+        icon = 'fas fa-car',
         label = locale('toggle_hood'),
         offset = vec3(0.5, 1, 0.5),
         distance = 2,
@@ -143,7 +143,7 @@ api.addGlobalVehicle({
     },
     {
         name = 'ox_target:trunk',
-        icon = 'fa-solid fa-car-rear',
+        icon = 'fas fa-car-rear',
         label = locale('toggle_trunk'),
         offset = vec3(0.5, 0, 0.5),
         distance = 2,
@@ -159,7 +159,7 @@ api.addGlobalVehicle({
 api.addGlobalPlayer({
     {
         name = "police_search",
-        icon = "fa-solid fa-magnifying-glass",
+        icon = "fas fa-magnifying-glass",
         label = "Search",
         distance = 1.5,
         groups = { "police" },
@@ -171,7 +171,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_gsr",
-        icon = "fa-solid fa-gun",
+        icon = "fas fa-gun",
         label = "GSR Test",
         distance = 1.5,
         groups = { "police" },
@@ -183,7 +183,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_bac",
-        icon = "fa-solid fa-beer-mug-empty",
+        icon = "fas fa-beer-mug-empty",
         label = "BAC Test",
         distance = 1.5,
         groups = { "police", "ems" },
@@ -195,7 +195,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_dna_swab",
-        icon = "fa-solid fa-dna",
+        icon = "fas fa-dna",
         label = "Take DNA Swab",
         distance = 1.5,
         groups = { "police", "ems" },
@@ -207,7 +207,7 @@ api.addGlobalPlayer({
     },
     {
         name = "ems_drug_test",
-        icon = "fa-solid fa-capsules",
+        icon = "fas fa-capsules",
         label = "Perform Drug Test",
         distance = 1.5,
         groups = { "ems" },
@@ -219,7 +219,7 @@ api.addGlobalPlayer({
     },
     {
         name = "player_rob",
-        icon = "fa-solid fa-gun",
+        icon = "fas fa-gun",
         label = "Rob",
         distance = 1.5,
         canInteract = function(entity, distance, coords)
@@ -246,7 +246,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_cuff",
-        icon = "fa-solid fa-link",
+        icon = "fas fa-link",
         label = "Cuff",
         distance = 1.5,
         canInteract = function(entity, distance, coords)
@@ -268,7 +268,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_uncuff",
-        icon = "fa-solid fa-link-slash",
+        icon = "fas fa-link-slash",
         label = "Uncuff",
         distance = 1.5,
         canInteract = function(entity, distance, coords)
@@ -290,7 +290,7 @@ api.addGlobalPlayer({
     },
     {
         name = "police_remove_mask",
-        icon = "fa-solid fa-masks-theater",
+        icon = "fas fa-masks-theater",
         label = "Remove Mask",
         event = "Police:Client:RemoveMask",
         distance = 1.5,
@@ -302,7 +302,7 @@ api.addGlobalPlayer({
     },
     {
         name = "ems_evaluate",
-        icon = "fa-solid fa-suitcase-medical",
+        icon = "fas fa-suitcase-medical",
         label = "Evaluate",
         distance = 1.5,
         groups = { "ems" },
@@ -314,7 +314,7 @@ api.addGlobalPlayer({
     },
     {
         name = "hud_remove_blindfold",
-        icon = "fa-solid fa-eye-low-vision",
+        icon = "fas fa-eye-low-vision",
         label = "Remove Blindfold",
         distance = 1.5,
         canInteract = function(entity, distance, coords)
@@ -964,7 +964,7 @@ for _, menuItem in ipairs(Config.VehicleMenu) do
 
         exports.ox_target:addGlobalVehicle({
             name = menuItem.event .. "_" .. (menuItem.icon or "generic"),
-            icon = 'fa-solid fa-' .. menuItem.icon,
+            icon = 'fas fa-' .. menuItem.icon,
             label = menuItem.text or (type(menuItem.textFunc) == "function" and menuItem.textFunc(nil, nil) or ""),
             event = menuItem.event,
             data = menuItem.data or {},

@@ -70,7 +70,7 @@ function RegisterDumpsterStartup()
 	-- for k, v in ipairs(_DumpsterEntities) do
 	-- 	exports.ox_target:addModel(v.objectID, {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			label = "Search Trash",
 	-- 			onSelect = function(data)
 	-- 				TriggerEvent("Inventory:Client:SearchDumpster", data.entity)
@@ -84,7 +84,7 @@ function RegisterDumpsterStartup()
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-box-open",
+	-- 			icon = "fas fa-box-open",
 	-- 			label = "Open Trash",
 	-- 			onSelect = function(data)
 	-- 				TriggerEvent("Inventory:Client:OpenDumpster", data.entity)
@@ -98,7 +98,7 @@ function RegisterDumpsterStartup()
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-trash-can-slash",
+	-- 			icon = "fas fa-trash-can-slash",
 	-- 			label = "Hide In Dumpster",
 	-- 			onSelect = function(data)
 	-- 				TriggerEvent("Inventory:Client:HideInDumpster", data.entity)

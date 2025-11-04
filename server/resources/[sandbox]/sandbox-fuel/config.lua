@@ -1,4 +1,5 @@
 Config = {
+	EnableBlips = false,
 	Usage = 1.75,
 	FuelUsage = {
 		[1.3] = 1.3,

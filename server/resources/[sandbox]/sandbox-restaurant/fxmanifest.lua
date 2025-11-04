@@ -1,5 +1,5 @@
-name("ARP Restaurant")
-author("[Cool People Dev Team]")
+name("Sandbox RP Framework Restaurant")
+author("[Alzar, Dr Nick]")
 lua54("yes")
 fx_version("cerulean")
 game("gta5")

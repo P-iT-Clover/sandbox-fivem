@@ -15,7 +15,7 @@ AddEventHandler("Labor:Client:Setup", function()
 	exports['sandbox-pedinteraction']:Add("FarmingJob", `a_m_m_farmer_01`, vector3(2016.165, 4987.541, 41.098), 225.995,
 		25.0, {
 			{
-				icon = "fa-solid fa-wheat-awn",
+				icon = "fas fa-wheat-awn",
 				text = "Start Work",
 				event = "Farming:Client:StartJob",
 				tempjob = "Farming",
@@ -24,7 +24,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				end,
 			},
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				text = "Finish Job",
 				event = "Farming:Client:TurnIn",
 				tempjob = "Farming",

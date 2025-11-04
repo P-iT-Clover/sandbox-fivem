@@ -39,7 +39,6 @@ AddEventHandler("onResourceStart", function(resource)
 ^7]])
 			print("^8Sandbox Framework " .. ver .. "^7 By ^6AutLaaw^7")
 			print("^1Original Mythic Framework Developers: ^6Alzar^7 & ^6Dr Nick^7")
-			print("^3Original Asset Developers^7: ^6Panda_builds^7")
 
 			print([[
 ^2=================================================================================================^7

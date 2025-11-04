@@ -16,6 +16,8 @@ import {
 	Vehicles,
 	VehicleView,
 	Characters,
+	Doorlocks,
+	DoorlockView,
 } from '../../pages';
 
 import Titlebar from '../../components/Titlebar';
@@ -71,6 +73,8 @@ export default () => {
 							<Route exact path="/vehicles" component={Vehicles} />
 							<Route exact path="/players-characters" component={Characters} />
 							<Route exact path="/vehicle/:id" component={VehicleView} />
+							<Route exact path="/doorlocks" component={Doorlocks} />
+							<Route exact path="/doorlock/:id" component={DoorlockView} />
 							<Route component={Error} />
 						</Switch>
 					</div>

@@ -15,6 +15,13 @@ exports('RecordsGet', function(dealership)
                         if record.vehicle then
                             record.vehicle = json.decode(record.vehicle)
                         end
+                        if record.price then
+                            record.salePrice = tonumber(record.price)
+                            record.price = nil
+                        end
+                        if record.commission then
+                            record.commission = tonumber(record.commission)
+                        end
                     end
                     p:resolve(results)
                 else
@@ -68,6 +75,13 @@ exports('RecordsGetPage', function(category, term, dealership, page, perPage)
                     if record.vehicle then
                         record.vehicle = json.decode(record.vehicle)
                     end
+                    if record.price then
+                        record.salePrice = tonumber(record.price)
+                        record.price = nil
+                    end
+                    if record.commission then
+                        record.commission = tonumber(record.commission)
+                    end
                 end
 
                 local more = false
@@ -92,6 +106,10 @@ end)
 exports('RecordsCreate', function(dealership, document)
     if type(document) == 'table' then
         document.dealership = dealership
+        
+        local price = document.price or document.salePrice
+        local commission = document.commission
+        
         local p = promise.new()
 
         local sellerJson = document.seller and json.encode(document.seller) or nil
@@ -100,11 +118,13 @@ exports('RecordsCreate', function(dealership, document)
 
         exports.oxmysql:execute(
             'INSERT INTO dealer_records (dealership, time, seller, buyer, vehicle, price, commission) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            { document.dealership, document.time, sellerJson, buyerJson, vehicleJson, document.price, document
-                .commission },
-            function(insertId)
-                p:resolve(insertId and (type(insertId) == "number" and insertId > 0) or
-                    (type(insertId) == "table" and insertId.insertId and insertId.insertId > 0))
+            { document.dealership, document.time, sellerJson, buyerJson, vehicleJson, price, commission },
+            function(result)
+                if result then
+                    p:resolve(true)
+                else
+                    p:resolve(false)
+                end
             end)
         return Citizen.Await(p)
     end

@@ -34,7 +34,7 @@ function StartBlackjackGame(tableId)
 
         UpdateBlackjackGameState(tableId)
 
-        Citizen.SetTimeout(16000, function()
+        SetTimeout(16000, function()
             if not _blackjack[tableId].Started then
                 _blackjack[tableId].Timeout = true
             end
@@ -540,7 +540,7 @@ function GetHitStandResponse(src, currentHand, canDouble, currentBet)
             end
         end)
 
-    Citizen.SetTimeout(20000, function()
+    SetTimeout(20000, function()
         if p then
             p:resolve({ success = false })
         end

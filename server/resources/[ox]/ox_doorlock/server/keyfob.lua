@@ -67,7 +67,7 @@ RegisterNetEvent('ox_doorlock:useKeyfob', function(data)
     end
 
     local door = exports.ox_doorlock:getDoor(doorId)
-    if door then
+    if door and door.auto then
         local newState = door.state == 1 and 0 or 1
         local success = exports.ox_doorlock:setDoorState(doorId, newState)
 

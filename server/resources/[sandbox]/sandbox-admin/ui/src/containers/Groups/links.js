@@ -37,6 +37,13 @@ const staff = [
     path: "/players-characters",
     exact: true,
   },
+  {
+    name: "doorlocks",
+    icon: ["fas", "door-closed"],
+    label: "Doorlocks",
+    path: "/doorlocks",
+    exact: true,
+  },
   // {
   // 	name: 'current-vehicle',
   // 	icon: ['fas', 'car-side'],
@@ -87,6 +94,13 @@ const admin = [
     icon: ["fas", "car-side"],
     label: "Current Vehicle",
     path: "/current-vehicle",
+    exact: true,
+  },
+  {
+    name: "doorlocks",
+    icon: ["fas", "door-closed"],
+    label: "Doorlocks",
+    path: "/doorlocks",
     exact: true,
   },
 ];

@@ -196,28 +196,28 @@ AddEventHandler('onClientResourceStart', function(resource)
 			maxZ = 46.61,
 			options = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					event = "Corrections:Client:OnDuty",
 					groups = { "prison" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					event = "Corrections:Client:OffDuty",
 					groups = { "prison" },
 					reqDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty (Medical)",
 					event = "EMS:Client:OnDuty",
 					groups = { "ems" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty (Medical)",
 					event = "EMS:Client:OffDuty",
 					groups = { "ems" },
@@ -236,28 +236,28 @@ AddEventHandler('onClientResourceStart', function(resource)
 			maxZ = 50.62,
 			options = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					event = "Corrections:Client:OnDuty",
 					groups = { "prison" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					event = "Corrections:Client:OffDuty",
 					groups = { "prison" },
 					reqDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty (Medical)",
 					event = "EMS:Client:OnDuty",
 					groups = { "ems" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty (Medical)",
 					event = "EMS:Client:OffDuty",
 					groups = { "ems" },
@@ -276,28 +276,28 @@ AddEventHandler('onClientResourceStart', function(resource)
 			maxZ = 46.13,
 			options = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					event = "Corrections:Client:OnDuty",
 					groups = { "prison" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					event = "Corrections:Client:OffDuty",
 					groups = { "prison" },
 					reqDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty (Medical)",
 					event = "EMS:Client:OnDuty",
 					groups = { "ems" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty (Medical)",
 					event = "EMS:Client:OffDuty",
 					groups = { "ems" },
@@ -308,7 +308,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 
 		local locker = {
 			{
-				icon = "fa-solid fa-user-lock",
+				icon = "fas fa-user-lock",
 				label = "Open Personal Locker",
 				event = "Police:Client:OpenLocker",
 				groups = { "prison", "ems" },
@@ -344,7 +344,7 @@ AddEventHandler("Prison:Client:SetLockdown", function(entity, data)
 					TriggerServerEvent("Prison:Server:Lockdown:AlertPolice", state)
 				end
 
-				Citizen.SetTimeout(5000, function()
+				SetTimeout(5000, function()
 					_PROGRESS_LOCKDOWN = false
 				end)
 			else
@@ -368,7 +368,7 @@ AddEventHandler("Prison:Client:SetCellState", function(entity, data)
 				end
 
 				-- TriggerEvent("Prison:Client:JailAlarm", data.state)
-				Citizen.SetTimeout(5000, function()
+				SetTimeout(5000, function()
 					_PROGRESS_DOORS = false
 				end)
 			else

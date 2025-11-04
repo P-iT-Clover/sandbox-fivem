@@ -21,7 +21,7 @@ AddEventHandler("Casino:Server:Startup", function()
                         Turbo = true,
                     }
 
-                    Citizen.SetTimeout(3000, function()
+                    SetTimeout(3000, function()
                         GlobalState["Casino:WheelStarted"] = false
                     end)
 
@@ -36,7 +36,7 @@ AddEventHandler("Casino:Server:Startup", function()
                         Turbo = false,
                     }
 
-                    Citizen.SetTimeout(3000, function()
+                    SetTimeout(3000, function()
                         GlobalState["Casino:WheelStarted"] = false
                     end)
 
@@ -159,7 +159,7 @@ function SpinTheWheel(slice)
 
     TriggerClientEvent("Casino:Client:SpinWheel", -1)
 
-    Citizen.SetTimeout(math.random(3, 5) * 1000, function()
+    SetTimeout(math.random(3, 5) * 1000, function()
         GlobalState["Casino:WheelLastRotation"] = finalRotation
         TriggerClientEvent("Casino:Client:WheelLastRotation", -1, finalRotation)
 

@@ -27,7 +27,7 @@ exports('useKeyfob', function(data, slot)
     TriggerServerEvent('ox_doorlock:useKeyfob', data)
 end)
 
-exports['sandbox-keybinds']:Add("doors_garage_fob", "f10", "keyboard", "Doors - Use Garage Keyfob", function()
+exports['sandbox-kbs']:Add("doors_garage_fob", "f10", "keyboard", "Doors - Use Garage Keyfob", function()
     if exports.ox_inventory:Search('count', 'keyfob') == 0 then
         exports['sandbox-hud']:Notification("error", "You do not have a keyfob.")
         return

@@ -4,7 +4,7 @@ AddEventHandler('ox_target:debug', function(data)
         data.model = GetEntityModel(data.entity)
     end
 
-	print(json.encode(data, {indent=true}))
+    print(json.encode(data, { indent = true }))
 end)
 
 if GetConvarInt('ox_target:debug', 0) ~= 1 then return end
@@ -22,7 +22,7 @@ ox_target:addBoxZone({
         {
             name = 'debug_box',
             event = 'ox_target:debug',
-            icon = 'fa-solid fa-cube',
+            icon = 'fas fa-cube',
             label = locale('debug_box'),
         }
     }
@@ -37,7 +37,7 @@ ox_target:addSphereZone({
         {
             name = 'debug_sphere',
             event = 'ox_target:debug',
-            icon = 'fa-solid fa-circle',
+            icon = 'fas fa-circle',
             label = locale('debug_sphere'),
         }
     }
@@ -47,7 +47,7 @@ ox_target:addModel(`police`, {
     {
         name = 'debug_model',
         event = 'ox_target:debug',
-        icon = 'fa-solid fa-handcuffs',
+        icon = 'fas fa-handcuffs',
         label = locale('debug_police_car'),
     }
 })
@@ -56,7 +56,7 @@ ox_target:addGlobalPed({
     {
         name = 'debug_ped',
         event = 'ox_target:debug',
-        icon = 'fa-solid fa-male',
+        icon = 'fas fa-male',
         label = locale('debug_ped'),
     }
 })
@@ -65,7 +65,7 @@ ox_target:addGlobalVehicle({
     {
         name = 'debug_vehicle',
         event = 'ox_target:debug',
-        icon = 'fa-solid fa-car',
+        icon = 'fas fa-car',
         label = locale('debug_vehicle'),
     }
 })
@@ -74,7 +74,7 @@ ox_target:addGlobalObject({
     {
         name = 'debug_object',
         event = 'ox_target:debug',
-        icon = 'fa-solid fa-bong',
+        icon = 'fas fa-bong',
         label = locale('debug_object'),
     }
 })
@@ -82,7 +82,7 @@ ox_target:addGlobalObject({
 ox_target:addGlobalOption({
     {
         name = 'debug_global',
-        icon = 'fa-solid fa-globe',
+        icon = 'fas fa-globe',
         label = locale('debug_global'),
         openMenu = 'debug_global'
     }
@@ -92,7 +92,7 @@ ox_target:addGlobalOption({
     {
         name = 'debug_global2',
         event = 'ox_target:debug',
-        icon = 'fa-solid fa-globe',
+        icon = 'fas fa-globe',
         label = locale('debug_global') .. ' 2',
         menuName = 'debug_global'
     }

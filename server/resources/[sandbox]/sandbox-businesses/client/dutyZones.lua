@@ -368,7 +368,7 @@ AddEventHandler("Polyzone:Exit", function(id, testedPoint, insideZones, data)
 
 			local time = GetGameTimer()
 			pendingTimeout = time
-			Citizen.SetTimeout(60000 * data.goOffDutyTimer, function()
+			SetTimeout(60000 * data.goOffDutyTimer, function()
 				if pendingOffDuty and LocalPlayer.state.onDuty == pendingOffDuty and pendingTimeout == time then
 					exports['sandbox-jobs']:DutyOff(pendingOffDuty)
 					LocalPlayer.state:set("sentOffDuty", pendingOffDuty, true)

@@ -80,7 +80,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 		exports.ox_target:addModel(v.model, {
 			{
 				label = string.format("Steal %s", v.label),
-				icon = "fa-solid fa-arrows-to-eye",
+				icon = "fas fa-arrows-to-eye",
 				onSelect = function(data)
 					TriggerEvent("Robbery:Client:Signs:StealSign", {
 						label = v.label,
@@ -147,7 +147,7 @@ AddEventHandler("Robbery:Client:Signs:StealSign", function(data)
 	if math.random(100) >= 85 then
 		alarm = true
 		if coords ~= nil then
-			Citizen.SetTimeout(1000, function()
+			SetTimeout(1000, function()
 				TriggerServerEvent("Robbery:Server:Signs:AlertPolice", coords)
 			end)
 		end

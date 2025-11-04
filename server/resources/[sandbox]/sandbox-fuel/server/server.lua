@@ -104,20 +104,39 @@ function RegisterCallbacks()
 	end)
 
 	exports["sandbox-base"]:RegisterServerCallback("Fuel:CompleteJerryFueling", function(source, data, cb)
-		local char = exports['sandbox-characters']:FetchCharacterSource(source)
-		if char and data and data.vehNet and type(data.newAmount) == "number" then
-			local veh = NetworkGetEntityFromNetworkId(data.vehNet)
-			if veh and DoesEntityExist(veh) then
-				local vehState = Entity(veh)
+	    local char = exports['sandbox-characters']:FetchCharacterSource(source)
+	    if char and data and data.vehNet and type(data.newAmount) == "number" and data.fuelUsed and type(data.fuelUsed) == "number" then
+	        local veh = NetworkGetEntityFromNetworkId(data.vehNet)
+	        if veh and DoesEntityExist(veh) then
+	            local vehState = Entity(veh)
+	            if vehState and vehState.state then
+	                local jerryCan = exports.ox_inventory:GetSlotWithItem(source, 'weapon_petrolcan')
+	                if jerryCan then
+	                    local currentAmmo = jerryCan.metadata and jerryCan.metadata.ammo or 0
+	                    local currentDurability = jerryCan.metadata and jerryCan.metadata.durability or 0
+	                    local degrade = jerryCan.metadata and jerryCan.metadata.degrade or 0
 
-				if vehState and vehState.state then
-					vehState.state.Fuel = math.min(data.newAmount, 100)
-					cb(true)
-					return
-				end
-			end
-		end
-		cb(false)
+	                    local newAmmo = math.max(0, currentAmmo - data.fuelUsed)
+
+	                    if newAmmo > 0 then
+	                        local newMetadata = {
+	                            ammo = newAmmo,
+	                            durability = currentDurability,
+	                            degrade = degrade
+	                        }
+	                        exports.ox_inventory:SetMetadata(source, jerryCan.slot, newMetadata)
+	                    else
+	                        exports.ox_inventory:RemoveItem(source, 'weapon_petrolcan', 1, jerryCan.metadata, jerryCan.slot)
+	                    end
+
+	                    vehState.state.Fuel = math.min(data.newAmount, 100)
+	                    cb(true)
+	                    return
+	                end
+	            end
+	        end
+	    end
+	    cb(false)
 	end)
 
 	exports["sandbox-base"]:RegisterServerCallback("Fuel:FillCan", function(source, data, cb)

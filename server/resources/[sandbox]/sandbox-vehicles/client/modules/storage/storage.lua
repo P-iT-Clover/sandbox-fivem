@@ -97,7 +97,6 @@ AddEventHandler('Vehicles:Client:StoreVehicle', function(entityData)
             return
         end
 
-        -- Also checks that nobody is in the drivers seat and that the vehicle is not moving
         if vehState and vehState.VIN and vehState.Owned and GetPedInVehicleSeat(entityData.entity) == 0 and GetEntitySpeed(entityData.entity) <= 1 then
             if inVehicleStorageZone and vehicleStorageZoneId then
                 exports["sandbox-base"]:ServerCallback('Vehicles:PutVehicleInStorage', {
@@ -304,8 +303,15 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
 
     local personalVehicles = {}
     local fleetVehicles = {}
-
     local assignedFleetVehicles = {}
+    local allFleetVehicles = {}
+
+    local char = LocalPlayer.state.Character
+    local hasFleetManagement = false
+    
+    if char and characterDuty then
+        hasFleetManagement = exports['sandbox-jobs']:HasPermissionInJob(characterDuty, 'FLEET_MANAGEMENT')
+    end
 
     for k, v in ipairs(storedVehicleData) do
         if v and v.VIN then
@@ -318,15 +324,23 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
             if v.Owner.Type == 0 then
                 table.insert(personalVehicles, v)
             elseif v.Owner.Type == 1 then
-                table.insert(fleetVehicles, v)
-
-                local char = LocalPlayer.state.Character
-                if char and v.GovAssigned and #v.GovAssigned > 0 then
+                local hasGovAssigned = v.GovAssigned and type(v.GovAssigned) == 'table' and #v.GovAssigned > 0
+                local isAssignedToPlayer = false
+                
+                table.insert(allFleetVehicles, v)
+                
+                if char and hasGovAssigned then
                     for _, assignee in ipairs(v.GovAssigned) do
                         if char:GetData('SID') == assignee.SID then
+                            isAssignedToPlayer = true
                             table.insert(assignedFleetVehicles, v)
+                            break
                         end
                     end
+                end
+                
+                if not hasGovAssigned then
+                    table.insert(fleetVehicles, v)
                 end
             end
         end
@@ -373,7 +387,6 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
                     description = description,
                     event = "Vehicles:Client:Storage:Select",
                     data = { VIN = v.VIN },
-                    -- submenu = v.VIN,
                 })
             end
         end
@@ -407,7 +420,6 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
                 table.insert(storageMenu[string.format("%s-vehicles", v.Owner.Id)].items, {
                     label = v.Make .. ' ' .. v.Model,
                     description = description,
-                    -- submenu = v.VIN,
                     event = "Vehicles:Client:Storage:Select",
                     data = { VIN = v.VIN },
                 })
@@ -450,6 +462,20 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
             else
                 description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
             end
+            
+            if v.GovAssigned and type(v.GovAssigned) == 'table' and #v.GovAssigned > 0 then
+                local assignedNames = {}
+                for _, assignee in ipairs(v.GovAssigned) do
+                    local name = string.format("%s %s", assignee.First or "", assignee.Last or "")
+                    if assignee.Callsign then
+                        name = string.format("%s (%s)", name, assignee.Callsign)
+                    end
+                    table.insert(assignedNames, name)
+                end
+                description = description .. ' | Assigned: ' .. table.concat(assignedNames, ', ')
+            else
+                description = description .. ' | Assigned: N/A'
+            end
 
             table.insert(storageMenu['fleet-assigned'].items, {
                 label = v.Make .. ' ' .. v.Model,
@@ -481,12 +507,67 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
             else
                 description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
             end
+            
+            if v.GovAssigned and type(v.GovAssigned) == 'table' and #v.GovAssigned > 0 then
+                local assignedNames = {}
+                for _, assignee in ipairs(v.GovAssigned) do
+                    local name = string.format("%s %s", assignee.First or "", assignee.Last or "")
+                    if assignee.Callsign then
+                        name = string.format("%s (%s)", name, assignee.Callsign)
+                    end
+                    table.insert(assignedNames, name)
+                end
+                description = description .. ' | Assigned: ' .. table.concat(assignedNames, ', ')
+            else
+                description = description .. ' | Assigned: N/A'
+            end
 
             table.insert(storageMenu.fleet.items, {
                 label = v.Make .. ' ' .. v.Model,
                 description = description,
                 event = "Vehicles:Client:Storage:Select",
                 data = { VIN = v.VIN },
+            })
+        end
+    end
+
+    if hasFleetManagement and #allFleetVehicles > 0 then
+        table.insert(storageMenu.main.items, {
+            label = 'View All Fleet Vehicles',
+            description = 'View All Fleet Vehicles (Fleet Management)',
+            submenu = 'fleet-all',
+        })
+
+        storageMenu['fleet-all'] = {
+            label = 'All Fleet Vehicles',
+            items = {}
+        }
+
+        for k, v in ipairs(allFleetVehicles) do
+            local description = ''
+            if v.RegisteredPlate then
+                description = 'Plate: ' .. v.RegisteredPlate
+            else
+                description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
+            end
+            
+            if v.GovAssigned and type(v.GovAssigned) == 'table' and #v.GovAssigned > 0 then
+                local assignedNames = {}
+                for _, assignee in ipairs(v.GovAssigned) do
+                    local name = string.format("%s %s", assignee.First or "", assignee.Last or "")
+                    if assignee.Callsign then
+                        name = string.format("%s (%s)", name, assignee.Callsign)
+                    end
+                    table.insert(assignedNames, name)
+                end
+                description = description .. ' | Assigned: ' .. table.concat(assignedNames, ', ')
+            end
+
+            table.insert(storageMenu['fleet-all'].items, {
+                label = v.Make .. ' ' .. v.Model,
+                description = description,
+                event = "Vehicles:Client:Storage:Select",
+                data = { VIN = v.VIN, fleetManagement = true },
             })
         end
     end
@@ -519,24 +600,40 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
     exports["sandbox-base"]:ServerCallback("Vehicles:GetVehiclesInStorageSelect", data, function(vehicle)
         if tempParkingSpace and vehicle then
             loadingVehicleStorageVehicle = true
-
-            exports['sandbox-base']:GameVehiclesSpawnLocal(tempParkingSpace.xyz, vehicle.Vehicle, tempParkingSpace.w,
-                function(veh)
-                    table.insert(_tempVehicles, veh)
-
-                    FreezeEntityPosition(veh, true)
-                    SetEntityAlpha(veh, 155)
-                    SetVehicleDoorsLocked(veh, 2)
-                    if vehicle.Properties then
-                        SetVehicleProperties(veh, vehicle.Properties)
+            
+            if not IsModelInCdimage(vehicle.Vehicle) then
+                loadingVehicleStorageVehicle = false
+            elseif not IsModelAVehicle(vehicle.Vehicle) then
+                loadingVehicleStorageVehicle = false
+            else
+                local spawnTimeout = SetTimeout(5000, function()
+                    if loadingVehicleStorageVehicle then
+                        loadingVehicleStorageVehicle = false
                     end
-                    SetEntityCollision(veh, false, true)
-                    if vehicle.RegisteredPlate then
-                        SetVehicleNumberPlateText(veh, vehicle.RegisteredPlate)
-                    end
-
-                    loadingVehicleStorageVehicle = false
                 end)
+
+                exports['sandbox-base']:GameVehiclesSpawnLocal(tempParkingSpace.xyz, vehicle.Vehicle, tempParkingSpace.w,
+                    function(veh)
+                        ClearTimeout(spawnTimeout)
+                        
+                        if DoesEntityExist(veh) then
+                            table.insert(_tempVehicles, veh)
+
+                            FreezeEntityPosition(veh, true)
+                            SetEntityAlpha(veh, 155)
+                            SetVehicleDoorsLocked(veh, 2)
+                            if vehicle.Properties then
+                                SetVehicleProperties(veh, vehicle.Properties)
+                            end
+                            SetEntityCollision(veh, false, true)
+                            if vehicle.RegisteredPlate then
+                                SetVehicleNumberPlateText(veh, vehicle.RegisteredPlate)
+                            end
+                        end
+
+                        loadingVehicleStorageVehicle = false
+                    end)
+            end
         end
 
         local subMenu = {
@@ -575,10 +672,26 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
 
 
         if vehicle.Owner.Type == 1 then
+            local fleetDesc = string.format('Req. Level: %s, Ownership Type: %s', vehicle.Owner.Level,
+                vehicle.Owner.Workplace and string.upper(vehicle.Owner.Workplace) or 'All')
+            
+            if vehicle.GovAssigned and type(vehicle.GovAssigned) == 'table' and #vehicle.GovAssigned > 0 then
+                local assignedNames = {}
+                for _, assignee in ipairs(vehicle.GovAssigned) do
+                    local name = string.format("%s %s", assignee.First or "", assignee.Last or "")
+                    if assignee.Callsign then
+                        name = string.format("%s (%s)", name, assignee.Callsign)
+                    end
+                    table.insert(assignedNames, name)
+                end
+                fleetDesc = fleetDesc .. '<br>Assigned To: ' .. table.concat(assignedNames, ', ')
+            else
+                fleetDesc = fleetDesc .. '<br>Assigned To: N/A'
+            end
+            
             table.insert(vehItems, {
                 label = 'Vehicle\'s Fleet Information',
-                description = string.format('Req. Level: %s, Ownership Type: %s', vehicle.Owner.Level,
-                    vehicle.Owner.Workplace and string.upper(vehicle.Owner.Workplace) or 'All'),
+                description = fleetDesc,
                 event = false,
             })
 
@@ -613,15 +726,51 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
 
         local desc = 'Take the Vehicle Out of Storage'
         local disabled = false
+        
+        local char = LocalPlayer.state.Character
+        local characterDuty = LocalPlayer.state.onDuty
+        
+        local hasFleetManagement = false
+        if char and characterDuty then
+            hasFleetManagement = exports['sandbox-jobs']:HasPermissionInJob(characterDuty, 'FLEET_MANAGEMENT')
+        end
 
         if vehicle.Owner and vehicle.Owner.Qualification then
-            desc = 'This Vehicle Requires Qualifications'
-            disabled = true
+            if hasFleetManagement then
+                desc = 'Take the Vehicle Out of Storage (Fleet Management)'
+                disabled = false
+            else
+                desc = 'This Vehicle Requires Qualifications'
+                disabled = true
 
-            local char = LocalPlayer.state.Character
-            if char and char:GetData('Qualifications') and #char:GetData('Qualifications') > 0 then
-                if hasValue(char:GetData('Qualifications'), vehicle.Owner.Qualification) then
-                    disabled = false
+                if char and char:GetData('Qualifications') and #char:GetData('Qualifications') > 0 then
+                    if hasValue(char:GetData('Qualifications'), vehicle.Owner.Qualification) then
+                        disabled = false
+                    end
+                end
+            end
+        end
+
+        if not disabled and vehicle.Owner and vehicle.Owner.Type == 1 and vehicle.GovAssigned and type(vehicle.GovAssigned) == 'table' and #vehicle.GovAssigned > 0 then
+            if char then
+                local isAssignedToPlayer = false
+                local charSID = char:GetData('SID')
+                
+                for _, assignee in ipairs(vehicle.GovAssigned) do
+                    if assignee.SID and tostring(assignee.SID) == tostring(charSID) then
+                        isAssignedToPlayer = true
+                        break
+                    end
+                end
+                
+                if not isAssignedToPlayer then
+                    if hasFleetManagement then
+                        desc = 'Take the Vehicle Out of Storage (Fleet Management Override)'
+                        disabled = false
+                    else
+                        desc = 'This Vehicle is Assigned to Specific Personnel Only'
+                        disabled = true
+                    end
                 end
             end
         end
@@ -657,6 +806,7 @@ AddEventHandler('Vehicles:Client:Storage:Retrieve', function(data)
             VIN = data.VIN,
             storageType = tempCurrentStorageType,
             storageId = tempCurrentStorageId,
+            fleetManagement = data.fleetManagement or false,
         }, function(success)
             CleanupTempVehicle()
             if success then

@@ -115,7 +115,7 @@ RegisterNetEvent("Vehicles:Client:ExitVehicle", function()
 end)
 
 function RegisterKeybinds()
-	exports["sandbox-keybinds"]:Add("pointing", "b", "keyboard", "Pointing - Toggle", function()
+	exports["sandbox-kbs"]:Add("pointing", "b", "keyboard", "Pointing - Toggle", function()
 		if _isPointing then
 			StopPointing()
 		else
@@ -123,14 +123,14 @@ function RegisterKeybinds()
 		end
 	end)
 
-	exports["sandbox-keybinds"]:Add("ragdoll", Config.RagdollKeybind, "keyboard", "Ragdoll - Toggle", function()
+	exports["sandbox-kbs"]:Add("ragdoll", Config.RagdollKeybind, "keyboard", "Ragdoll - Toggle", function()
 		local time = 3500
 		Wait(350)
 		ClearPedSecondaryTask(LocalPlayer.state.ped)
 		SetPedToRagdoll(LocalPlayer.state.ped, time, time, 0, 0, 0, 0)
 	end)
 
-	exports["sandbox-keybinds"]:Add("emote_cancel", "x", "keyboard", "Emotes - Cancel Current", function()
+	exports["sandbox-kbs"]:Add("emote_cancel", "x", "keyboard", "Emotes - Cancel Current", function()
 		exports['sandbox-animations']:EmotesCancel()
 
 		TriggerEvent("Animations:Client:StandUp")
@@ -139,13 +139,13 @@ function RegisterKeybinds()
 	end)
 
 	-- Don't specify and key so then players can set it themselves if they want to use...
-	exports["sandbox-keybinds"]:Add("emote_menu", "", "keyboard", "Emotes - Open Menu", function()
+	exports["sandbox-kbs"]:Add("emote_menu", "", "keyboard", "Emotes - Open Menu", function()
 		exports['sandbox-animations']:OpenMainEmoteMenu()
 	end)
 
 	-- There are 4 emote binds and by default they use numbers 6, 7, 8 and 9
 	for bindNum = 1, 4 do
-		exports["sandbox-keybinds"]:Add(
+		exports["sandbox-kbs"]:Add(
 			"emote_bind_" .. bindNum,
 			tostring(5 + bindNum),
 			"keyboard",

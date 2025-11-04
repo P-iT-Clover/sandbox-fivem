@@ -104,7 +104,7 @@ AddEventHandler("Labor:Client:Setup", function()
                     if forceEnd or _psychoShit ~= nil and _psychoShit.veh == VehToNet(vehicle) and not _completed then
                         _completed = true
                         TaskVehicleDriveWander(NetToPed(_psychoShit.ped), NetToVeh(_psychoShit.veh), 20.0, 786603)
-                        Citizen.SetTimeout(30000, function()
+                        SetTimeout(30000, function()
                             exports["sandbox-base"]:ServerCallback("OxyRun:DeleteShit", _psychoShit)
                         end)
                     end
@@ -320,7 +320,7 @@ RegisterNetEvent("OxyRun:Client:OnDuty", function(joiner, time)
             _completed = true
             TaskVehicleDriveWander(NetToPed(_psychoShit.ped), NetToVeh(_psychoShit.veh), 20.0, 786603)
             local wait = math.random(30, 100) * 1000
-            Citizen.SetTimeout(wait, function()
+            SetTimeout(wait, function()
                 exports["sandbox-base"]:ServerCallback("OxyRun:DeleteShit", _psychoShit)
             end)
         end)

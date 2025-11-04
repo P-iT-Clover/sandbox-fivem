@@ -18,13 +18,13 @@ function CreateDonorDealerships()
   end
 end
 
-AddEventHandler("DonorDealer:Client:ViewPending", function(entityData, data)
+AddEventHandler("DonorDealer:Client:ViewPending", function(data)
   exports["sandbox-base"]:ServerCallback("Dealerships:DonorSales:GetPending", {}, function(menu)
     exports['sandbox-hud']:ListMenuShow(menu)
   end)
 end)
 
-AddEventHandler("DonorDealer:Client:Open", function(entityData, data)
+AddEventHandler("DonorDealer:Client:Open", function(data)
   local dealer = data.id
   exports["sandbox-base"]:ServerCallback("Dealerships:DonorSales:GetStock", dealer, function(data)
     if not data then

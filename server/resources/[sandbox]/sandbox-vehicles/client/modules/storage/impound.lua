@@ -3,32 +3,32 @@ local attemptingImpoundOnVehicle = false
 AddEventHandler('Vehicles:Client:StartUp', function()
 	exports['sandbox-pedinteraction']:Add('veh_impound', `ig_floyd`, vector3(-193.282, -1162.433, 22.7), 270.4, 10.0, {
 		{
-			icon = "fa-solid fa-truck",
+			icon = "fas fa-truck",
 			text = "Impound Release Request",
 			event = "Vehicles:Client:TowReleaseMenu",
 		},
 		{
-			icon = "fa-solid fa-truck",
+			icon = "fas fa-truck",
 			text = "Request Tow Job",
 			event = "Tow:Client:RequestJob",
 			groups = { "tow" },
 		},
 		{
-			icon = "fa-solid fa-right-from-bracket",
+			icon = "fas fa-right-from-bracket",
 			text = "Quit Tow Job",
 			event = "Tow:Client:QuitJob",
 			groups = { "tow" },
 			reqOffDuty = true,
 		},
 		{
-			icon = "fa-solid fa-clipboard-check",
+			icon = "fas fa-clipboard-check",
 			text = "Tow - Go On Duty",
 			event = "Tow:Client:OnDuty",
 			groups = { "tow" },
 			reqOffDuty = true,
 		},
 		{
-			icon = "fa-solid fa-clipboard",
+			icon = "fas fa-clipboard",
 			text = "Tow - Go Off Duty",
 			event = "Tow:Client:OffDuty",
 			groups = { "tow" },

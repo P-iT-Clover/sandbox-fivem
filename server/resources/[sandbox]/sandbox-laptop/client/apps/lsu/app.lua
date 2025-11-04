@@ -62,7 +62,7 @@ RegisterNUICallback("Boosting:AcceptContract", function(data, cb)
         if res?.success then
             exports['sandbox-laptop']:AddData("disabledBoostingContracts", data.id)
 
-            Citizen.SetTimeout(120000, function()
+            SetTimeout(120000, function()
                 exports['sandbox-laptop']:RemoveData("disabledBoostingContracts", data.id)
             end)
         end

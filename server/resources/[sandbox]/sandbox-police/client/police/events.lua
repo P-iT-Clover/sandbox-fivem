@@ -243,7 +243,7 @@ local forceDelete = {}
 
 AddEventHandler("Keybinds:Client:KeyDown:cancel_action", function()
 	if spikesOut then
-		Citizen.SetTimeout(300, function()
+		SetTimeout(300, function()
 			TriggerServerEvent("Police:Server:RemoveSpikes")
 		end)
 	end
@@ -253,7 +253,7 @@ RegisterNetEvent("Police:Client:AddDeployedSpike", function(positions, h, owner)
 	if #(GetEntityCoords(LocalPlayer.state.ped) - positions[1]) <= 800.0 then
 		local start = GetGameTimer()
 		local timeout = false
-		Citizen.SetTimeout(spikeTime - 2000, function()
+		SetTimeout(spikeTime - 2000, function()
 			timeout = true
 		end)
 
@@ -290,7 +290,7 @@ end)
 
 RegisterNetEvent("Police:Client:RemoveSpikes", function(owner)
 	forceDelete[owner] = true
-	Citizen.SetTimeout(500, function()
+	SetTimeout(500, function()
 		forceDelete[owner] = false
 	end)
 end)

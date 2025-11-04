@@ -29,7 +29,7 @@ AddEventHandler("Casino:Client:Startup", function()
             maxZ = v.polyzone.options.maxZ,
             options = {
                 {
-                    icon = "fa-solid fa-heart",
+                    icon = "fas fa-heart",
                     label = _blackjackTablesConfig[k].isVIP and string.format("Join VIP Game ($%s Max Bet)", maxBet) or
                         string.format("Join Game ($%s Max Bet)", maxBet),
                     onSelect = function()
@@ -40,14 +40,14 @@ AddEventHandler("Casino:Client:Startup", function()
                     end,
                 },
                 {
-                    icon = "fa-solid fa-heart",
+                    icon = "fas fa-heart",
                     label = "Game Full",
                     canInteract = function()
                         return not CanJoinBlackjackTable(k) and not _BJsatAtTable
                     end,
                 },
                 {
-                    icon = "fa-solid fa-heart",
+                    icon = "fas fa-heart",
                     label = "Leave Game",
                     onSelect = function()
                         TriggerEvent("Casino:Client:LeaveBlackjack", { table = k })
@@ -58,7 +58,7 @@ AddEventHandler("Casino:Client:Startup", function()
                     end,
                 },
                 {
-                    icon = "fa-solid fa-play",
+                    icon = "fas fa-play",
                     label = _blackjackTablesConfig[k].isVIP and string.format("Start VIP Game ($%s Max Bet)", maxBet) or
                         string.format("Start Game ($%s Max Bet)", maxBet),
                     onSelect = function()

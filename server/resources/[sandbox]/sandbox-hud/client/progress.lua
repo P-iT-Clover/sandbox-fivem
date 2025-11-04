@@ -1,49 +1,124 @@
-template_action = {
-	name = "",
-	duration = 0,
-	label = "",
-	useWhileDead = false,
-	canCancel = true,
-	ignoreModifier = false,
-	disarm = true,
+template_action          = {
+	name            = "",
+	duration        = 0,
+	label           = "",
+	useWhileDead    = false,
+	canCancel       = true,
+	ignoreModifier  = false,
+	disarm          = true,
 	controlDisables = {
-		disableMovement = false,
+		disableMovement    = false,
 		disableCarMovement = false,
-		disableMouse = false,
-		disableCombat = false,
+		disableMouse       = false,
+		disableCombat      = false,
 	},
-	-- animation = {
-	-- 	animDict = nil,
-	-- 	anim = nil,
-	-- 	flags = 0,
-	-- 	task = nil,
-	-- },
-	-- prop = {
-	-- 	model = nil,
-	-- 	bone = nil,
-	-- 	coords = { x = 0.0, y = 0.0, z = 0.0 },
-	-- 	rotation = { x = 0.0, y = 0.0, z = 0.0 },
-	-- },
-	-- propTwo = {
-	-- 	model = nil,
-	-- 	bone = nil,
-	-- 	coords = { x = 0.0, y = 0.0, z = 0.0 },
-	-- 	rotation = { x = 0.0, y = 0.0, z = 0.0 },
-	-- },
 }
-local progress_action = nil
 
-local _mdfr = 1.0
-
-local disableMouse = false
-local wasCancelled = false
-local wasFinished = false
-local isAnim = false
-local isProp = false
-local isPropTwo = false
-local prop_net = nil
-local propTwo_net = nil
+local progress_action    = nil
+local _mdfr              = 1.0
+local disableMouse       = false
+local wasCancelled       = false
+local wasFinished        = false
+local isAnim             = false
+local isProp             = false
+local isPropTwo          = false -- kept for backwards compat; not used with new array flow
+local prop_net           = nil   -- kept for backwards compat; not used with new array flow
+local propTwo_net        = nil   -- kept for backwards compat; not used with new array flow
 local _runProgressThread = false
+
+-- MARK: New Prop Attachment
+local _prop_nets         = {}
+local function _ensureVec3(t)
+	if not t then return { x = 0.0, y = 0.0, z = 0.0 } end
+	return { x = t.x or 0.0, y = t.y or 0.0, z = t.z or 0.0 }
+end
+
+local function _toHash(model)
+	if type(model) == "number" then
+		return model
+	end
+	return GetHashKey(model)
+end
+
+local function _loadModel(hash)
+	if not IsModelInCdimage(hash) then return false end
+	RequestModel(hash)
+	local timeout = GetGameTimer() + 5000
+	while not HasModelLoaded(hash) do
+		Wait(0)
+		if GetGameTimer() > timeout then
+			return false
+		end
+	end
+	return true
+end
+
+---@param player number ped
+---@param spec table { model, bone?, coords?/pos?, rotation?/rot? }
+local function _attachProp(player, spec)
+	if not spec or not spec.model then return nil end
+
+	local bone      = spec.bone or 60309
+	local coords    = _ensureVec3(spec.coords or spec.pos)
+	local rot       = _ensureVec3(spec.rotation or spec.rot)
+
+	local modelHash = _toHash(spec.model)
+	if not _loadModel(modelHash) then return nil end
+
+	local p = GetEntityCoords(player)
+	local obj = CreateObject(modelHash, p.x, p.y, p.z, true, true, true)
+	if not DoesEntityExist(obj) then return nil end
+
+	local netid = ObjToNet(obj)
+	SetNetworkIdExistsOnAllMachines(netid, true)
+	NetworkSetNetworkIdDynamic(netid, true)
+	SetNetworkIdCanMigrate(netid, false)
+
+	AttachEntityToEntity(
+		obj,
+		player,
+		GetPedBoneIndex(player, bone),
+		coords.x, coords.y, coords.z,
+		rot.x, rot.y, rot.z,
+		true, true, false, true, 1, true
+	)
+
+	table.insert(_prop_nets, netid)
+	SetModelAsNoLongerNeeded(modelHash)
+	return netid
+end
+
+local function _cleanupAllProps()
+	for i = #_prop_nets, 1, -1 do
+		local netid = _prop_nets[i]
+		if netid ~= nil and NetworkDoesEntityExistWithNetworkId(netid) then
+			local obj = NetToObj(netid)
+			if DoesEntityExist(obj) then
+				DeleteEntity(obj)
+			end
+		end
+		_prop_nets[i] = nil
+	end
+end
+
+local function _asPropArray(prop)
+	if not prop then return {} end
+	if prop[1] ~= nil then
+		return prop -- already an array
+	else
+		return { prop } -- single spec
+	end
+end
+
+local function deepcopy(orig)
+	if type(orig) ~= 'table' then return orig end
+	local copy = {}
+	for k, v in pairs(orig) do
+		copy[deepcopy(k)] = deepcopy(v)
+	end
+	return copy
+end
+---------------------------------------
 
 function runMdfr(duration)
 	local c = 0
@@ -59,7 +134,7 @@ function runMdfr(duration)
 end
 
 exports("ProgressCurrentAction", function()
-	return progress_action.name
+	return progress_action and progress_action.name or ""
 end)
 
 exports("Progress", function(action, finish)
@@ -88,9 +163,7 @@ exports("ProgressModifier", function(p, t)
 end)
 
 exports("ProgressCancel", function(force)
-	if progress_action == nil then
-		return
-	end
+	if progress_action == nil then return end
 	if progress_action.canCancel or force then
 		wasCancelled = true
 		_doFinish()
@@ -114,9 +187,7 @@ exports("ProgressFinish", function()
 end)
 
 AddEventHandler("Keybinds:Client:KeyUp:cancel_action", function()
-	if not LocalPlayer.state.doingAction then
-		return
-	end
+	if not LocalPlayer.state.doingAction then return end
 	exports['sandbox-hud']:ProgressCancel()
 end)
 
@@ -127,7 +198,7 @@ end)
 
 function normalizePAct(passed)
 	local c = deepcopy(template_action)
-	for k, v in pairs(passed) do
+	for k, v in pairs(passed or {}) do
 		c[k] = v
 	end
 	return c
@@ -135,8 +206,10 @@ end
 
 function _doProgress(action, start, tick, finish)
 	local player = LocalPlayer.state.ped
+	LocalPlayer.state.invBusy = true
 	progress_action = normalizePAct(action)
-	if (not IsEntityDead(player) and not LocalPlayer.state.isDead) or action.useWhileDead then
+
+	if ((not IsEntityDead(player)) and not LocalPlayer.state.isDead) or progress_action.useWhileDead then
 		if not LocalPlayer.state.doingAction then
 			_doActionStart(player, progress_action)
 
@@ -144,18 +217,18 @@ function _doProgress(action, start, tick, finish)
 			wasCancelled = false
 			isAnim = false
 			isProp = false
-			wasCancelled = false
+			isPropTwo = false
 			wasFinished = false
 
-			if not action.ignoreModifier then
-				action.duration = action.duration * _mdfr
+			if not progress_action.ignoreModifier then
+				progress_action.duration = progress_action.duration * _mdfr
 			end
 
 			SendNUIMessage({
 				type = "START_PROGRESS",
 				data = {
-					duration = action.duration,
-					label = action.label,
+					duration = progress_action.duration,
+					label = progress_action.label,
 				},
 			})
 
@@ -167,8 +240,8 @@ function _doProgress(action, start, tick, finish)
 				if tick ~= nil then
 					CreateThread(function()
 						while LocalPlayer.state.doingAction do
-							if action.tickrate ~= nil then
-								Wait(action.tickrate)
+							if progress_action.tickrate ~= nil then
+								Wait(progress_action.tickrate)
 							else
 								Wait(0)
 							end
@@ -182,7 +255,7 @@ function _doProgress(action, start, tick, finish)
 
 				while LocalPlayer.state.doingAction do
 					Wait(1)
-					if IsEntityDead(player) and not action.useWhileDead or not LocalPlayer.state.loggedIn then
+					if (IsEntityDead(player) and not progress_action.useWhileDead) or not LocalPlayer.state.loggedIn then
 						exports['sandbox-hud']:ProgressCancel()
 					end
 				end
@@ -220,50 +293,21 @@ function _doActionStart(player, action)
 							end
 						elseif action.animation.animDict ~= nil and action.animation.anim ~= nil then
 							if action.animation.flags == nil then
-								action.animation.flags = 1
+								local disables = action.controlDisables or {}
+								action.animation.flags = (disables.disableMovement and 1) or 49
 							end
 
 							if DoesEntityExist(player) and not LocalPlayer.state.isDead then
 								loadAnimDict(action.animation.animDict)
-								TaskPlayAnim(
-									player,
-									action.animation.animDict,
-									action.animation.anim,
-									3.0,
-									1.0,
-									-1,
-									action.animation.flags,
-									0,
-									0,
-									0,
-									0
-								)
+								TaskPlayAnim(player, action.animation.animDict, action.animation.anim, 3.0, 1.0, -1,
+									action.animation.flags, 0, 0, 0, 0)
 							end
 
 							CreateThread(function()
 								while LocalPlayer.state.doingAction do
-									if
-										LocalPlayer.state.doingAction
-										and not IsEntityPlayingAnim(
-											player,
-											action.animation.animDict,
-											action.animation.anim,
-											3
-										)
-									then
-										TaskPlayAnim(
-											player,
-											action.animation.animDict,
-											action.animation.anim,
-											3.0,
-											1.0,
-											-1,
-											action.animation.flags,
-											0,
-											0,
-											0,
-											0
-										)
+									if LocalPlayer.state.doingAction and not IsEntityPlayingAnim(player, action.animation.animDict, action.animation.anim, 3) then
+										TaskPlayAnim(player, action.animation.animDict, action.animation.anim, 3.0, 1.0,
+											-1, action.animation.flags, 0, 0, 0, 0)
 									end
 									Wait(1000)
 								end
@@ -283,108 +327,30 @@ function _doActionStart(player, action)
 
 					isAnim = true
 				end
-				if not isProp and action.prop ~= nil and action.prop.model ~= nil then
-					RequestModel(action.prop.model)
 
-					while not HasModelLoaded(GetHashKey(action.prop.model)) do
-						Wait(0)
+				if not isProp then
+					local hasAny = false
+					local props = {}
+
+					for _, p in ipairs(_asPropArray(action.prop)) do
+						if p and (p.model ~= nil) then
+							props[#props + 1] = p
+						end
 					end
 
-					local pCoords = GetOffsetFromEntityInWorldCoords(player, 0.0, 0.0, 0.0)
-					local modelSpawn =
-						CreateObject(GetHashKey(action.prop.model), pCoords.x, pCoords.y, pCoords.z, true, true, true)
-
-					local netid = ObjToNet(modelSpawn)
-					SetNetworkIdExistsOnAllMachines(netid, true)
-					NetworkSetNetworkIdDynamic(netid, true)
-					SetNetworkIdCanMigrate(netid, false)
-					if action.prop.bone == nil then
-						action.prop.bone = 60309
+					if action.propTwo and action.propTwo.model ~= nil then
+						props[#props + 1] = action.propTwo
 					end
 
-					if action.prop.coords == nil then
-						action.prop.coords = { x = 0.0, y = 0.0, z = 0.0 }
+					for i = 1, #props do
+						local netid = _attachProp(player, props[i])
+						if netid ~= nil then
+							hasAny = true
+						end
 					end
 
-					if action.prop.rotation == nil then
-						action.prop.rotation = { x = 0.0, y = 0.0, z = 0.0 }
-					end
-
-					AttachEntityToEntity(
-						modelSpawn,
-						player,
-						GetPedBoneIndex(player, action.prop.bone),
-						action.prop.coords.x,
-						action.prop.coords.y,
-						action.prop.coords.z,
-						action.prop.rotation.x,
-						action.prop.rotation.y,
-						action.prop.rotation.z,
-						1,
-						1,
-						0,
-						1,
-						0,
-						1
-					)
-					prop_net = netid
-
-					isProp = true
-
-					if not isPropTwo and action.propTwo ~= nil and action.propTwo.model ~= nil then
-						RequestModel(action.propTwo.model)
-
-						while not HasModelLoaded(GetHashKey(action.propTwo.model)) do
-							Wait(0)
-						end
-
-						local pCoords = GetEntityCoords(player)
-						local modelSpawn = CreateObject(
-							GetHashKey(action.propTwo.model),
-							pCoords.x,
-							pCoords.y,
-							pCoords.z,
-							true,
-							true,
-							true
-						)
-
-						local netid = ObjToNet(modelSpawn)
-						SetNetworkIdExistsOnAllMachines(netid, true)
-						NetworkSetNetworkIdDynamic(netid, true)
-						SetNetworkIdCanMigrate(netid, false)
-						if action.propTwo.bone == nil then
-							action.propTwo.bone = 60309
-						end
-
-						if action.propTwo.coords == nil then
-							action.propTwo.coords = { x = 0.0, y = 0.0, z = 0.0 }
-						end
-
-						if action.propTwo.rotation == nil then
-							action.propTwo.rotation = { x = 0.0, y = 0.0, z = 0.0 }
-						end
-
-						AttachEntityToEntity(
-							modelSpawn,
-							player,
-							GetPedBoneIndex(player, action.propTwo.bone),
-							action.propTwo.coords.x,
-							action.propTwo.coords.y,
-							action.propTwo.coords.z,
-							action.propTwo.rotation.x,
-							action.propTwo.rotation.y,
-							action.propTwo.rotation.z,
-							1,
-							1,
-							0,
-							1,
-							0,
-							1
-						)
-						propTwo_net = netid
-
-						isPropTwo = true
+					if hasAny then
+						isProp = true
 					end
 				end
 
@@ -398,19 +364,16 @@ function _doActionStart(player, action)
 end
 
 function _doFinish()
+	LocalPlayer.state.invBusy = false
 	LocalPlayer.state.doingAction = false
 	_doCleanup(progress_action)
 end
 
 function _doCleanup(action)
-	DeleteEntity(prop_net)
-	DeleteEntity(propTwo_net)
-	if NetworkDoesEntityExistWithNetworkId(prop_net) then
-		DeleteEntity(NetToObj(prop_net))
-	end
-	if NetworkDoesEntityExistWithNetworkId(propTwo_net) then
-		DeleteEntity(NetToObj(propTwo_net))
-	end
+	_cleanupAllProps()
+
+	prop_net = nil
+	propTwo_net = nil
 
 	if action and action.animation then
 		if action.animation.animDict ~= nil and action.animation.anim ~= nil then
@@ -423,8 +386,7 @@ function _doCleanup(action)
 			end
 		end
 	end
-	prop_net = nil
-	propTwo_net = nil
+
 	_runProgressThread = false
 	progress_action = nil
 end

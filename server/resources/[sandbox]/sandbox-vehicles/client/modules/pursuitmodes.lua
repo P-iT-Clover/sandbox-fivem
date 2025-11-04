@@ -51,7 +51,7 @@ AddEventHandler('Vehicles:Client:StartUp', function()
         return _inPursuitVehicleSettings
     end)
 
-    exports["sandbox-keybinds"]:Add('vehicle_pursuit_modes', '', 'keyboard', 'Vehicle - Pursuit Modes', function()
+    exports["sandbox-kbs"]:Add('vehicle_pursuit_modes', '', 'keyboard', 'Vehicle - Pursuit Modes', function()
         if _inPursuitVehicle and _timeout then
             exports["sandbox-hud"]:Notification("error", "Cannot switch modes that quickly.")
             return

@@ -325,7 +325,7 @@ function DoAnEmote(emoteData, fromUserInput, length, notCancellable, emoteName, 
         end
 
         if not isLooped or forcedLength then
-            Citizen.SetTimeout(animLength, function()
+            SetTimeout(animLength, function()
                 exports['sandbox-animations']:EmotesForceCancel()
                 IsAbleToCancel = true
             end)

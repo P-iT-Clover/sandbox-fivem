@@ -84,6 +84,14 @@ local function shouldHide(option, distance, endCoords, entityHit, entityType, en
         return true
     end
 
+    if option.item and not utils.hasPlayerGotItems(option.item, option.anyItem) then
+        return true
+    end
+
+    if option.anyItems and not utils.hasPlayerGotItems(option.anyItems, true) then
+        return true
+    end
+
     local bone = entityModel and option.bones or nil
 
     if bone then
@@ -331,7 +339,7 @@ local function startTargeting()
                 if currentMenu and options.__global[1]?.name ~= 'builtin:goback' then
                     table.insert(options.__global, 1,
                         {
-                            icon = 'fa-solid fa-circle-chevron-left',
+                            icon = 'fas fa-circle-chevron-left',
                             label = locale('go_back'),
                             name = 'builtin:goback',
                             menuName = currentMenu,

@@ -118,7 +118,9 @@ function DeadAnimLoop()
 			Wait(10)
 		end
 
-		AnimpostfxPlay("DeathFailMPIn", 100.0, true)
+		if Config.EnableDownblur then
+			AnimpostfxPlay("DeathFailMPIn", 100.0, true)
+		end
 
 		local loc = GetEntityCoords(ped)
 		NetworkResurrectLocalPlayer(loc, true, true, false)
@@ -162,8 +164,9 @@ function DeadAnimLoop()
 				end
 				Wait(100)
 			end
-
-			AnimpostfxStop("DeathFailMPIn")
+			if Config.EnableDownblur then
+				AnimpostfxStop("DeathFailMPIn")
+			end
 
 			exports['sandbox-hud']:DeathTextsHide()
 			ClearPedTasksImmediately(ped)

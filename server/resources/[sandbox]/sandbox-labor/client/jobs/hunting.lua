@@ -165,7 +165,7 @@ function SpawnAnimal(data, loc, bait)
 				ClearPedTasks(spawnedAnimal)
 				Wait(1500)
 				TaskStartScenarioInPlace(spawnedAnimal, "WORLD_DEER_GRAZING", 0, true)
-				Citizen.SetTimeout(12500, function()
+				SetTimeout(12500, function()
 					startFlee = true
 				end)
 			end
@@ -243,7 +243,7 @@ AddEventHandler("Labor:Client:Setup", function()
 	for k, v in ipairs(_sellers) do
 		exports['sandbox-pedinteraction']:Add(string.format("HideSeller%s", k), v.model, v.coords, v.heading, 25.0, {
 			{
-				icon = "fa-solid fa-cart-shopping",
+				icon = "fas fa-cart-shopping",
 				text = "Buy Stuff",
 				onSelect = function()
 					TriggerEvent("Vendor:Client:GetItems", { id = "HuntingBaits" })
@@ -251,7 +251,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				rep = { id = "Hunting", level = 2 },
 			},
 			{
-				icon = "fa-solid fa-sack-dollar",
+				icon = "fas fa-sack-dollar",
 				text = "Sell Tier 1 Hides",
 				onSelect = function()
 					TriggerEvent("Hunting:Client:Sell", { tier = 1 })
@@ -259,7 +259,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				rep = { id = "Hunting", level = 4 },
 			},
 			{
-				icon = "fa-solid fa-sack-dollar",
+				icon = "fas fa-sack-dollar",
 				text = "Sell Tier 2 Hides",
 				onSelect = function()
 					TriggerEvent("Hunting:Client:Sell", { tier = 2 })
@@ -267,7 +267,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				rep = { id = "Hunting", level = 5 },
 			},
 			{
-				icon = "fa-solid fa-sack-dollar",
+				icon = "fas fa-sack-dollar",
 				text = "Sell Tier 3 Hides",
 				onSelect = function()
 					TriggerEvent("Hunting:Client:Sell", { tier = 3 })
@@ -275,7 +275,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				rep = { id = "Hunting", level = 6 },
 			},
 			{
-				icon = "fa-solid fa-sack-dollar",
+				icon = "fas fa-sack-dollar",
 				text = "Sell Tier 4 Hides",
 				onSelect = function()
 					TriggerEvent("Hunting:Client:Sell", { tier = 4 })
@@ -287,12 +287,12 @@ AddEventHandler("Labor:Client:Setup", function()
 
 	exports['sandbox-pedinteraction']:Add("HuntingJob", `cs_hunter`, _huntingStore, 227.201, 25.0, {
 		{
-			icon = "fa-solid fa-cart-shopping",
+			icon = "fas fa-cart-shopping",
 			text = "Shop",
 			event = "Hunting:Client:OpenShop",
 		},
 		{
-			icon = "fa-solid fa-ballot-check",
+			icon = "fas fa-ballot-check",
 			text = "Check In",
 			event = "Hunting:Client:StartJob",
 			tempjob = "Hunting",
@@ -301,7 +301,7 @@ AddEventHandler("Labor:Client:Setup", function()
 			end,
 		},
 		{
-			icon = "fa-solid fa-ballot-check",
+			icon = "fas fa-ballot-check",
 			text = "Finish Job",
 			event = "Hunting:Client:FinishJob",
 			tempjob = "Hunting",
@@ -538,7 +538,7 @@ function StartMapAnim()
 	TaskPlayAnim(playerPed, 1.0, -1, -1, 50, 0, 0, 0, 0)
 	TaskPlayAnim(playerPed, "amb@world_human_tourist_map@male@idle_b", "idle_d", 2.0, 8.0, -1, 53, 0, 0, 0, 0)
 
-	-- Citizen.SetTimeout(11000, function()
+	-- SetTimeout(11000, function()
 	-- 	StopMapAnim()
 	-- end)
 end

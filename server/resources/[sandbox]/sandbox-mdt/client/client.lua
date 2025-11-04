@@ -10,7 +10,7 @@ local _bodycam = false
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("gov_mdt", "", "keyboard", "Gov - Open MDT", function()
+		exports["sandbox-kbs"]:Add("gov_mdt", "", "keyboard", "Gov - Open MDT", function()
 			ToggleMDT()
 		end)
 

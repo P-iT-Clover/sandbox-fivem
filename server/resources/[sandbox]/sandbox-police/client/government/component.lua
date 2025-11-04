@@ -17,36 +17,36 @@ AddEventHandler('onClientResourceStart', function(resource)
 		Wait(1000)
 		local govServices = {
 			{
-				icon = "fa-solid fa-id-card",
+				icon = "fas fa-id-card",
 				text = "Purchase ID ($500)",
 				event = "Government:Client:BuyID",
 			},
 			{
-				icon = "fa-solid fa-id-badge",
+				icon = "fas fa-id-badge",
 				text = "License Services",
 				event = "Government:Client:BuyLicense",
 			},
 			{
-				icon = "fa-solid fa-gavel",
+				icon = "fas fa-gavel",
 				text = "Public Records",
 				event = "Government:Client:AccessPublicRecords",
 			},
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				text = "Go On Duty",
 				event = "Government:Client:OnDuty",
 				groups = { "government" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				text = "Go Off Duty",
 				event = "Government:Client:OffDuty",
 				groups = { "government" },
 				reqDuty = true,
 			},
 			{
-				icon = "fa-solid fa-shop-lock",
+				icon = "fas fa-shop-lock",
 				text = "DOJ Shop",
 				event = "Government:Client:DOJShop",
 				groups = { "government" },
@@ -86,21 +86,21 @@ AddEventHandler('onClientResourceStart', function(resource)
 				maxZ = v.options.maxZ,
 				options = {
 					{
-						icon = "fa-solid fa-clipboard-check",
+						icon = "fas fa-clipboard-check",
 						label = "Go On Duty",
 						event = "Government:Client:OnDuty",
 						groups = { "government" },
 						reqDuty = false,
 					},
 					{
-						icon = "fa-solid fa-clipboard",
+						icon = "fas fa-clipboard",
 						label = "Go Off Duty",
 						event = "Government:Client:OffDuty",
 						groups = { "government" },
 						reqDuty = true,
 					},
 					{
-						icon = "fa-solid fa-gavel",
+						icon = "fas fa-gavel",
 						label = "Public Records",
 						event = "Government:Client:AccessPublicRecords",
 					},
@@ -125,7 +125,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			maxZ = 39.37,
 			options = {
 				{
-					icon = "fa-solid fa-gavel",
+					icon = "fas fa-gavel",
 					label = "Use Gavel",
 					event = "Government:Client:UseGavel",
 					-- groups = { "government" },

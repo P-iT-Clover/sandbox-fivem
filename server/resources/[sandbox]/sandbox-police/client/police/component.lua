@@ -16,21 +16,21 @@ local _breached = {}
 
 local policeDutyPoint = {
 	{
-		icon = "fa-solid fa-clipboard-check",
+		icon = "fas fa-clipboard-check",
 		label = "Go On Duty",
 		event = "Police:Client:OnDuty",
 		groups = { "police" },
 		reqOffDuty = true,
 	},
 	{
-		icon = "fa-solid fa-clipboard",
+		icon = "fas fa-clipboard",
 		label = "Go Off Duty",
 		event = "Police:Client:OffDuty",
 		groups = { "police" },
 		reqDuty = true,
 	},
 	{
-		icon = "fa-solid fa-location-dot",
+		icon = "fas fa-location-dot",
 		label = "Re-Enable Tracker",
 		event = "Police:Client:ReEnableTracker",
 		canInteract = function()
@@ -308,16 +308,17 @@ AddEventHandler('onClientResourceStart', function(resource)
 					label = "Start Pit Timer (5 Mins)",
 					action = function()
 						exports['sandbox-hud']:InteractionHide()
-						exports["sandbox-hud"]:Notification("success", "5 Minute Pit Timer", 60 * 1000 * 5, 'car-burst', {
-							alert = {
-								background = "#247BA5B3",
-							},
-							progress = {
-								background = "#ffffff",
-							},
-						})
+						exports["sandbox-hud"]:Notification("success", "5 Minute Pit Timer", 60 * 1000 * 5, 'car-burst',
+							{
+								alert = {
+									background = "#247BA5B3",
+								},
+								progress = {
+									background = "#ffffff",
+								},
+							})
 
-						Citizen.SetTimeout(60 * 1000 * 5, function()
+						SetTimeout(60 * 1000 * 5, function()
 							exports['sandbox-sounds']:UISoundsPlayFrontEnd(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET")
 						end)
 					end,
@@ -545,31 +546,31 @@ AddEventHandler('onClientResourceStart', function(resource)
 		end)
 
 		local _cuffCd = false
-		exports["sandbox-keybinds"]:Add("pd_cuff", "LBRACKET", "keyboard", "Police - Cuff", function()
+		exports["sandbox-kbs"]:Add("pd_cuff", "LBRACKET", "keyboard", "Police - Cuff", function()
 			if LocalPlayer.state.Character ~= nil and (LocalPlayer.state.onDuty == "police" or LocalPlayer.state.onDuty == "prison") then
 				if not _cuffCd then
 					TriggerServerEvent("Police:Server:Cuff")
 					_cuffCd = true
-					Citizen.SetTimeout(3000, function()
+					SetTimeout(3000, function()
 						_cuffCd = false
 					end)
 				end
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("pd_uncuff", "RBRACKET", "keyboard", "Police - Uncuff", function()
+		exports["sandbox-kbs"]:Add("pd_uncuff", "RBRACKET", "keyboard", "Police - Uncuff", function()
 			if LocalPlayer.state.Character ~= nil and (LocalPlayer.state.onDuty == "police" or LocalPlayer.state.onDuty == "prison") then
 				if not _cuffCd then
 					TriggerServerEvent("Police:Server:Uncuff")
 					_cuffCd = true
-					Citizen.SetTimeout(3000, function()
+					SetTimeout(3000, function()
 						_cuffCd = false
 					end)
 				end
 			end
 		end)
 
-		-- exports["sandbox-keybinds"]:Add("pd_toggle_cuff", "", "keyboard", "Police - Cuff / Uncuff", function()
+		-- exports["sandbox-kbs"]:Add("pd_toggle_cuff", "", "keyboard", "Police - Cuff / Uncuff", function()
 		-- 	if LocalPlayer.state.Character ~= nil and LocalPlayer.state.onDuty == "police" then
 		-- 		if not _cuffCd then
 		-- 			TriggerServerEvent("Police:Server:ToggleCuff")
@@ -582,7 +583,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 		-- 	end
 		-- end)
 
-		exports["sandbox-keybinds"]:Add("tackle", "", "keyboard", "Tackle", function()
+		exports["sandbox-kbs"]:Add("tackle", "", "keyboard", "Tackle", function()
 			if LocalPlayer.state.Character ~= nil then
 				if
 					not LocalPlayer.state.isCuffed

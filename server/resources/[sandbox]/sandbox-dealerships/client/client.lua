@@ -89,7 +89,7 @@ function CreateDealerships()
 					maxZ = v.options.maxZ,
 					options = {
 						{
-							icon = "fa-solid fa-warehouse",
+							icon = "fas fa-warehouse",
 							label = "Edit Showroom",
 							groups = { dealerId },
 							reqDuty = true,
@@ -101,7 +101,7 @@ function CreateDealerships()
 							end,
 						},
 						{
-							icon = "fa-solid fa-clipboard-check",
+							icon = "fas fa-clipboard-check",
 							label = "Go On Duty",
 							groups = { dealerId },
 							reqOffDuty = true,
@@ -110,7 +110,7 @@ function CreateDealerships()
 							end,
 						},
 						{
-							icon = "fa-solid fa-clipboard",
+							icon = "fas fa-clipboard",
 							label = "Go Off Duty",
 							groups = { dealerId },
 							reqDuty = true,

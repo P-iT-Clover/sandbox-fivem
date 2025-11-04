@@ -20,7 +20,7 @@ function DisableCruiseControl(skip)
 end
 
 AddEventHandler('Vehicles:Client:StartUp', function()
-    exports["sandbox-keybinds"]:Add('vehicle_cruise', '', 'keyboard', 'Vehicle - Toggle Cruise', function()
+    exports["sandbox-kbs"]:Add('vehicle_cruise', '', 'keyboard', 'Vehicle - Toggle Cruise', function()
         if VEHICLE_INSIDE and not noCruise[VEHICLE_CLASS] then
             if VEHICLE_CRUISE then
                 DisableCruiseControl(true)

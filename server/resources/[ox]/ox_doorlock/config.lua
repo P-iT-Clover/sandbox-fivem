@@ -7,7 +7,7 @@ Config.Notify = true
 Config.NotifyType = 'sandbox' --- 'ox' | 'sandbox'
 
 ---Create a persistent notification while in-range of a door, prompting to lock/unlock.
-Config.DrawTextUI = false
+Config.DrawTextUI = true
 Config.DrawTextUIType = 'sandbox' --- 'ox' | 'sandbox'
 
 ---Set the properties used by [DrawSprite](https://docs.fivem.net/natives/?_0xE7FFAE5EBF23D890).

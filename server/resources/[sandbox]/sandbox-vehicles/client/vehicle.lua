@@ -5,9 +5,18 @@ local _actionShowing = false
 _vehicleClasses = {
 	X = {
 		value = 2000000,
-		lockpick = false,
-		advLockpick = false,
-		hack = false,
+		lockpick = {
+			exterior = { stages = { 2, 3, 4, 5, 6, 7, 8 }, base = 5 },
+			interior = { stages = { 2, 3, 4, 5, 6, 7, 8 }, base = 5 },
+		},
+		advLockpick = {
+			exterior = { stages = { 0.8, 1.0, 1.2, 1.4, 1.6 }, base = 5 },
+			interior = { stages = { 0.8, 1.0, 1.2, 1.4, 1.6 }, base = 5 },
+		},
+		hack = {
+			exterior = { rows = 14, length = 8, duration = 18000, charSize = 2 },
+			interior = { rows = 14, length = 8, duration = 18000, charSize = 2 },
+		},
 		advHack = {
 			exterior = { rows = 10, length = 5, duration = 15000, charSize = 2 },
 			interior = { rows = 10, length = 5, duration = 15000, charSize = 2 },
@@ -15,9 +24,18 @@ _vehicleClasses = {
 	},
 	S = {
 		value = 1000000,
-		lockpick = false,
-		advLockpick = false,
-		hack = false,
+		lockpick = {
+			exterior = { stages = { 2, 3, 4, 5, 6 }, base = 5 },
+			interior = { stages = { 2, 3, 4, 5, 6 }, base = 5 },
+		},
+		advLockpick = {
+			exterior = { stages = { 0.8, 1.0, 1.2, 1.4 }, base = 5 },
+			interior = { stages = { 0.8, 1.0, 1.2, 1.4 }, base = 5 },
+		},
+		hack = {
+			exterior = { rows = 14, length = 8, duration = 18000, charSize = 2 },
+			interior = { rows = 14, length = 8, duration = 18000, charSize = 2 },
+		},
 		advHack = {
 			exterior = { rows = 9, length = 4, duration = 20000, charSize = 2 },
 			interior = { rows = 9, length = 4, duration = 20000, charSize = 2 },
@@ -903,13 +921,13 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 			if VEHICLE_INSIDE then
 				if VEHICLE_SEAT == -1 then
 					local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(VEHICLE_INSIDE)]
-
 					local boostOverride = Entity(VEHICLE_INSIDE).state.boostForceHack
 
 					if vehClass and vehClass.lockpick and not boostOverride then
 						exports['sandbox-vehicles']:Lockpick(vehClass.lockpick.interior, data, cb)
 					else
 						exports["sandbox-hud"]:Notification("error", "Cannot Lockpick This Vehicle")
+						cb(false, false)
 					end
 				else
 					cb(false, false)
@@ -920,19 +938,40 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 				local includePlayerVehicle = true
 
 				local vehicle = lib.getClosestVehicle(playerCoords, maxDistance, includePlayerVehicle)
-				if
-					vehicle
-					and DoesEntityExist(vehicle)
-					and IsEntityAVehicle(vehicle)
-					and #(GetEntityCoords(vehicle) - GetEntityCoords(GLOBAL_PED)) <= 2.0
-				then
-					local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(vehicle)]
-					local boostOverride = Entity(vehicle).state.boostForceHack
+				
+				if vehicle and DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
+					local distance = #(GetEntityCoords(vehicle) - GetEntityCoords(GLOBAL_PED))
+					
+					if distance <= 2.0 then
+						-- Request VIN generation if vehicle doesn't have one
+						local vehEnt = Entity(vehicle)
+						
+						if not vehEnt.state.VIN then
+							TriggerServerEvent("Vehicles:Server:RequestGenerateVehicleInfo", VehToNet(vehicle))
+							-- Wait for the server to generate and sync the VIN
+							local attempts = 0
+							while not vehEnt.state.VIN and attempts < 20 do
+								Wait(100)
+								attempts = attempts + 1
+							end
+							
+							if not vehEnt.state.VIN then
+								exports["sandbox-hud"]:Notification("error", "Failed to Initialize Vehicle", 3000)
+								return cb(false, false)
+							end
+						end
 
-					if vehClass and vehClass.lockpick and not boostOverride then
-						exports['sandbox-vehicles']:LockpickExterior(vehClass.lockpick.exterior, data, vehicle, cb)
+						local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(vehicle)]
+						local boostOverride = Entity(vehicle).state.boostForceHack
+
+						if vehClass and vehClass.lockpick and not boostOverride then
+							exports['sandbox-vehicles']:LockpickExterior(vehClass.lockpick.exterior, data, vehicle, cb)
+						else
+							exports["sandbox-hud"]:Notification("error", "Cannot Lockpick This Vehicle")
+							cb(false, false)
+						end
 					else
-						exports["sandbox-hud"]:Notification("error", "Cannot Lockpick This Vehicle")
+						cb(false, false)
 					end
 				else
 					cb(false, false)
@@ -971,6 +1010,22 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 					and IsEntityAVehicle(vehicle)
 					and #(GetEntityCoords(vehicle) - GetEntityCoords(GLOBAL_PED)) <= 2.0
 				then
+					-- Request VIN generation if vehicle doesn't have one
+					local vehEnt = Entity(vehicle)
+					if not vehEnt.state.VIN then
+						TriggerServerEvent("Vehicles:Server:RequestGenerateVehicleInfo", VehToNet(vehicle))
+						local attempts = 0
+						while not vehEnt.state.VIN and attempts < 20 do
+							Wait(100)
+							attempts = attempts + 1
+						end
+						
+						if not vehEnt.state.VIN then
+							exports["sandbox-hud"]:Notification("error", "Failed to Initialize Vehicle", 3000)
+							return cb(false, false)
+						end
+					end
+
 					local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(vehicle)]
 					local boostOverride = Entity(vehicle).state.boostForceHack
 
@@ -1014,6 +1069,22 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 					and IsEntityAVehicle(vehicle)
 					and #(GetEntityCoords(vehicle) - GetEntityCoords(GLOBAL_PED)) <= 2.0
 				then
+					-- Request VIN generation if vehicle doesn't have one
+					local vehEnt = Entity(vehicle)
+					if not vehEnt.state.VIN then
+						TriggerServerEvent("Vehicles:Server:RequestGenerateVehicleInfo", VehToNet(vehicle))
+						local attempts = 0
+						while not vehEnt.state.VIN and attempts < 20 do
+							Wait(100)
+							attempts = attempts + 1
+						end
+						
+						if not vehEnt.state.VIN then
+							exports["sandbox-hud"]:Notification("error", "Failed to Initialize Vehicle", 3000)
+							return cb(false, false)
+						end
+					end
+
 					local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(vehicle)]
 					if vehClass and vehClass.hack then
 						exports['sandbox-vehicles']:HackExterior(vehClass.hack.exterior, data, vehicle, cb)
@@ -1054,6 +1125,22 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 					and IsEntityAVehicle(vehicle)
 					and #(GetEntityCoords(vehicle) - GetEntityCoords(GLOBAL_PED)) <= 2.0
 				then
+					-- Request VIN generation if vehicle doesn't have one
+					local vehEnt = Entity(vehicle)
+					if not vehEnt.state.VIN then
+						TriggerServerEvent("Vehicles:Server:RequestGenerateVehicleInfo", VehToNet(vehicle))
+						local attempts = 0
+						while not vehEnt.state.VIN and attempts < 20 do
+							Wait(100)
+							attempts = attempts + 1
+						end
+						
+						if not vehEnt.state.VIN then
+							exports["sandbox-hud"]:Notification("error", "Failed to Initialize Vehicle", 3000)
+							return cb(false, false)
+						end
+					end
+
 					local vehClass = _vehicleClasses[exports['sandbox-vehicles']:ClassGet(vehicle)]
 					if vehClass and vehClass.advHack then
 						exports['sandbox-vehicles']:HackExterior(vehClass.advHack.exterior, data, vehicle, cb)

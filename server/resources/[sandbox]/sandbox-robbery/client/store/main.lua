@@ -22,7 +22,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 			maxZ = v.options.maxZ,
 			options = {
 				{
-					icon = "fa-solid fa-unlock",
+					icon = "fas fa-unlock",
 					label = "Crack Safe",
 					item = "safecrack_kit",
 					onSelect = function()
@@ -36,7 +36,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 					end,
 				},
 				{
-					icon = "fa-solid fa-terminal",
+					icon = "fas fa-terminal",
 					label = "Use Sequencer",
 					item = "sequencer",
 					onSelect = function()
@@ -50,7 +50,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 					end,
 				},
 				{
-					icon = "fa-solid fa-fingerprint",
+					icon = "fas fa-fingerprint",
 					label = "Open Safe",
 					onSelect = function()
 						TriggerEvent("Robbery:Client:Store:OpenSafe", v.data)
@@ -61,7 +61,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 					end,
 				},
 				{
-					icon = "fa-solid fa-shield-keyhole",
+					icon = "fas fa-shield-keyhole",
 					label = "Secure Safe",
 					groups = { "police" },
 					onSelect = function()
@@ -92,7 +92,7 @@ AddEventHandler("Polyzone:Enter", function(id, testedPoint, insideZones, data)
 			exports.ox_target:removeModel(v)
 			exports.ox_target:addModel(v, {
 				{
-					icon = "fa-solid fa-cash-register",
+					icon = "fas fa-cash-register",
 					label = "Lockpick Register",
 					item = "lockpick",
 					onSelect = function()

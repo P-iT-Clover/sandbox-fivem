@@ -8,7 +8,7 @@ AddEventHandler("Drugs:Client:Startup", function()
         exports.ox_target:addModel(v, {
             {
                 label = "Pickup Table",
-                icon = "fa-solid fa-hand",
+                icon = "fas fa-hand",
                 event = "Drugs:Client:Meth:PickupTable",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -18,7 +18,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Table Info",
-                icon = "fa-solid fa-info",
+                icon = "fas fa-info",
                 event = "Drugs:Client:Meth:TableDetails",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -27,7 +27,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Start Batch",
-                icon = "fa-solid fa-clock",
+                icon = "fas fa-clock",
                 event = "Drugs:Client:Meth:StartCook",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -39,7 +39,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Collect Batch",
-                icon = "fa-solid fa-box",
+                icon = "fas fa-box",
                 event = "Drugs:Client:Meth:PickupCook",
                 distance = 3.0,
                 canInteract = function(entity)

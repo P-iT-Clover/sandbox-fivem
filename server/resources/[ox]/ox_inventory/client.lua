@@ -466,7 +466,6 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
     local item = Items[data.name]
 
     if item and usingItem then
-
         if not item.client then return true end
         ---@cast item +OxClientProps
         item = item.client
@@ -494,7 +493,6 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
         end
 
         if not item.usetime or noAnim then
-
             local success = not PlayerData.dead
             if success then
                 if item.notification then
@@ -503,7 +501,7 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
                 if item.status and client.setPlayerStatus then
                     client.setPlayerStatus(item.status)
                 end
-                
+
                 return true
             end
             return false

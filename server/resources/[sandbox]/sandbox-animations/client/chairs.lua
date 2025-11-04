@@ -9,7 +9,7 @@ function RegisterChairTargets()
 				{
 					name = "sit_chair",
 					label = "Sit",
-					icon = "fa-solid fa-chair",
+					icon = "fas fa-chair",
 					onSelect = function()
 						TriggerEvent("Animations:Client:Chair", v)
 					end,
@@ -28,7 +28,7 @@ function RegisterChairTargets()
 					{
 						name = "sit_chair_zone",
 						label = "Sit",
-						icon = "fa-solid fa-chair",
+						icon = "fas fa-chair",
 						onSelect = function()
 							TriggerEvent("Animations:Client:Chair", v)
 						end,

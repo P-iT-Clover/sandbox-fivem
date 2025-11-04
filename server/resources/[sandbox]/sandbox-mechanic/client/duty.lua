@@ -3,7 +3,7 @@ function CreateMechanicDutyPoints()
 		if v.dutyPoint then
 			local menu = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					onSelect = function()
 						TriggerEvent("Mechanic:Client:OnDuty", v.job)
@@ -12,7 +12,7 @@ function CreateMechanicDutyPoints()
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					onSelect = function()
 						TriggerEvent("Mechanic:Client:OffDuty", v.job)
@@ -36,14 +36,14 @@ function CreateMechanicDutyPoints()
 		if v.dutyPoint2 then
 			local menu = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					event = "Mechanic:Client:OnDuty",
 					groups = { v.job },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					event = "Mechanic:Client:OffDuty",
 					groups = { v.job },

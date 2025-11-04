@@ -55,7 +55,9 @@ end)
 
 RegisterNetEvent("Characters:Client:Logout", function()
     if LocalPlayer.state.isDead then
-        AnimpostfxStop("DeathFailMPIn")
+        if Config.EnableDownblur then
+            AnimpostfxStop("DeathFailMPIn")
+        end
         exports['sandbox-hud']:DeathTextsHide()
         ClearPedTasksImmediately(ped)
 

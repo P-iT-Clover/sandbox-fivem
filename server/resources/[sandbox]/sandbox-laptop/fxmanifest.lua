@@ -1,8 +1,7 @@
-name("Mythic Laptop")
-description("Laptop")
+name("Sandbox RP Farmework Laptop")
+description("Sandbox RP FrameworkLaptop")
 author("[Alzar, Dr Nick]")
 version("v1.0.0")
-url("https://www.mythicrp.com")
 lua54("yes")
 fx_version("cerulean")
 game("gta5")
@@ -24,6 +23,7 @@ shared_scripts({
 })
 
 server_scripts({
+	"@oxmysql/lib/MySQL.lua",
 	"server/*.lua",
 	"server/apps/**/*.lua",
 })

@@ -157,7 +157,7 @@ AddEventHandler("Drugs:Server:Startup", function()
         coords = vector3(755.504, -1860.620, 48.292),
         heading = 307.963,
         scenario = "WORLD_HUMAN_SMOKING"
-    }, _toolsForSale, "fa-solid fa-jar", "View Offers", false, false, true)
+    }, _toolsForSale, "fas fa-jar", "View Offers", false, false, true)
 
     local stills = MySQL.query.await('SELECT * FROM placed_moonshine_stills WHERE expires > ?', { os.time() })
     for k, v in ipairs(stills) do
@@ -541,7 +541,7 @@ AddEventHandler("Drugs:Server:Startup", function()
     --     local itms = {}
 
     --     local char = exports['sandbox-characters']:FetchCharacterSource(source)
-    --     local hasVpn = exports.ox_inventory:Search('count', 'vpn') > 0
+    --     local hasVpn = exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1)
 
     --     for k, v in ipairs(_toolsForSale) do
     --         _toolsForSale[v.item] = _toolsForSale[v.item] or {}
@@ -555,7 +555,7 @@ AddEventHandler("Drugs:Server:Startup", function()
 
     -- exports["sandbox-base"]:RegisterServerCallback("Drugs:Meth:BuyItem", function(source, data, cb)
     --     local char = exports['sandbox-characters']:FetchCharacterSource(source)
-    --     local hasVpn = exports.ox_inventory:Search('count', 'vpn') > 0
+    --     local hasVpn = exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1)
 
     --     for k, v in ipairs(_toolsForSale) do
     --         if v.id == data then

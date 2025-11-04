@@ -1,7 +1,7 @@
 AddEventHandler('Vehicles:Client:StartUp', function()
     exports["sandbox-base"]:RegisterClientCallback('Vehicles:GetFakePlateAddingVehicle', function(data, cb)
         local coords = GetEntityCoords(PlayerPedId())
-        local maxDistance = 2.0
+        local maxDistance = 5.0
         local includePlayerVehicle = false
         local vehicle = lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
 

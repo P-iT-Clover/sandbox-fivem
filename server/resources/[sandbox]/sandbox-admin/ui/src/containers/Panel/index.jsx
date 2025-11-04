@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Paper, Slide } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,9 +23,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default withRouter(() => {
 	const classes = useStyles();
+	const history = useHistory();
 	const hidden = useSelector((state) => state.app.hidden);
 	const permission = useSelector(state => state.app.permission);
 	const opacityMode = useSelector(state => state.app.opacity);
+
+	useEffect(() => {
+		const handleMessage = (event) => {
+			if (event.data.type === 'SET_ROUTE' && event.data.data?.route) {
+				const route = event.data.data.route.replace('#', '');
+				history.push(route);
+			}
+		};
+
+		window.addEventListener('message', handleMessage);
+		return () => window.removeEventListener('message', handleMessage);
+	}, [history]);
 
 	const getPanel = () => {
 		switch (permission) {

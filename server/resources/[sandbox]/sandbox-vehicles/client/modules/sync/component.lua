@@ -243,10 +243,10 @@ exports("SyncBikePickup", function(vehicle)
 					true
 				)
 				exports["sandbox-hud"]:Notification(
-				    "info",
-				    string.format("Press [%s] to drop the bike", exports["sandbox-keybinds"]:GetKey("veh_bike_drop")),
-				    8000,
-				    "bicycle"
+					"info",
+					string.format("Press [%s] to drop the bike", exports["sandbox-kbs"]:GetKey("veh_bike_drop")),
+					8000,
+					"bicycle"
 				)
 			end
 		end

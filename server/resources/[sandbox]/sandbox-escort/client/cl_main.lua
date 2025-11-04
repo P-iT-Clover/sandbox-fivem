@@ -3,14 +3,14 @@ local _timeout = false
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("escort", "k", "keyboard", "Escort", function()
+		exports["sandbox-kbs"]:Add("escort", "k", "keyboard", "Escort", function()
 			if _timeout then
 				--exports["sandbox-hud"]:Notification("error", "Stop spamming you pepega.")
 				return
 			end
 			_timeout = true
 			DoEscort()
-			Citizen.SetTimeout(1000, function()
+			SetTimeout(1000, function()
 				_timeout = false
 			end)
 		end)

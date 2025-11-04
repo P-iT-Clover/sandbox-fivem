@@ -88,7 +88,7 @@ AddEventHandler('Businesses:Client:Startup', function()
         end
     end
 
-    exports["sandbox-keybinds"]:Add('bowling_aim_right', 'RIGHT', 'keyboard', 'Bowling - Aim Right', function()
+    exports["sandbox-kbs"]:Add('bowling_aim_right', 'RIGHT', 'keyboard', 'Bowling - Aim Right', function()
         if awaitingBowl then
             local heading = GetEntityHeading(LocalPlayer.state.ped) - 0.7
             if heading >= 50.0 then
@@ -97,7 +97,7 @@ AddEventHandler('Businesses:Client:Startup', function()
         end
     end)
 
-    exports["sandbox-keybinds"]:Add('bowling_aim_left', 'LEFT', 'keyboard', 'Bowling - Aim Left', function()
+    exports["sandbox-kbs"]:Add('bowling_aim_left', 'LEFT', 'keyboard', 'Bowling - Aim Left', function()
         if awaitingBowl then
             local heading = GetEntityHeading(LocalPlayer.state.ped) + 0.7
             if heading <= 130.0 then
@@ -241,7 +241,7 @@ function StartBowlingShit(alleyId, isSecondTry, currentPinsDown, currentHitPins)
 
     local pinsBitch = true
     local pinsTarget = false
-    Citizen.SetTimeout(4000, function()
+    SetTimeout(4000, function()
         pinsBitch = false
     end)
 
@@ -402,7 +402,7 @@ AddEventHandler('Keybinds:Client:KeyUp:primary_action', function()
                 exports['sandbox-hud']:ActionHide('bowling')
                 TriggerServerEvent('Bowling:Server:StartBowling', insideBowlingStart)
                 _actionCD = true
-                Citizen.SetTimeout(30000, function()
+                SetTimeout(30000, function()
                     _actionCD = false
                 end)
             end

@@ -46,14 +46,14 @@ function SAFDInit()
 			maxZ = v.options.maxZ,
 			options = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Go On Duty",
 					event = "EMS:Client:OnDuty",
 					groups = { "ems" },
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Go Off Duty",
 					event = "EMS:Client:OffDuty",
 					groups = { "ems" },

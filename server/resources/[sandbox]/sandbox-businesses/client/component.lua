@@ -126,12 +126,12 @@ RegisterNetEvent("Businesses:Client:CreatePoly", function(pickups, onSpawn)
 				maxZ = data.options.maxZ,
 				options = {
 					{
-						icon = "fa-solid fa-box-open",
+						icon = "fas fa-box-open",
 						label = string.format("Pickup Order (#%s)", data.num),
 						event = "Businesses:Client:Pickup",
 					},
 					{
-						icon = "fa-solid fa-money-check-dollar-pen",
+						icon = "fas fa-money-check-dollar-pen",
 						label = "Set Contactless Payment",
 						event = "Businesses:Client:CreateContactlessPayment",
 						groups = { data.job },
@@ -141,7 +141,7 @@ RegisterNetEvent("Businesses:Client:CreatePoly", function(pickups, onSpawn)
 						end,
 					},
 					{
-						icon = "fa-solid fa-money-check-dollar-pen",
+						icon = "fas fa-money-check-dollar-pen",
 						label = "Clear Contactless Payment",
 						event = "Businesses:Client:ClearContactlessPayment",
 						groups = { data.job },
@@ -151,7 +151,7 @@ RegisterNetEvent("Businesses:Client:CreatePoly", function(pickups, onSpawn)
 						end,
 					},
 					{
-						icon = "fa-solid fa-money-check-dollar",
+						icon = "fas fa-money-check-dollar",
 						label = function()
 							if
 								GlobalState[string.format("PendingContactless:%s", data.id)]
@@ -184,14 +184,14 @@ end)
 function GetBusinessClockInMenu(businessName)
 	return {
 		{
-			icon = "fa-solid fa-clipboard-check",
+			icon = "fas fa-clipboard-check",
 			label = "Clock In",
 			event = "Businesses:Client:ClockIn",
 			groups = { businessName },
 			reqOffDuty = true,
 		},
 		{
-			icon = "fa-solid fa-clipboard",
+			icon = "fas fa-clipboard",
 			label = "Clock Out",
 			event = "Businesses:Client:ClockOut",
 			groups = { businessName },
@@ -233,14 +233,14 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 47.85,
 		options = {
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				label = "Clock In",
 				event = "Businesses:Client:ClockIn",
 				groups = { "pepega_pawn" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				label = "Clock Out",
 				event = "Businesses:Client:ClockOut",
 				groups = { "pepega_pawn" },
@@ -266,14 +266,14 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 32.39,
 		options = {
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				label = "Clock In",
 				event = "Businesses:Client:ClockIn",
 				groups = { "garcon_pawn" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				label = "Clock Out",
 				event = "Businesses:Client:ClockOut",
 				groups = { "garcon_pawn" },
@@ -347,7 +347,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 7.64,
 		options = {
 			{
-				icon = "fa-solid fa-tv",
+				icon = "fas fa-tv",
 				label = "Set TV Link",
 				event = "Billboards:Client:SetLink",
 				groups = { "tuna" },
@@ -366,21 +366,21 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 32.07,
 		options = {
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				label = "Clock In",
 				event = "Businesses:Client:ClockIn",
 				groups = { "paleto_tuners" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				label = "Clock Out",
 				event = "Businesses:Client:ClockOut",
 				groups = { "paleto_tuners" },
 				reqDuty = true,
 			},
 			{
-				icon = "fa-solid fa-tv",
+				icon = "fas fa-tv",
 				label = "Set TV Link",
 				event = "Billboards:Client:SetLink",
 				groups = { "paleto_tuners" },
@@ -399,21 +399,21 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 31.87,
 		options = {
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				label = "Clock In",
 				event = "Businesses:Client:ClockIn",
 				groups = { "paleto_tuners" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				label = "Clock Out",
 				event = "Businesses:Client:ClockOut",
 				groups = { "paleto_tuners" },
 				reqDuty = true,
 			},
 			{
-				icon = "fa-solid fa-tv",
+				icon = "fas fa-tv",
 				label = "Set TV Link",
 				event = "Billboards:Client:SetLink",
 				groups = { "paleto_tuners" },
@@ -432,14 +432,14 @@ AddEventHandler("Businesses:Client:Startup", function()
 		maxZ = 22.43,
 		options = {
 			{
-				icon = "fa-solid fa-clipboard-check",
+				icon = "fas fa-clipboard-check",
 				label = "Clock In",
 				event = "Businesses:Client:ClockIn",
 				groups = { "blackline" },
 				reqOffDuty = true,
 			},
 			{
-				icon = "fa-solid fa-clipboard",
+				icon = "fas fa-clipboard",
 				label = "Clock Out",
 				event = "Businesses:Client:ClockOut",
 				groups = { "blackline" },

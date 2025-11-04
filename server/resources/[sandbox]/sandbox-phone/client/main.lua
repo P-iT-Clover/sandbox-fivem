@@ -31,11 +31,11 @@ local _ignoreEvents = {
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("phone_toggle", "M", "keyboard", "Phone - Open/Close", function()
+		exports["sandbox-kbs"]:Add("phone_toggle", "M", "keyboard", "Phone - Open/Close", function()
 			TogglePhone()
 		end)
 
-		exports["sandbox-keybinds"]:Add("phone_ansend", "", "keyboard", "Phone - Accept/End Call", function()
+		exports["sandbox-kbs"]:Add("phone_ansend", "", "keyboard", "Phone - Accept/End Call", function()
 			if _call ~= nil then
 				if _call.state == 1 then
 					exports['sandbox-phone']:CallAccept()
@@ -45,7 +45,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("phone_answer", "", "keyboard", "Phone - Accept Call", function()
+		exports["sandbox-kbs"]:Add("phone_answer", "", "keyboard", "Phone - Accept Call", function()
 			if _call ~= nil then
 				if _call.state == 1 then
 					exports['sandbox-phone']:CallAccept()
@@ -53,13 +53,13 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("phone_end", "", "keyboard", "Phone - End Call", function()
+		exports["sandbox-kbs"]:Add("phone_end", "", "keyboard", "Phone - End Call", function()
 			if _call ~= nil then
 				exports['sandbox-phone']:CallEnd()
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("phone_mute", "", "keyboard", "Phone - Mute/Unmute Sound", function()
+		exports["sandbox-kbs"]:Add("phone_mute", "", "keyboard", "Phone - Mute/Unmute Sound", function()
 			if _settings.volume > 0 then
 				_settings.volume = 0
 				exports["sandbox-sounds"]:PlayOne("mute.ogg", 0.1)
@@ -88,7 +88,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 		for k, v in ipairs(_payphones) do
 			exports.ox_target:addModel(v, {
 				{
-					icon = "fa-solid fa-phone-volume",
+					icon = "fas fa-phone-volume",
 					label = "Use Payphone",
 					event = "Phone:Client:Payphone",
 					distance = 2.0,

@@ -84,7 +84,7 @@ function GetContactlessInput(data)
             },
         }, "Contactless:Client:RecieveInput", {})
 
-    Citizen.SetTimeout(30000, function()
+    SetTimeout(30000, function()
         if promptPromise and currentlyShowing == showingAtTime then
             exports['sandbox-hud']:InputClose()
             promptPromise:resolve(false)

@@ -1,7 +1,5 @@
-name("ARP Ped")
+name("Sandbox RP Framework - Clothing System")
 author("[Alzar]")
-version("v1.0.0")
-url("https://www.mythicrp.com")
 lua54("yes")
 fx_version("cerulean")
 game("gta5")

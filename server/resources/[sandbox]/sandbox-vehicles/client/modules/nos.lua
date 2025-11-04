@@ -35,7 +35,7 @@ local _NOSStart = 0
 local _NOSUsage = 0
 
 AddEventHandler("Vehicles:Client:StartUp", function()
-	exports["sandbox-keybinds"]:Add("vehicle_nos", "", "keyboard", "NOS", function()
+	exports["sandbox-kbs"]:Add("vehicle_nos", "", "keyboard", "NOS", function()
 		if VEHICLE_INSIDE and _hasNOS then
 			StartVehicleNOS()
 		end
@@ -45,7 +45,7 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 		end
 	end)
 
-	exports["sandbox-keybinds"]:Add("vehicle_nos_purge", "", "keyboard", "NOS - Purge", function()
+	exports["sandbox-kbs"]:Add("vehicle_nos_purge", "", "keyboard", "NOS - Purge", function()
 		if VEHICLE_INSIDE and _hasNOS then
 			StartVehiclePurge()
 		end
@@ -55,7 +55,7 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 		end
 	end)
 
-	exports["sandbox-keybinds"]:Add("vehicle_nos_flow_up", "", "keyboard", "NOS - Increase Flow Rate", function()
+	exports["sandbox-kbs"]:Add("vehicle_nos_flow_up", "", "keyboard", "NOS - Increase Flow Rate", function()
 		if VEHICLE_INSIDE and _hasNOS then
 			if _flowRate < 10 then
 				_flowRate = _flowRate + 1
@@ -64,7 +64,7 @@ AddEventHandler("Vehicles:Client:StartUp", function()
 		end
 	end)
 
-	exports["sandbox-keybinds"]:Add("vehicle_nos_flow_down", "", "keyboard", "NOS - Decrease Flow Rate", function()
+	exports["sandbox-kbs"]:Add("vehicle_nos_flow_down", "", "keyboard", "NOS - Decrease Flow Rate", function()
 		if VEHICLE_INSIDE and _hasNOS then
 			if _flowRate > 1 then
 				_flowRate = _flowRate - 1

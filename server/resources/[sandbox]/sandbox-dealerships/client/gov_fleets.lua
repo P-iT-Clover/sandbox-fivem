@@ -5,7 +5,7 @@ function CreateGovermentFleetShops()
                 v.interactionPed.coords,
                 v.interactionPed.heading, v.interactionPed.range, {
                     {
-                        icon = 'fa-solid fa-warehouse',
+                        icon = 'fas fa-warehouse',
                         text = 'Purchase Fleet Vehicles',
                         groups = { v.job },
                         permissionKey = v.requiredPermission,
@@ -55,7 +55,16 @@ AddEventHandler('FleetDealers:Client:Open', function(data)
                     label = string.format('Purchase With %s Livery', liveryName),
                     description = 'Price: $' .. formatNumberToCurrency(v.price),
                     event = 'FleetDealers:Client:ConfirmPurchase',
-                    data = { jobName = shopData.jobName, shop = data.shop, vehicle = k, livery = livery, liveryName = liveryName, vehData = v },
+                    data = { 
+                        jobName = shopData.jobName, 
+                        shop = data.shop, 
+                        vehicle = k, 
+                        livery = livery, 
+                        liveryName = liveryName, 
+                        vehData = v,
+                        workplaceId = shopData.workplace or false,  
+                        qual = v.qual or false              
+                    },
                 })
             end
 
@@ -85,5 +94,5 @@ AddEventHandler('FleetDealers:Client:ConfirmPurchase', function(data)
 end)
 
 AddEventHandler('FleetDealers:Client:Purchase', function(data)
-    TriggerServerEvent('FleetDealers:Server:Purchase', data.shop, data.vehicle, data.livery)
+    TriggerServerEvent('FleetDealers:Server:Purchase', data.shop, data.vehicle, data.livery, data.workplaceId, data.qual)
 end)

@@ -93,7 +93,7 @@ RegisterNUICallback("Dyn8ShowPropertyLocations", function(data, cb)
             end
         end)
 
-        Citizen.SetTimeout(30000, function()
+        SetTimeout(30000, function()
             _drawingPropertyLocations = false
         end)
     else

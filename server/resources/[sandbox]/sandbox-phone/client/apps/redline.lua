@@ -180,8 +180,6 @@ end
 RegisterNetEvent("Phone:Client:Redline:StoreTracks", function(tracks)
 	_tracks = tracks
 
-	if not Phone then return end
-
 	exports['sandbox-phone']:DataSet("tracks", _tracks)
 end)
 
@@ -204,8 +202,6 @@ RegisterNetEvent("Phone:Client:Redline:StoreSingleTrack", function(tId, track)
 	if not updated and track then
 		table.insert(_tracks, track)
 	end
-
-	if not Phone then return end
 
 	exports['sandbox-phone']:DataSet("tracks", _tracks)
 end)

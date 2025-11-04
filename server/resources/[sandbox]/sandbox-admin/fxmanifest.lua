@@ -9,6 +9,7 @@ client_script("@sandbox-pwnzor/client/check.lua")
 -- }
 
 client_scripts({
+	"@ox_lib/init.lua",
 	"client/client.lua",
 	"client/attach.lua",
 	"client/noclip/*.lua",
@@ -18,11 +19,15 @@ client_scripts({
 	"client/ids.lua",
 	"client/nuke.lua",
 	"client/damage_test.lua",
+	"client/doorlock.lua",
 })
 
 server_scripts({
-	'@oxmysql/lib/MySQL.lua',
-	"server/*.lua",
+	"@oxmysql/lib/MySQL.lua",
+	"server/doorlock.lua",
+	"server/callbacks.lua",
+	"server/dashboard.lua",
+	"server/server.lua",
 })
 
 ui_page("ui/dist/index.html")

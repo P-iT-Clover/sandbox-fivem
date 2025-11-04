@@ -5,14 +5,14 @@ function CreateRentalSpots()
                 v.interactionPed.heading,
                 v.interactionPed.range, {
                     {
-                        icon = 'fa-solid fa-car-side',
+                        icon = 'fas fa-car-side',
                         text = 'Vehicle Rentals',
                         onSelect = function()
                             TriggerEvent('VehicleRentals:Client:OpenRental', { rental = k })
                         end,
                     },
                     {
-                        icon = 'fa-solid fa-warehouse',
+                        icon = 'fas fa-warehouse',
                         text = 'Rental Returns',
                         onSelect = function()
                             TriggerEvent('VehicleRentals:Client:ReturnRental', { rental = k })

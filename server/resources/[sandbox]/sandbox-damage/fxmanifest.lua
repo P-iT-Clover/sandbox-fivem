@@ -1,7 +1,7 @@
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")
-description("Blue Sky Limb Damage")
+description("Sandbox RP Framework Damage Script")
 client_script("@sandbox-base/exports/cl_error.lua")
 client_script("@sandbox-pwnzor/client/check.lua")
 

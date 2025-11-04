@@ -748,20 +748,6 @@ return {
         client = {},
         server = {}
     },
-    ["bun"] = {
-        label = "Hamburger Bun",
-        weight = 100.0,
-        degrade = nil,
-        client = {},
-        server = {}
-    },
-    ["patty"] = {
-        label = "Hamburger Patty",
-        weight = 200.0,
-        degrade = nil,
-        client = {},
-        server = {}
-    },
     ["hornyburger"] = {
         label = "Horny Burger",
         weight = 250.0,
@@ -794,32 +780,6 @@ return {
         label = "Zesty Fries",
         weight = 250.0,
         degrade = 432000,
-        client = {},
-        server = {}
-    },
-    ["meteorite_icecream"] = {
-        label = "Meteorite Ice Cream",
-        weight = 250.0,
-        degrade = 432000,
-        energyModifier = {
-            modifier = 1.1,
-            duration = 18,
-            cooldown = 60,
-            skipScreenEffects = true,
-        },
-        client = {},
-        server = {}
-    },
-    ["orangotang_icecream"] = {
-        label = "Orangotang Ice Cream",
-        weight = 250.0,
-        degrade = 432000,
-        energyModifier = {
-            modifier = 1.1,
-            duration = 18,
-            cooldown = 60,
-            skipScreenEffects = true,
-        },
         client = {},
         server = {}
     },
@@ -1912,34 +1872,6 @@ return {
         weight = 0,
         server = {}
     },
-    ["case_blue"] = {
-        label = "Phone Case: Blue",
-        weight = 0,
-        degrade = 432000,
-        client = {},
-        server = {}
-    },
-    ["case_gold"] = {
-        label = "Phone Case: Gold",
-        weight = 0,
-        degrade = 432000,
-        client = {},
-        server = {}
-    },
-    ["case_pink"] = {
-        label = "Phone Case: Pink",
-        weight = 0,
-        degrade = 432000,
-        client = {},
-        server = {}
-    },
-    ["case_white"] = {
-        label = "Phone Case: White",
-        weight = 0,
-        degrade = 432000,
-        client = {},
-        server = {}
-    },
     ["present_daily"] = {
         label = "Daily Present",
         description = "Happy Holidays!",
@@ -1958,20 +1890,6 @@ return {
     ["snrbuns_cup"] = {
         label = "SB Cup",
         weight = 0.0,
-        degrade = nil,
-        client = {},
-        server = {}
-    },
-    ["bun"] = {
-        label = "Hamburger Bun",
-        weight = 100.0,
-        degrade = nil,
-        client = {},
-        server = {}
-    },
-    ["patty"] = {
-        label = "Hamburger Patty",
-        weight = 200.0,
         degrade = nil,
         client = {},
         server = {}
@@ -3031,7 +2949,14 @@ return {
         weight = 1000,
         degrade = 43200,
         rarity = 4,
-        client = {},
+        client = {
+            add = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racing_crappy')
+            end,
+            remove = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racing_crappy')
+            end
+        },
         server = {}
     },
     ["racedongle"] = {
@@ -3040,7 +2965,14 @@ return {
         weight = 2500.0,
         degrade = 1814400,
         rarity = 4,
-        client = {},
+        client = {
+            add = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racedongle')
+            end,
+            remove = function(count)
+                HandleItemState('RACE_DONGLE', count, 'racedongle')
+            end
+        },
         server = {}
     },
     ["vpn"] = {
@@ -3056,6 +2988,22 @@ return {
             end,
             remove = function(count)
                 HandleItemState('PHONE_VPN', count, 'vpn')
+            end
+        }
+    },
+    ["adv_vpn"] = {
+        label = "Advanced VPN",
+        weight = 2000,
+        degrade = 2592000,
+        rarity = 4,
+        stack = false,
+        decay = true,
+        client = {
+            add = function(count)
+                HandleItemState('ADV_VPN', count, 'adv_vpn')
+            end,
+            remove = function(count)
+                HandleItemState('ADV_VPN', count, 'adv_vpn')
             end
         }
     },
@@ -6956,13 +6904,6 @@ return {
     },
     ["blueberry_boba"] = {
         label = "Blueberry Boba",
-        weight = 250.0,
-        degrade = 432000,
-        client = {},
-        server = {}
-    },
-    ["matcha_boba"] = {
-        label = "Matcha Boba",
         weight = 250.0,
         degrade = 432000,
         client = {},

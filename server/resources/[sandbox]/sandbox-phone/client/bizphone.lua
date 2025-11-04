@@ -224,7 +224,7 @@ RegisterNetEvent("Phone:Client:Biz:Recieve", function(id, coords, radius)
         local myCoords = GetEntityCoords(LocalPlayer.state.ped)
         if #(myCoords - coords) <= 150.0 then
             exports["sandbox-sounds"]:LoopLocation(string.format("bizphones-%s", id), coords, radius, "bizphone.ogg", 0.1)
-            Citizen.SetTimeout(30000, function()
+            SetTimeout(30000, function()
                 exports["sandbox-sounds"]:StopDistance(string.format("bizphones-%s", id), "bizphone.ogg")
             end)
         end

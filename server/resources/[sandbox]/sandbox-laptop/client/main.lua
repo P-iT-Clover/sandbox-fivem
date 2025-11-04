@@ -16,7 +16,7 @@ local _ignoreEvents = {
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("laptop_open", "", "keyboard", "Laptop - Open", function()
+		exports["sandbox-kbs"]:Add("laptop_open", "", "keyboard", "Laptop - Open", function()
 			OpenLaptop()
 		end)
 

@@ -109,7 +109,7 @@ function RunStartup()
 				})
 
 			if insertResult then
-				Citizen.Wait(10000)
+				Wait(10000)
 				return true
 			else
 				exports['sandbox-base']:LoggerError("Jobs", "Error Inserting Job on Default Job Update")

@@ -248,7 +248,7 @@ function DoChoppingThings(veh)
 	end)
 
 	CreateThread(function()
-		local keyBind = exports["sandbox-keybinds"]:GetKey("primary_action")
+		local keyBind = exports["sandbox-kbs"]:GetKey("primary_action")
 		local chopMessage = string.format("Press ~w~~r~[%s]~w~ to Chop Vehicle Part", keyBind)
 		local chopMessage = string.format("Press ~w~~r~[%s]~w~ to Scrap Vehicle", keyBind)
 

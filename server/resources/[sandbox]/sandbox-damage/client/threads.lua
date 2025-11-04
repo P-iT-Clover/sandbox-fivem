@@ -182,15 +182,17 @@ function StartThreads()
 				local s25 = math.ceil(max * 0.25)
 				local s50 = math.ceil(max * 0.50)
 
-				local myhp = GetEntityHealth(LocalPlayer.state.ped) - 100
-				if myhp <= s10 then
-					SetFlash(0, 0, 500, math.random(10) * 1000, 500)
-				elseif myhp <= s25 then
-					SetFlash(0, 0, 500, math.random(5) * 1000, 500)
-				elseif myhp <= s50 then
-					SetFlash(0, 0, 500, math.random(2) * 1000, 500)
-				else
-					SetFlash(0, 0, 1, 0, 1)
+				if Config.EnableScreenFlash then
+					local myhp = GetEntityHealth(LocalPlayer.state.ped) - 100
+					if myhp <= s10 then
+						SetFlash(0, 0, 500, math.random(10) * 1000, 500)
+					elseif myhp <= s25 then
+						SetFlash(0, 0, 500, math.random(5) * 1000, 500)
+					elseif myhp <= s50 then
+						SetFlash(0, 0, 500, math.random(2) * 1000, 500)
+					else
+						SetFlash(0, 0, 1, 0, 1)
+					end
 				end
 			else
 				Wait(30000)

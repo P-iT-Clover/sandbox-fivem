@@ -12,6 +12,9 @@ import Vehicles from "./Vehicles";
 import VehicleView from "./View/Vehicle";
 import Characters from "./Characters";
 
+import Doorlocks from "./Doorlocks";
+import DoorlockView from "./View/Doorlock";
+
 export {
   Dashboard,
   Players,
@@ -21,5 +24,7 @@ export {
   Vehicles,
   VehicleView,
   Characters,
+  Doorlocks,
+  DoorlockView,
   Error,
 };

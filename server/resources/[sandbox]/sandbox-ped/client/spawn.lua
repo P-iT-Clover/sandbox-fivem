@@ -179,7 +179,7 @@ exports('PlacePedIntoWorld', function(data)
 		DoScreenFadeIn(500)
 	end
 
-	Citizen.SetTimeout(500, function()
+	SetTimeout(500, function()
 		SetPedArmour(player, data.Armor)
 	end)
 

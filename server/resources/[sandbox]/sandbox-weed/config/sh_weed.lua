@@ -30,7 +30,7 @@ Plants = {
 		harvestable = false,
 		targeting = {
 			{
-				icon = "fa-solid fa-magnifying-glass",
+				icon = "fas fa-magnifying-glass",
 				text = "Check",
 				event = "Weed:Client:Check",
 				canInteract = function(entity)
@@ -38,7 +38,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-hand-scissors",
+				icon = "fas fa-hand-scissors",
 				text = "Destroy Plant",
 				event = "Weed:Client:PDDestroy",
 				groups = { "police" },
@@ -55,7 +55,7 @@ Plants = {
 		harvestable = false,
 		targeting = {
 			{
-				icon = "fa-solid fa-magnifying-glass",
+				icon = "fas fa-magnifying-glass",
 				text = "Check",
 				event = "Weed:Client:Check",
 				canInteract = function(entity)
@@ -63,7 +63,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-hand-scissors",
+				icon = "fas fa-hand-scissors",
 				text = "Destroy Plant",
 				event = "Weed:Client:PDDestroy",
 				groups = { "police" },
@@ -80,7 +80,7 @@ Plants = {
 		harvestable = false,
 		targeting = {
 			{
-				icon = "fa-solid fa-magnifying-glass",
+				icon = "fas fa-magnifying-glass",
 				text = "Check",
 				event = "Weed:Client:Check",
 				canInteract = function(entity)
@@ -88,7 +88,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-hand-scissors",
+				icon = "fas fa-hand-scissors",
 				text = "Destroy Plant",
 				event = "Weed:Client:PDDestroy",
 				groups = { "police" },
@@ -105,7 +105,7 @@ Plants = {
 		harvestable = false,
 		targeting = {
 			{
-				icon = "fa-solid fa-magnifying-glass",
+				icon = "fas fa-magnifying-glass",
 				text = "Check",
 				event = "Weed:Client:Check",
 				canInteract = function(entity)
@@ -113,7 +113,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-sack",
+				icon = "fas fa-sack",
 				text = "Harvest",
 				event = "Weed:Client:Harvest",
 				canInteract = function(entity)
@@ -121,7 +121,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-hand-scissors",
+				icon = "fas fa-hand-scissors",
 				text = "Destroy Plant",
 				event = "Weed:Client:PDDestroy",
 				groups = { "police" },
@@ -138,7 +138,7 @@ Plants = {
 		harvestable = true,
 		targeting = {
 			{
-				icon = "fa-solid fa-magnifying-glass",
+				icon = "fas fa-magnifying-glass",
 				text = "Check",
 				event = "Weed:Client:Check",
 				canInteract = function(entity)
@@ -146,7 +146,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-sack",
+				icon = "fas fa-sack",
 				text = "Harvest",
 				event = "Weed:Client:Harvest",
 				canInteract = function(entity)
@@ -154,7 +154,7 @@ Plants = {
 				end,
 			},
 			{
-				icon = "fa-solid fa-hand-scissors",
+				icon = "fas fa-hand-scissors",
 				text = "Destroy Plant",
 				event = "Weed:Client:PDDestroy",
 				groups = { "police" },
@@ -171,7 +171,7 @@ Plants = {
 	-- 	harvestable = false,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -179,7 +179,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -196,7 +196,7 @@ Plants = {
 	-- 	harvestable = false,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -204,7 +204,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -221,7 +221,7 @@ Plants = {
 	-- 	harvestable = false,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -229,7 +229,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -246,7 +246,7 @@ Plants = {
 	-- 	harvestable = false,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -254,7 +254,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -271,7 +271,7 @@ Plants = {
 	-- 	harvestable = false,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -279,7 +279,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -296,7 +296,7 @@ Plants = {
 	-- 	harvestable = true,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -304,7 +304,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-sack",
+	-- 			icon = "fas fa-sack",
 	-- 			text = "Harvest",
 	-- 			event = "Weed:Client:Harvest",
 	-- 			canInteract = function(entity)
@@ -312,7 +312,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -329,7 +329,7 @@ Plants = {
 	-- 	harvestable = true,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -337,7 +337,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-sack",
+	-- 			icon = "fas fa-sack",
 	-- 			text = "Harvest",
 	-- 			event = "Weed:Client:Harvest",
 	-- 			canInteract = function(entity)
@@ -345,7 +345,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -362,7 +362,7 @@ Plants = {
 	-- 	harvestable = true,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -370,7 +370,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-sack",
+	-- 			icon = "fas fa-sack",
 	-- 			text = "Harvest",
 	-- 			event = "Weed:Client:Harvest",
 	-- 			canInteract = function(entity)
@@ -378,7 +378,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Destroy Plant",
 	-- 			event = "Weed:Client:PDDestroy",
 	-- 			groups = { "police" },
@@ -394,7 +394,7 @@ Plants = {
 	-- 	offset = -0.4,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -402,7 +402,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Confiscate",
 	-- 			event = "Weed:Client:Confiscate",
 	-- 			groups = { "police" },
@@ -418,7 +418,7 @@ Plants = {
 	-- 	offset = -0.4,
 	-- 	targeting = {
 	-- 		{
-	-- 			icon = "fa-solid fa-magnifying-glass",
+	-- 			icon = "fas fa-magnifying-glass",
 	-- 			text = "Check",
 	-- 			event = "Weed:Client:Check",
 	-- 			canInteract = function(entity)
@@ -426,7 +426,7 @@ Plants = {
 	-- 			end,
 	-- 		},
 	-- 		{
-	-- 			icon = "fa-solid fa-hand-scissors",
+	-- 			icon = "fas fa-hand-scissors",
 	-- 			text = "Confiscate",
 	-- 			event = "Weed:Client:Confiscate",
 	-- 			groups = { "police" },

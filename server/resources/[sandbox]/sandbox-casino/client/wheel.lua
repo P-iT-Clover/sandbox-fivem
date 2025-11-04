@@ -15,7 +15,7 @@ AddEventHandler("Casino:Client:Startup", function()
         maxZ = 73.27,
         options = {
             {
-                icon = "fa-solid fa-money-bill",
+                icon = "fas fa-money-bill",
                 label = "Spin the Wheel! ($1,500)",
                 event = "Casino:Client:StartSpin",
                 canInteract = function()
@@ -24,7 +24,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-gift",
+                icon = "fas fa-gift",
                 label = "VIP Turbo Spin ($7,500)",
                 onSelect = function()
                     TriggerEvent("Casino:Client:StartSpin", { turbo = true })
@@ -35,7 +35,7 @@ AddEventHandler("Casino:Client:Startup", function()
                 end,
             },
             {
-                icon = "fa-solid fa-unlock",
+                icon = "fas fa-unlock",
                 label = "Unlock Wheel",
                 event = "Casino:Client:UnlockWheel",
                 groups = { "casino" },

@@ -19,7 +19,7 @@ function SetupTargetting()
 	exports.ox_target:removeModel(_models)
 	exports.ox_target:addModel(_models, {
 		{
-			icon = "fa-solid fa-screwdriver-wrench",
+			icon = "fas fa-screwdriver-wrench",
 			label = "Scrap",
 			event = "Salvaging:Client:ScrapCar",
 			distance = 3.0,
@@ -55,7 +55,7 @@ AddEventHandler("Labor:Client:Setup", function()
 	exports['sandbox-pedinteraction']:Add("SalvagingJob", `s_m_y_construct_02`, vector3(2369.771, 3157.132, 47.209),
 		10.633, 25.0, {
 			{
-				icon = "fa-solid fa-helmet-safety",
+				icon = "fas fa-helmet-safety",
 				text = "Start Work",
 				event = "Salvaging:Client:StartJob",
 				tempjob = "Salvaging",
@@ -64,7 +64,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				end,
 			},
 			{
-				icon = "fa-solid fa-table-list",
+				icon = "fas fa-table-list",
 				text = "I've Finished",
 				event = "Salvaging:Client:TriggerDelivery",
 				tempjob = "Salvaging",
@@ -73,7 +73,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				end,
 			},
 			{
-				icon = "fa-solid fa-box-open",
+				icon = "fas fa-box-open",
 				text = "Here For My Pickup",
 				event = "Laptop:Client:LSUnderground:Chopping:Pickup",
 				isEnabled = function()
@@ -82,7 +82,7 @@ AddEventHandler("Labor:Client:Setup", function()
 				end,
 			},
 			{
-				icon = "fa-solid fa-list",
+				icon = "fas fa-list",
 				text = "View Current Requests",
 				event = "Laptop:Client:LSUnderground:Chopping:GetPublicList",
 				rep = { id = "Salvaging", level = 7 },

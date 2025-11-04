@@ -122,7 +122,7 @@ AddEventHandler("Drugs:Server:Startup", function()
             coords = vector3(mPos.x, mPos.y, mPos.z),
             heading = mPos.w,
             scenario = "WORLD_HUMAN_CHEERING"
-        }, _toolsForSale, "fa-solid fa-money-bill", "View Offers", false, false, true, 60 * math.random(30, 60),
+        }, _toolsForSale, "fas fa-money-bill", "View Offers", false, false, true, 60 * math.random(30, 60),
         60 * math.random(300, 480))
 
     local tables = MySQL.query.await('SELECT * FROM placed_meth_tables WHERE expires > ?', { os.time() })
@@ -366,7 +366,7 @@ AddEventHandler("Drugs:Server:Startup", function()
         local itms = {}
 
         local char = exports['sandbox-characters']:FetchCharacterSource(source)
-        local hasVpn = exports.ox_inventory:Search('count', 'vpn') > 0
+        local hasVpn = exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1)
 
         for k, v in ipairs(_toolsForSale) do
             _toolsForSale[v.item] = _toolsForSale[v.item] or {}

@@ -116,11 +116,17 @@ function RegisterChatCommands()
 			},
 		},
 	}, 1)
-	--
+
 	exports["sandbox-chat"]:RegisterAdminCommand("debug", function(source, args, rawCommand)
 		TriggerClientEvent("HUD:Client:Debug", source)
 	end, {
 		help = "Toggle debugger",
+	})
+
+	exports["sandbox-chat"]:RegisterAdminCommand("dev", function(source, args, rawCommand)
+		TriggerClientEvent("HUD:Client:DevMode", source)
+	end, {
+		help = "Toggle Dev Mode",
 	})
 
 	exports["sandbox-chat"]:RegisterAdminCommand("server", function(source, args, rawCommand)

@@ -34,7 +34,7 @@ function StartRouletteGame(tableId)
 
         print(string.format("Roulette Game Table: %s Num: %s", tableId, winningBetIndex))
 
-        Citizen.SetTimeout(30000, function()
+        SetTimeout(30000, function()
             _roulette[tableId].Started = true
 
             UpdateRouletteGameState(tableId)

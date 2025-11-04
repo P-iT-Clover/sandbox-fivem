@@ -399,9 +399,18 @@ exports('CreateWorkgroup', function(source)
 		end
 
 		local name = { First = char:GetData("First"), Last = char:GetData("Last") }
-		if exports.ox_inventory:Search('count', 'vpn') > 0 then
-			local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
-			name = vpn.MetaData.VpnName
+
+		if exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1) then
+		    local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
+		    local vpnName = vpn.MetaData.VpnName
+		    if type(vpnName) == "string" then
+		        local first, last = vpnName:match("^(%S+)%s*(.*)$")
+		        name.First = first or vpnName
+		        name.Last = last or ""
+		    elseif type(vpnName) == "table" then
+		        name.First = vpnName.First or name.First
+		        name.Last = vpnName.Last or name.Last
+		    end
 		end
 
 		table.insert(_Groups, {
@@ -421,6 +430,7 @@ exports('CreateWorkgroup', function(source)
 		return false
 	end
 end)
+
 
 exports('DisbandWorkgroup', function(source, force)
 	for k, v in ipairs(_Groups) do
@@ -482,9 +492,18 @@ exports('JoinWorkgroup', function(creator, source)
 					end
 
 					local name = { First = char:GetData("First"), Last = char:GetData("Last") }
-					if exports.ox_inventory:Search('count', 'vpn') > 0 then
-						local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
-						name = vpn.MetaData.VpnName
+							
+					if exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1) then
+					    local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
+					    local vpnName = vpn.MetaData.VpnName
+					    if type(vpnName) == "string" then
+					        local first, last = vpnName:match("^(%S+)%s*(.*)$")
+					        name.First = first or vpnName
+					        name.Last = last or ""
+					    elseif type(vpnName) == "table" then
+					        name.First = vpnName.First or name.First
+					        name.Last = vpnName.Last or name.Last
+					    end
 					end
 
 					local d = {
@@ -549,9 +568,18 @@ exports('RequestWorkgroup', function(group, source)
 						_pendingInvites[source] = group.Creator.ID
 
 						local name = { First = char:GetData("First"), Last = char:GetData("Last") }
-						if exports.ox_inventory:Search('count', 'vpn') > 0 then
-							local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
-							name = vpn.MetaData.VpnName
+
+						if exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1) then
+						    local vpn = exports.ox_inventory:ItemsGetFirst(char:GetData("SID"), "vpn", 1)
+						    local vpnName = vpn.MetaData.VpnName
+						    if type(vpnName) == "string" then
+						        local first, last = vpnName:match("^(%S+)%s*(.*)$")
+						        name.First = first or vpnName
+						        name.Last = last or ""
+						    elseif type(vpnName) == "table" then
+						        name.First = vpnName.First or name.First
+						        name.Last = vpnName.Last or name.Last
+						    end
 						end
 
 						exports['sandbox-phone']:NotificationAdd(
@@ -570,7 +598,7 @@ exports('RequestWorkgroup', function(group, source)
 							}
 						)
 
-						Citizen.SetTimeout(30 * 1000, function()
+						SetTimeout(30 * 1000, function()
 							if _pendingInvites[source] ~= nil then
 								_pendingInvites[source] = nil
 

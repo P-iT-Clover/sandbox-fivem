@@ -53,7 +53,7 @@ AddEventHandler("Casino:Client:Startup", function()
 			maxZ = v.options.maxZ,
 			options = {
 				{
-					icon = "fa-solid fa-clipboard-check",
+					icon = "fas fa-clipboard-check",
 					label = "Clock In",
 					onSelect = function()
 						TriggerEvent("Casino:Client:ClockIn", { job = "casino" })
@@ -62,7 +62,7 @@ AddEventHandler("Casino:Client:Startup", function()
 					reqOffDuty = true,
 				},
 				{
-					icon = "fa-solid fa-clipboard",
+					icon = "fas fa-clipboard",
 					label = "Clock Out",
 					onSelect = function()
 						TriggerEvent("Casino:Client:ClockOut", { job = "casino" })
@@ -71,7 +71,7 @@ AddEventHandler("Casino:Client:Startup", function()
 					reqDuty = true,
 				},
 				{
-					icon = "fa-solid fa-door-closed",
+					icon = "fas fa-door-closed",
 					label = "Close Casino",
 					onSelect = function()
 						TriggerEvent("Casino:Client:OpenClose", { state = false })
@@ -83,7 +83,7 @@ AddEventHandler("Casino:Client:Startup", function()
 					end,
 				},
 				{
-					icon = "fa-solid fa-door-open",
+					icon = "fas fa-door-open",
 					label = "Open Casino",
 					onSelect = function()
 						TriggerEvent("Casino:Client:OpenClose", { state = true })
@@ -182,7 +182,7 @@ AddEventHandler("Casino:Client:Startup", function()
 		maxZ = 73.27,
 		options = {
 			{
-				icon = "fa-solid fa-inbox",
+				icon = "fas fa-inbox",
 				label = "Cash Out Chips",
 				event = "Casino:Client:StartChipSell",
 				canInteract = function()
@@ -190,12 +190,12 @@ AddEventHandler("Casino:Client:Startup", function()
 				end,
 			},
 			{
-				icon = "fa-solid fa-inbox",
+				icon = "fas fa-inbox",
 				label = "Purchase Chips",
 				event = "Casino:Client:StartChipPurchase",
 			},
 			{
-				icon = "fa-solid fa-gift",
+				icon = "fas fa-gift",
 				label = "Purchase VIP Card ($10,000, 1 Week)",
 				event = "Casino:Client:PurchaseVIP",
 			},

@@ -4,11 +4,10 @@ lua54("yes")
 client_script("@sandbox-base/exports/cl_error.lua")
 client_script("@sandbox-pwnzor/client/check.lua")
 
-description("AuthenticRP Businesses - Random Stuff For Random Businesses")
-name("AuthenticRP: sandbox-businesses")
+description("Sandbox RP Framework Businesses Script")
+name("Sandbox RP Framework: sandbox-businesses")
 author("Dr Nick")
 version("v1.0.0")
-url("https://www.mythicrp.com")
 
 client_scripts({
 	"client/**/*.lua",

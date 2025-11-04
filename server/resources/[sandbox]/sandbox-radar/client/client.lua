@@ -13,7 +13,7 @@ RECENT_FLAGS = {}
 AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
-		exports["sandbox-keybinds"]:Add("radar_lock", "MULTIPLY", "keyboard", "Radar - Toggle Fast Lock", function()
+		exports["sandbox-kbs"]:Add("radar_lock", "MULTIPLY", "keyboard", "Radar - Toggle Fast Lock", function()
 			if RADAR_LOCKED then
 				UnlockRadar()
 			else
@@ -21,27 +21,27 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("radar_remote", "DIVIDE", "keyboard", "Radar - Open Menu/Remote", function()
+		exports["sandbox-kbs"]:Add("radar_remote", "DIVIDE", "keyboard", "Radar - Open Menu/Remote", function()
 			OpenRadarRemote()
 		end)
 
-		exports["sandbox-keybinds"]:Add("radar_toggle", "SUBTRACT", "keyboard", "Radar - Show/Hide", function()
+		exports["sandbox-kbs"]:Add("radar_toggle", "SUBTRACT", "keyboard", "Radar - Show/Hide", function()
 			ToggleRadarIsDisabled()
 		end)
 
-		exports["sandbox-keybinds"]:Add("heli_toggle", "E", "keyboard", "Heli Camera - Toggle", function()
+		exports["sandbox-kbs"]:Add("heli_toggle", "E", "keyboard", "Heli Camera - Toggle", function()
 			StartHeliCamera()
 		end)
 
-		exports["sandbox-keybinds"]:Add("heli_rappell", "X", "keyboard", "Heli - Rappel", function()
+		exports["sandbox-kbs"]:Add("heli_rappell", "X", "keyboard", "Heli - Rappel", function()
 			HeliRappel()
 		end)
 
-		-- exports["sandbox-keybinds"]:Add("heli_lock", "SPACE", "keyboard", "Heli Camera - Lock On/Off", function()
+		-- exports["sandbox-kbs"]:Add("heli_lock", "SPACE", "keyboard", "Heli Camera - Lock On/Off", function()
 		-- 	LockOnHeliCamera()
 		-- end)
 
-		-- exports["sandbox-keybinds"]:Add("heli_camera", "MOUSE_RIGHT", "MOUSE_BUTTON", "Heli Camera - Change Mode", function()
+		-- exports["sandbox-kbs"]:Add("heli_camera", "MOUSE_RIGHT", "MOUSE_BUTTON", "Heli Camera - Change Mode", function()
 		-- 	ChangeVision()
 		-- end)
 	end
@@ -306,7 +306,7 @@ function CheckPlateFlagged(direction, vehicle, plate)
 				),
 			}, false, nil, 0)
 
-		Citizen.SetTimeout(30000, function() -- So the plate doesn't constantly get flagged
+		SetTimeout(30000, function() -- So the plate doesn't constantly get flagged
 			RECENT_FLAGS[plate] = nil
 		end)
 	else

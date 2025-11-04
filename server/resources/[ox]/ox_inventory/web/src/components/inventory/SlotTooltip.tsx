@@ -225,7 +225,7 @@ const SlotTooltip: React.ForwardRefRenderFunction<
               {additionalMetadata.map((data: { metadata: string; value: string }, index: number) => (
                 <Fragment key={`metadata-${index}`}>
                   {item.metadata &&
-                    item.metadata[data.metadata] &&
+                    item.metadata[data.metadata] !== undefined &&
                     renderMetadataField(data.value, item.metadata[data.metadata])}
                 </Fragment>
               ))}

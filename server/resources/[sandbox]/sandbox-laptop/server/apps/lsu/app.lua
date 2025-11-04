@@ -54,8 +54,6 @@ local locations = {
 }
 
 AddEventHandler("Laptop:Server:RegisterCallbacks", function()
-	RegisterItems()
-
 	CreateThread(function()
 		local wait = 60 * math.random(120, 240)
 		while true do
@@ -93,7 +91,7 @@ AddEventHandler("Laptop:Server:RegisterCallbacks", function()
 
 			local items = {}
 			if not data.phone then
-				local hasVpn = exports.ox_inventory:Search('count', 'vpn') > 0
+				local hasVpn = exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1)
 				for k, it in ipairs(marketItems) do
 					local v = table.copy(it)
 					if
@@ -162,7 +160,7 @@ AddEventHandler("Laptop:Server:RegisterCallbacks", function()
 				if not failed then
 					local quantityLimited = false
 					local otherLimited = false
-					local hasVpn = exports.ox_inventory:Search('count', 'vpn') > 0
+					local hasVpn = exports.ox_inventory:ItemsHas(char:GetData("SID"), 1, 'vpn', 1)
 
 					local boughtItems = {}
 					local boughtItemQuantity = 0
@@ -288,7 +286,7 @@ AddEventHandler("Laptop:Server:RegisterCallbacks", function()
 	end)
 end)
 
-function RegisterItems()
+function RegisterItemUses()
 	exports.ox_inventory:RegisterUse("lsundg_invite", "LSUNDG", function(source, item, itemData)
 		local char = exports['sandbox-characters']:FetchCharacterSource(source)
 		local pState = Player(source).state
@@ -327,7 +325,7 @@ function RegisterItems()
 							)
 						)
 
-						Citizen.SetTimeout(5000, function()
+						SetTimeout(5000, function()
 							exports['sandbox-laptop']:AddNotification(
 								source,
 								"Program Installed",
@@ -355,6 +353,16 @@ end
 
 RegisterNetEvent('ox_inventory:ready', function()
 	if GetResourceState(GetCurrentResourceName()) == 'started' then
-		RegisterItems()
+		RegisterItemUses()
+	end
+end)
+
+-- Also try to register on resource start in case ox_inventory is already ready
+AddEventHandler('onResourceStart', function(resourceName)
+	if resourceName == GetCurrentResourceName() then
+		Wait(2000) -- Wait for ox_inventory to be ready
+		if GetResourceState('ox_inventory') == 'started' then
+			RegisterItemUses()
+		end
 	end
 end)

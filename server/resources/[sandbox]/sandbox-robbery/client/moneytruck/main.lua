@@ -89,7 +89,7 @@ AddEventHandler("Robbery:Client:Setup", function()
 			AddTextComponentString(text)
 			EndTextCommandSetBlipName(blip)
 
-			Citizen.SetTimeout((1000 * 60) * 10, function()
+			SetTimeout((1000 * 60) * 10, function()
 				RemoveBlip(blip)
 			end)
 

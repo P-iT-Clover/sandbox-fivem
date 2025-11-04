@@ -13,15 +13,13 @@ function EMSItems()
 	-- end)
 
 	exports.ox_inventory:RegisterUse("morphine", "MedicalItems", function(source, item)
-		-- ox_inventory already removed the item
 		exports['sandbox-damage']:EffectsPainkiller(source, 1)
 	end)
 
 	exports.ox_inventory:RegisterUse("oxy", "MedicalItems", function(source, item)
 		local char = exports['sandbox-characters']:FetchCharacterSource(source)
 		local pState = Player(source).state
-		
-		-- ox_inventory already removed the item
+
 		exports['sandbox-damage']:EffectsPainkiller(source, 2)
 
 		if pState.healTicks ~= nil then
@@ -43,7 +41,6 @@ function EMSItems()
 		local curr = GetEntityHealth(ped)
 		local max = GetEntityMaxHealth(ped)
 		local pState = Player(source).state
-		-- ox_inventory already removed the item, so we don't need to remove it again
 		do
 			local heal = 10
 			if curr < (max * 0.75) then
@@ -74,7 +71,6 @@ function EMSItems()
 		local curr = GetEntityHealth(ped)
 		local max = GetEntityMaxHealth(ped)
 		local pState = Player(source).state
-		-- ox_inventory already removed the item
 		do
 			local p = promise.new()
 			local heal = 15
@@ -109,8 +105,7 @@ function EMSItems()
 		local curr = GetEntityHealth(ped)
 		local max = GetEntityMaxHealth(ped)
 		local pState = Player(source).state
-		
-		-- ox_inventory already removed the item
+
 		do
 			local p = promise.new()
 			local heal = 30

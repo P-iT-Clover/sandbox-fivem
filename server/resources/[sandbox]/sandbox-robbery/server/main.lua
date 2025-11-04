@@ -198,13 +198,13 @@ AddEventHandler('onResourceStart', function(resource)
 			coords = vector3(pos1.x, pos1.y, pos1.z),
 			heading = pos1.w,
 			scenario = "WORLD_HUMAN_TOURIST_MOBILE",
-		}, _heistTools, "fa-solid fa-money-bill", "View Offers", false, 1, true, 60 * math.random(30, 60))
+		}, _heistTools, "fas fa-money-bill", "View Offers", false, 1, true, 60 * math.random(30, 60))
 
 		local pos = _sellerLocs[tostring(os.date("%w"))]
 		exports['sandbox-pedinteraction']:VendorCreate("HeistShit", "ped", "Rob Tools", GetHashKey("CS_NervousRon"), {
 				coords = vector3(pos.x, pos.y, pos.z),
 				heading = pos.w,
-			}, _toolsForSale, "fa-solid fa-money-bill", "View Offers", 1, false, true, 60 * math.random(30, 60),
+			}, _toolsForSale, "fas fa-money-bill", "View Offers", 1, false, true, 60 * math.random(30, 60),
 			60 * math.random(240, 360))
 
 		local pos2 = _schemSellerLocs[tostring(os.date("%w"))]
@@ -212,7 +212,7 @@ AddEventHandler('onResourceStart', function(resource)
 			GetHashKey("a_m_m_eastsa_02"), {
 				coords = vector3(pos2.x, pos2.y, pos2.z),
 				heading = pos2.w,
-			}, _schemSeller, "fa-solid fa-money-bill", "View Offers")
+			}, _schemSeller, "fas fa-money-bill", "View Offers")
 
 		exports['sandbox-finance']:CryptoCoinCreate("HEIST", "HEIST", 100, false, false)
 

@@ -1,5 +1,8 @@
 Config = Config or {}
 
+Config.EnableDownblur = true
+Config.EnableScreenFlash = true
+
 Config.ICUBeds = {
 	-- -- Mt Zonah ICU
 	-- vector4(-484.631, -329.334, 69.523, 352.380),

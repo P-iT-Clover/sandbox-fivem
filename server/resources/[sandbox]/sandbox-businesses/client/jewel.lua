@@ -47,7 +47,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 	for k, v in ipairs(_sellers) do
 		exports['sandbox-pedinteraction']:Add(string.format("JEWELSeller%s", k), v.model, v.coords, v.heading, 25.0, {
 			{
-				icon = "fa-solid fa-ring",
+				icon = "fas fa-ring",
 				text = "Sell Gems",
 				event = "JEWEL:Client:Sell",
 				jobPerms = {
@@ -71,7 +71,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 			maxZ = v.options.maxZ,
 			options = {
 				{
-					icon = "fa-solid fa-gem",
+					icon = "fas fa-gem",
 					label = "View Gem Table",
 					event = "Businesses:Client:JEWEL:OpenTable",
 					groups = { "jewel" },
@@ -81,7 +81,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 					end,
 				},
 				{
-					icon = "fa-solid fa-gem",
+					icon = "fas fa-gem",
 					label = "Create Jewelry",
 					event = "Businesses:Client:JEWEL:OpenJewelryCrafting",
 					groups = { "jewel" },

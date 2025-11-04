@@ -9,7 +9,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Wait(1000)
 		RegisterCallbacks()
-		exports["sandbox-keybinds"]:Add("emergency_alerts_toggle", "GRAVE", "keyboard", "Police - Toggle Alerts Panel",
+		exports["sandbox-kbs"]:Add("emergency_alerts_toggle", "GRAVE", "keyboard", "Police - Toggle Alerts Panel",
 			function()
 				local duty = LocalPlayer.state.onDuty
 				if _jobs[duty] and not LocalPlayer.state.isDead then

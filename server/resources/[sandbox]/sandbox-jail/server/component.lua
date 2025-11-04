@@ -14,6 +14,7 @@ AddEventHandler('onResourceStart', function(resource)
 end)
 
 function RegisterCommands()
+	-- Jail Command
 	exports["sandbox-chat"]:RegisterCommand(
 		"jail",
 		function(source, args, rawCommand)
@@ -53,6 +54,43 @@ function RegisterCommands()
 			},
 		},
 		2,
+		{
+			{
+				Id = "police",
+			},
+			{
+				Id = "prison",
+			},
+		}
+	)
+
+	-- Unjail Command
+	exports["sandbox-chat"]:RegisterCommand(
+		"unjail",
+		function(source, args, rawCommand)
+			if tonumber(args[1]) then
+				local char = exports['sandbox-characters']:FetchBySID(tonumber(args[1]))
+				if char ~= nil then
+					exports['sandbox-jail']:Release(char:GetData("Source"), true)
+					exports["sandbox-chat"]:SendSystemSingle(source,
+						string.format("%s Has Been Released from Jail", args[1]))
+				else
+					exports["sandbox-chat"]:SendSystemSingle(source, "State ID Not Logged In")
+				end
+			else
+				exports["sandbox-chat"]:SendSystemSingle(source, "Invalid Arguments")
+			end
+		end,
+		{
+			help = "UnJail Player",
+			params = {
+				{
+					name = "Target",
+					help = "State ID of target",
+				},
+			},
+		},
+		1,
 		{
 			{
 				Id = "police",
@@ -179,7 +217,6 @@ exports('Reduce', function(source, reduction)
 			end
 
 			char:SetData("Jailed", jailData)
-
 			cachedData = nil
 			return true
 		end

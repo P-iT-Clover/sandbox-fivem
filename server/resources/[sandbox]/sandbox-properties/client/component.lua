@@ -143,7 +143,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 		end
 
-		exports["sandbox-keybinds"]:Add("furniture_prev", "LEFT", "keyboard", "Furniture - Previous Item", function()
+		exports["sandbox-kbs"]:Add("furniture_prev", "LEFT", "keyboard", "Furniture - Previous Item", function()
 			if _placingFurniture then
 				CycleFurniture()
 			elseif _previewingInterior and not _previewingInteriorSwitching then
@@ -151,7 +151,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 			end
 		end)
 
-		exports["sandbox-keybinds"]:Add("furniture_next", "RIGHT", "keyboard", "Furniture - Next Item", function()
+		exports["sandbox-kbs"]:Add("furniture_next", "RIGHT", "keyboard", "Furniture - Next Item", function()
 			if _placingFurniture then
 				CycleFurniture(true)
 			elseif _previewingInterior and not _previewingInteriorSwitching then

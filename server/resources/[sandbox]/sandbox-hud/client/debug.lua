@@ -48,14 +48,19 @@ function GetVehicle()
 			distanceFrom = distance
 			rped = ped
 			if IsEntityTouchingEntity(GetPlayerPed(-1), ped) then
+				local modelHash = GetEntityModel(ped)
+				local modelName = GetDisplayNameFromVehicleModel(modelHash)
 				DrawText3Ds(
 					pos["x"],
 					pos["y"],
 					pos["z"] + 1,
-					"Veh: " .. ped .. " Model: " .. GetEntityModel(ped) .. " IN CONTACT"
+					"Veh: " .. ped .. " Model: " .. modelHash .. " Name: " .. modelName .. " IN CONTACT"
 				)
 			else
-				DrawText3Ds(pos["x"], pos["y"], pos["z"] + 1, "Veh: " .. ped .. " Model: " .. GetEntityModel(ped) .. "")
+				local modelHash = GetEntityModel(ped)
+				local modelName = GetDisplayNameFromVehicleModel(modelHash)
+				DrawText3Ds(pos["x"], pos["y"], pos["z"] + 1,
+					"Veh: " .. ped .. " Model: " .. modelHash .. " Name: " .. modelName)
 			end
 		end
 		success, ped = FindNextVehicle(handle)

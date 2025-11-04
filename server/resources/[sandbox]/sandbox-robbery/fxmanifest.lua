@@ -1,7 +1,6 @@
-name("ARP Robbery")
-author("[ARP Team]")
-version("v1.0.0")
-url("https://www.mythicrp.com")
+name("Sandbox RP Framework Robbery")
+author("[Alzar, Dr Nick]")
+
 lua54("yes")
 fx_version("cerulean")
 game("gta5")

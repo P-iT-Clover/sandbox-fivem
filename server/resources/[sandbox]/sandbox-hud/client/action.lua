@@ -3,7 +3,7 @@ exports("ActionShow", function(id, message, duration)
 		message,
 		"{keybind}([A-Za-z!\"#$%&'()*+,-./[\\%]^_`|~]+){/keybind}",
 		function(key)
-			local keyName = exports["sandbox-keybinds"]:GetKey(key) or "Unknown"
+			local keyName = exports["sandbox-kbs"]:GetKey(key) or "Unknown"
 			return "{key}" .. keyName .. "{/key}"
 		end
 	)

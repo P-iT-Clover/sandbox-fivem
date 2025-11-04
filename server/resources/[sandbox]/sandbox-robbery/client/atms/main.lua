@@ -176,7 +176,7 @@ AddEventHandler('Robbery:Client:ATM:StartHack', function(entity)
     if math.random(100) >= 75 then
         alarm = true
 
-        Citizen.SetTimeout(8000, function()
+        SetTimeout(8000, function()
             exports["sandbox-sounds"]:PlayLocation(coords, 20.0, "house_alarm.ogg", 0.05)
             TriggerServerEvent("Robbery:Server:ATM:AlertPolice", coords)
         end)

@@ -137,7 +137,7 @@ exports("BadgesOpen", function(data)
 		_badgeOpen = true
 		badgeIdOpen = data.SID
 
-		Citizen.SetTimeout(9000, function()
+		SetTimeout(9000, function()
 			if _badgeOpen and badgeIdOpen == data.SID then
 				exports['sandbox-mdt']:BadgesClose()
 			end
@@ -162,7 +162,7 @@ exports("LicensesOpen", function(data)
 		_badgeOpen = true
 		badgeIdOpen = data.SID
 
-		Citizen.SetTimeout(9000, function()
+		SetTimeout(9000, function()
 			if _badgeOpen and badgeIdOpen == data.SID then
 				exports['sandbox-mdt']:LicensesClose()
 			end

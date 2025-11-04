@@ -25,7 +25,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 
 		TriggerEvent("Vehicles:Client:StartUp")
 
-		exports["sandbox-keybinds"]:Add("toggle_engine", "IOM_WHEEL_UP", "MOUSE_WHEEL", "Vehicle - Toggle Engine",
+		exports["sandbox-kbs"]:Add("toggle_engine", "IOM_WHEEL_UP", "MOUSE_WHEEL", "Vehicle - Toggle Engine",
 			function()
 				if VEHICLE_INSIDE and VEHICLE_SEAT == -1 then
 					if IsPauseMenuActive() ~= 1 then
@@ -33,8 +33,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 					end
 				end
 			end)
-
-		exports['sandbox-hud']:InteractionRegisterMenu("veh_quick_actions", false, "car", function()
+		exports['sandbox-hud']:InteractionRegisterMenu("veh_quick_actions", "Open Vehicle Menu", "car", function()
 			if VEHICLE_INSIDE then
 				local vehEnt = Entity(VEHICLE_INSIDE)
 				local subMenu = {}
@@ -165,7 +164,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 						end,
 					},
 					{
-						icon = "windows",
+						icon = "fa-window-maximize",
 						label = "Windows",
 						shouldShow = function()
 							if VEHICLE_INSIDE then
@@ -178,7 +177,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 						action = function()
 							local doors = {}
 							table.insert(doors, {
-								icon = "windows",
+								icon = "window-maximize",
 								label = "Driver Window",
 								action = function()
 									TriggerEvent("Vehicles:Client:Actions:ToggleWindow", 0)
@@ -186,7 +185,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 							})
 
 							table.insert(doors, {
-								icon = "windows",
+								icon = "window-maximize",
 								label = "Passenger Window",
 								action = function()
 									TriggerEvent("Vehicles:Client:Actions:ToggleWindow", 1)
@@ -194,7 +193,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 							})
 
 							table.insert(doors, {
-								icon = "windows",
+								icon = "window-maximize",
 								label = "Close All",
 								action = function()
 									TriggerEvent("Vehicles:Client:Actions:ToggleWindow", "shut")
@@ -202,7 +201,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 							})
 
 							table.insert(doors, {
-								icon = "windows",
+								icon = "window-maximize",
 								label = "Open All",
 								action = function()
 									TriggerEvent("Vehicles:Client:Actions:ToggleWindow", "open")
@@ -230,7 +229,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 						end,
 					},
 					{
-						icon = "gauge-circle-plus",
+						icon = "fire",
 						label = "Check Nitrous Levels",
 						shouldShow = function()
 							if VEHICLE_INSIDE then
@@ -257,7 +256,7 @@ AddEventHandler('onClientResourceStart', function(resource)
 						end,
 					},
 					{
-						icon = "gauge-circle-minus",
+						icon = "rocket",
 						label = "Remove Nitrous",
 						shouldShow = function()
 							if VEHICLE_INSIDE and GetPedInVehicleSeat(VEHICLE_INSIDE, -1) == LocalPlayer.state.ped then

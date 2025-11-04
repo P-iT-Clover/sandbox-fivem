@@ -58,7 +58,7 @@ end
 local function LoadTracks()
 	_tracks = MySQL.rawExecute.await(
 		"SELECT id, name as Name, distance as Distance, type as Type, checkpoints as Checkpoints, created_by as Creator FROM redline_tracks"
-	)
+	) or {}
 	for k, v in ipairs(_tracks) do
 		v.Checkpoints = json.decode(v.Checkpoints)
 		v.Fastest = MySQL.rawExecute.await(
@@ -67,7 +67,7 @@ local function LoadTracks()
 				'redline',
 				v.id,
 			}
-		)
+		) or {}
 	end
 end
 

@@ -15,7 +15,7 @@ exports('ManagementLoadData', function()
                 if cardealers[k] then
                     _managementData[k] = cardealers[k]
                 else
-                    _managementData[k] = _defaultDealershipSalesData
+                    _managementData[k] = table.copy(_defaultDealershipSalesData)
                 end
             end
             p:resolve(true)
@@ -38,9 +38,9 @@ exports('ManagementSetData', function(dealerId, key, val)
         exports.oxmysql:execute(
             'INSERT INTO dealer_data (dealership, ' .. key .. ') VALUES (?, ?) ON DUPLICATE KEY UPDATE ' .. key .. ' = ?',
             { dealerId, val, val },
-            function(affectedRows)
-                if affectedRows and affectedRows > 0 then
-                    _managementData[dealerId] = dealerData
+            function(result)
+                if result then
+                    _managementData[dealerId][key] = val
                     p:resolve(_managementData[dealerId])
                 else
                     p:resolve(false)
@@ -64,22 +64,28 @@ exports('ManagementSetMultipleData', function(dealerId, updatingData)
 
         local p = promise.new()
 
+        local columns = {}
         local setParts = {}
-        local values = {}
+        local values = { dealerId }
+        
         for k, v in pairs(updatingData) do
+            table.insert(columns, k)
             table.insert(setParts, k .. ' = ?')
             table.insert(values, v)
         end
 
         local query = 'INSERT INTO dealer_data (dealership, ' ..
-            table.concat(setParts, ', ') ..
+            table.concat(columns, ', ') ..
             ') VALUES (?, ' ..
-            string.rep('?, ', #values - 1) .. '?) ON DUPLICATE KEY UPDATE ' .. table.concat(setParts, ', ')
-        table.insert(values, 1, dealerId)
-        table.insert(values, dealerId)
+            string.rep('?, ', #columns - 1) .. '?) ON DUPLICATE KEY UPDATE ' .. 
+            table.concat(setParts, ', ')
+        
+        for k, v in pairs(updatingData) do
+            table.insert(values, v)
+        end
 
-        exports.oxmysql:execute(query, values, function(affectedRows)
-            if affectedRows and affectedRows > 0 then
+        exports.oxmysql:execute(query, values, function(result)
+            if result then
                 _managementData[dealerId] = dealerData
                 p:resolve(_managementData[dealerId])
             else

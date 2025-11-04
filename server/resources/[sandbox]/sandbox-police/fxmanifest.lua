@@ -1,4 +1,4 @@
-name("ARP Emergency Services")
+name("Sandbox RP Framework Emergency Services")
 author("[Alzar]")
 lua54("yes")
 fx_version("cerulean")

@@ -10,7 +10,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 	for k, v in ipairs(_sellers) do
 		exports['sandbox-pedinteraction']:Add(string.format("GarconPawn%s", k), v.model, v.coords, v.heading, 25.0, {
 			{
-				icon = "fa-solid fa-ring",
+				icon = "fas fa-ring",
 				text = "Sell Pawn Goods",
 				event = "GarconPawn:Client:Sell",
 				groups = { "garcon_pawn" },

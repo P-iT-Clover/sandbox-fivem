@@ -54,7 +54,7 @@ AddEventHandler("Drugs:Client:Startup", function()
         exports.ox_target:addModel(v, {
             {
                 label = "Dismantle Still (Destroys Still)",
-                icon = "fa-solid fa-hand",
+                icon = "fas fa-hand",
                 event = "Drugs:Client:Moonshine:PickupStill",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -65,7 +65,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Still Info",
-                icon = "fa-solid fa-info",
+                icon = "fas fa-info",
                 event = "Drugs:Client:Moonshine:StillDetails",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -74,7 +74,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Start Brewing",
-                icon = "fa-solid fa-clock",
+                icon = "fas fa-clock",
                 event = "Drugs:Client:Moonshine:StartCook",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -86,7 +86,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Collect Brew",
-                icon = "fa-solid fa-box",
+                icon = "fas fa-box",
                 event = "Drugs:Client:Moonshine:PickupCook",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -103,7 +103,7 @@ AddEventHandler("Drugs:Client:Startup", function()
         exports.ox_target:addModel(v, {
             {
                 label = "Destroy Barrel",
-                icon = "fa-solid fa-hand",
+                icon = "fas fa-hand",
                 event = "Drugs:Client:Moonshine:PickupBarrel",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -114,7 +114,7 @@ AddEventHandler("Drugs:Client:Startup", function()
             },
             {
                 label = "Barrel Info",
-                icon = "fa-solid fa-info",
+                icon = "fas fa-info",
                 event = "Drugs:Client:Moonshine:BarrelDetails",
                 distance = 3.0,
                 canInteract = function(entity)
@@ -127,7 +127,7 @@ AddEventHandler("Drugs:Client:Startup", function()
                     return string.format("Fill Jars (Requires %s Empty Jars)",
                         (_barrels[entState.barrelId]?.brewData?.Drinks or 15))
                 end,
-                icon = "fa-solid fa-box",
+                icon = "fas fa-box",
                 event = "Drugs:Client:Moonshine:PickupBrew",
                 distance = 3.0,
                 canInteract = function(entity)

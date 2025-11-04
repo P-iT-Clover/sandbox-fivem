@@ -56,8 +56,20 @@ local function DecodeVehicleJsonFields(vehicle)
 			vehicle.Properties.Flags = {}
 		end
 
+		if vehicle.Properties.GovAssigned then
+			if type(vehicle.Properties.GovAssigned) == "string" then
+				local success, govAssigned = pcall(json.decode, vehicle.Properties.GovAssigned)
+				if success and govAssigned and type(govAssigned) == "table" then
+					vehicle.Properties.GovAssigned = govAssigned
+				else
+					vehicle.Properties.GovAssigned = nil
+				end
+			end
+		end
+
 		vehicle.Strikes = vehicle.Properties.Strikes or {}
 		vehicle.Flags = vehicle.Properties.Flags or {}
+		vehicle.GovAssigned = vehicle.Properties.GovAssigned or nil
 	end
 end
 

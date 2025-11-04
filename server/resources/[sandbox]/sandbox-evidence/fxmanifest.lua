@@ -1,15 +1,14 @@
 fx_version("cerulean")
-games({ "gta5" }) -- 'gta5' for GTAv / 'rdr3' for Red Dead 2, 'gta5','rdr3' for both
+games({ "gta5" }) 
 lua54("yes")
 client_script("@sandbox-base/exports/cl_error.lua")
 client_script("@sandbox-pwnzor/client/check.lua")
 server_script("@oxmysql/lib/MySQL.lua")
 
-description("AuthenticRP Evidence System")
-name("AuthenticRP: sandbox-evidence")
+description("Sandbox RP Framework Evidence System")
+name("Sandbox RP Framework: sandbox-evidence")
 author("Dr Nick")
 version("v1.0.0")
-url("https://www.mythicrp.com")
 
 server_scripts({
 	'@oxmysql/lib/MySQL.lua',
